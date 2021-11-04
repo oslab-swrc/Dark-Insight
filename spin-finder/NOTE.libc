@@ -1,0 +1,15 @@
+# bin-pic: /lib/x86_64-linux-gnu/libc-2.19.so
+# spin-finder results
+# - what is "0000000000025211"?
+__gconv_get_alias_db,0x250b8,0x25182,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x25188,0x251a7,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x251b0,0x25220,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x25348,0x253ef,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x253f8,0x254d4,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x254e0,0x25531,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+__gconv_get_alias_db,0x25580,0x25584,0x0(0x3a1a5f<0000000000025211><-0x78(%rbp)>) # __gconv_get_alias_db
+
+# - $addr case
+__libc_init_first-0x2770,0x1f6fa,0x1f712,$0x30<0x1(0x0(%rdi))>
+__libc_init_first-0x2770,0x1f6fa,0x1f732,$0x30<0x1(0x0(%rdi))>
+

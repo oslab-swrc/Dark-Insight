@@ -1,0 +1,21 @@
+#ifndef __DKS_DSO_IC__
+#define __DKS_DSO_IC__
+
+static inline bool dso__is_kcore(struct dso *dso)
+{
+	return dso->binary_type == DSO_BINARY_TYPE__KCORE ||
+	       dso->binary_type == DSO_BINARY_TYPE__GUEST_KCORE;
+}
+
+static inline void dso__set_loaded(struct dso *dso, enum map_type type)
+{
+	dso->loaded |= (1 << type);
+}
+
+static inline void __dso__zput(struct dso **dso)
+{
+	dso__put(*dso);
+	*dso = NULL;
+}
+
+#endif /*__DKS_DSO_IC__ */

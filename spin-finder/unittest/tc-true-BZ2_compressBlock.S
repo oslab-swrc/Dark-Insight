@@ -1,0 +1,3761 @@
+// TC_OUT BZ2_compressBlock,0x5e67,0x5f03,0x40(%rsp)
+// TC_OUT BZ2_compressBlock,0x5f08,0x5f76,0x40(%rsp)
+// TC_OUT BZ2_compressBlock,0x5f80,0x6059,0x40(%rsp)
+0000000000003ce0 <BZ2_compressBlock>:
+    3ce0:	push   %r15
+    3ce2:	push   %r14
+    3ce4:	push   %r13
+    3ce6:	push   %r12
+    3ce8:	push   %rbp
+    3ce9:	push   %rbx
+    3cea:	mov    %rdi,%rbx
+    3ced:	sub    $0x1d8,%rsp
+    3cf4:	mov    %fs:0x28,%rax
+    3cfd:	mov    %rax,0x1c8(%rsp)
+    3d05:	xor    %eax,%eax
+    3d07:	movslq 0x6c(%rdi),%rax
+    3d0b:	mov    %esi,0x7c(%rsp)
+    3d0f:	test   %eax,%eax
+    3d11:	jle    415a <BZ2_compressBlock+0x47a>
+    3d17:	mov    0x288(%rdi),%r8d
+    3d1e:	mov    0x28c(%rdi),%r9d
+    3d25:	mov    0x294(%rdi),%ecx
+    3d2b:	not    %r8d
+    3d2e:	rol    %r9d
+    3d31:	xor    %r8d,%r9d
+    3d34:	cmp    $0x1,%ecx
+    3d37:	mov    %r8d,0x288(%rdi)
+    3d3e:	mov    %r9d,0x28c(%rdi)
+    3d45:	jle    3d4e <BZ2_compressBlock+0x6e>
+    3d47:	movl   $0x0,0x74(%rdi)
+    3d4e:	cmpl   $0x1,0x290(%rbx)
+    3d55:	jle    3d7b <BZ2_compressBlock+0x9b>
+    3d57:	sub    $0x8,%rsp
+    3d5b:	lea    0x94d6(%rip),%rdx        # d238 <_fini+0x1a4>
+    3d62:	mov    $0x1,%esi
+    3d67:	push   %rax
+    3d68:	mov    0x20b269(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    3d6f:	mov    (%rax),%rdi
+    3d72:	xor    %eax,%eax
+    3d74:	callq  1390 <__fprintf_chk@plt>
+    3d79:	pop    %rax
+    3d7a:	pop    %rdx
+    3d7b:	mov    %rbx,%rdi
+    3d7e:	callq  3260 <BZ2_blockSort>
+    3d83:	movslq 0x6c(%rbx),%rdx
+    3d87:	mov    %rdx,%rax
+    3d8a:	add    0x20(%rbx),%rdx
+    3d8e:	cmpl   $0x1,0x294(%rbx)
+    3d95:	mov    %rdx,0x50(%rbx)
+    3d99:	je     419f <BZ2_compressBlock+0x4bf>
+    3d9f:	test   %eax,%eax
+    3da1:	jle    416b <BZ2_compressBlock+0x48b>
+    3da7:	mov    0x284(%rbx),%edx
+    3dad:	cmp    $0x7,%edx
+    3db0:	jle    462b <BZ2_compressBlock+0x94b>
+    3db6:	mov    0x74(%rbx),%ecx
+    3db9:	mov    0x280(%rbx),%eax
+    3dbf:	mov    0x50(%rbx),%rdx
+    3dc3:	shr    $0x18,%eax
+    3dc6:	movslq %ecx,%rcx
+    3dc9:	mov    %al,(%rdx,%rcx,1)
+    3dcc:	mov    0x74(%rbx),%eax
+    3dcf:	mov    0x284(%rbx),%edi
+    3dd5:	lea    0x1(%rax),%ecx
+    3dd8:	mov    0x280(%rbx),%eax
+    3dde:	lea    -0x8(%rdi),%edx
+    3de1:	mov    %ecx,0x74(%rbx)
+    3de4:	shl    $0x8,%eax
+    3de7:	cmp    $0x7,%edx
+    3dea:	mov    %edx,0x284(%rbx)
+    3df0:	mov    %eax,0x280(%rbx)
+    3df6:	jg     3dbf <BZ2_compressBlock+0xdf>
+    3df8:	mov    $0x18,%ecx
+    3dfd:	mov    $0x31,%esi
+    3e02:	sub    %edx,%ecx
+    3e04:	add    $0x8,%edx
+    3e07:	shl    %cl,%esi
+    3e09:	mov    %edx,0x284(%rbx)
+    3e0f:	or     %esi,%eax
+    3e11:	cmp    $0x7,%edx
+    3e14:	mov    %eax,0x280(%rbx)
+    3e1a:	jle    3e58 <BZ2_compressBlock+0x178>
+    3e1c:	mov    0x74(%rbx),%ecx
+    3e1f:	mov    0x50(%rbx),%rdx
+    3e23:	shr    $0x18,%eax
+    3e26:	movslq %ecx,%rcx
+    3e29:	mov    %al,(%rdx,%rcx,1)
+    3e2c:	mov    0x74(%rbx),%eax
+    3e2f:	mov    0x284(%rbx),%edi
+    3e35:	lea    0x1(%rax),%ecx
+    3e38:	mov    0x280(%rbx),%eax
+    3e3e:	lea    -0x8(%rdi),%edx
+    3e41:	mov    %ecx,0x74(%rbx)
+    3e44:	shl    $0x8,%eax
+    3e47:	cmp    $0x7,%edx
+    3e4a:	mov    %edx,0x284(%rbx)
+    3e50:	mov    %eax,0x280(%rbx)
+    3e56:	jg     3e1f <BZ2_compressBlock+0x13f>
+    3e58:	mov    $0x18,%ecx
+    3e5d:	mov    $0x41,%esi
+    3e62:	sub    %edx,%ecx
+    3e64:	add    $0x8,%edx
+    3e67:	shl    %cl,%esi
+    3e69:	mov    %edx,0x284(%rbx)
+    3e6f:	or     %esi,%eax
+    3e71:	cmp    $0x7,%edx
+    3e74:	mov    %eax,0x280(%rbx)
+    3e7a:	jle    3eb8 <BZ2_compressBlock+0x1d8>
+    3e7c:	mov    0x74(%rbx),%ecx
+    3e7f:	mov    0x50(%rbx),%rdx
+    3e83:	shr    $0x18,%eax
+    3e86:	movslq %ecx,%rcx
+    3e89:	mov    %al,(%rdx,%rcx,1)
+    3e8c:	mov    0x74(%rbx),%eax
+    3e8f:	mov    0x284(%rbx),%edi
+    3e95:	lea    0x1(%rax),%ecx
+    3e98:	mov    0x280(%rbx),%eax
+    3e9e:	lea    -0x8(%rdi),%edx
+    3ea1:	mov    %ecx,0x74(%rbx)
+    3ea4:	shl    $0x8,%eax
+    3ea7:	cmp    $0x7,%edx
+    3eaa:	mov    %edx,0x284(%rbx)
+    3eb0:	mov    %eax,0x280(%rbx)
+    3eb6:	jg     3e7f <BZ2_compressBlock+0x19f>
+    3eb8:	mov    $0x18,%ecx
+    3ebd:	mov    $0x59,%esi
+    3ec2:	sub    %edx,%ecx
+    3ec4:	add    $0x8,%edx
+    3ec7:	shl    %cl,%esi
+    3ec9:	mov    %edx,0x284(%rbx)
+    3ecf:	or     %esi,%eax
+    3ed1:	cmp    $0x7,%edx
+    3ed4:	mov    %eax,0x280(%rbx)
+    3eda:	jle    3f18 <BZ2_compressBlock+0x238>
+    3edc:	mov    0x74(%rbx),%ecx
+    3edf:	mov    0x50(%rbx),%rdx
+    3ee3:	shr    $0x18,%eax
+    3ee6:	movslq %ecx,%rcx
+    3ee9:	mov    %al,(%rdx,%rcx,1)
+    3eec:	mov    0x74(%rbx),%eax
+    3eef:	mov    0x284(%rbx),%edi
+    3ef5:	lea    0x1(%rax),%ecx
+    3ef8:	mov    0x280(%rbx),%eax
+    3efe:	lea    -0x8(%rdi),%edx
+    3f01:	mov    %ecx,0x74(%rbx)
+    3f04:	shl    $0x8,%eax
+    3f07:	cmp    $0x7,%edx
+    3f0a:	mov    %edx,0x284(%rbx)
+    3f10:	mov    %eax,0x280(%rbx)
+    3f16:	jg     3edf <BZ2_compressBlock+0x1ff>
+    3f18:	mov    $0x18,%ecx
+    3f1d:	mov    $0x26,%esi
+    3f22:	sub    %edx,%ecx
+    3f24:	add    $0x8,%edx
+    3f27:	shl    %cl,%esi
+    3f29:	mov    %edx,0x284(%rbx)
+    3f2f:	or     %esi,%eax
+    3f31:	cmp    $0x7,%edx
+    3f34:	mov    %eax,0x280(%rbx)
+    3f3a:	jle    3f78 <BZ2_compressBlock+0x298>
+    3f3c:	mov    0x74(%rbx),%ecx
+    3f3f:	mov    0x50(%rbx),%rdx
+    3f43:	shr    $0x18,%eax
+    3f46:	movslq %ecx,%rcx
+    3f49:	mov    %al,(%rdx,%rcx,1)
+    3f4c:	mov    0x74(%rbx),%eax
+    3f4f:	mov    0x284(%rbx),%edi
+    3f55:	lea    0x1(%rax),%ecx
+    3f58:	mov    0x280(%rbx),%eax
+    3f5e:	lea    -0x8(%rdi),%edx
+    3f61:	mov    %ecx,0x74(%rbx)
+    3f64:	shl    $0x8,%eax
+    3f67:	cmp    $0x7,%edx
+    3f6a:	mov    %edx,0x284(%rbx)
+    3f70:	mov    %eax,0x280(%rbx)
+    3f76:	jg     3f3f <BZ2_compressBlock+0x25f>
+    3f78:	mov    $0x18,%ecx
+    3f7d:	mov    $0x53,%esi
+    3f82:	sub    %edx,%ecx
+    3f84:	add    $0x8,%edx
+    3f87:	shl    %cl,%esi
+    3f89:	mov    %edx,0x284(%rbx)
+    3f8f:	or     %esi,%eax
+    3f91:	cmp    $0x7,%edx
+    3f94:	mov    %eax,0x280(%rbx)
+    3f9a:	jle    3fd8 <BZ2_compressBlock+0x2f8>
+    3f9c:	mov    0x74(%rbx),%ecx
+    3f9f:	mov    0x50(%rbx),%rdx
+    3fa3:	shr    $0x18,%eax
+    3fa6:	movslq %ecx,%rcx
+    3fa9:	mov    %al,(%rdx,%rcx,1)
+    3fac:	mov    0x74(%rbx),%eax
+    3faf:	mov    0x284(%rbx),%edi
+    3fb5:	lea    0x1(%rax),%ecx
+    3fb8:	mov    0x280(%rbx),%eax
+    3fbe:	lea    -0x8(%rdi),%edx
+    3fc1:	mov    %ecx,0x74(%rbx)
+    3fc4:	shl    $0x8,%eax
+    3fc7:	cmp    $0x7,%edx
+    3fca:	mov    %edx,0x284(%rbx)
+    3fd0:	mov    %eax,0x280(%rbx)
+    3fd6:	jg     3f9f <BZ2_compressBlock+0x2bf>
+    3fd8:	mov    $0x18,%ecx
+    3fdd:	mov    $0x59,%esi
+    3fe2:	mov    %rbx,%rdi
+    3fe5:	sub    %edx,%ecx
+    3fe7:	add    $0x8,%edx
+    3fea:	shl    %cl,%esi
+    3fec:	mov    %edx,0x284(%rbx)
+    3ff2:	or     %esi,%eax
+    3ff4:	mov    0x288(%rbx),%esi
+    3ffa:	mov    %eax,0x280(%rbx)
+    4000:	callq  3ad0 <BZ2_hbCreateDecodeTables+0x150>
+    4005:	mov    0x284(%rbx),%eax
+    400b:	cmp    $0x7,%eax
+    400e:	jle    464c <BZ2_compressBlock+0x96c>
+    4014:	mov    0x74(%rbx),%ecx
+    4017:	mov    0x280(%rbx),%edx
+    401d:	mov    0x50(%rbx),%rax
+    4021:	shr    $0x18,%edx
+    4024:	movslq %ecx,%rcx
+    4027:	mov    %dl,(%rax,%rcx,1)
+    402a:	mov    0x74(%rbx),%eax
+    402d:	mov    0x280(%rbx),%edx
+    4033:	lea    0x1(%rax),%ecx
+    4036:	mov    0x284(%rbx),%eax
+    403c:	shl    $0x8,%edx
+    403f:	mov    %ecx,0x74(%rbx)
+    4042:	mov    %edx,0x280(%rbx)
+    4048:	sub    $0x8,%eax
+    404b:	cmp    $0x7,%eax
+    404e:	mov    %eax,0x284(%rbx)
+    4054:	jg     401d <BZ2_compressBlock+0x33d>
+    4056:	add    $0x1,%eax
+    4059:	mov    0x30(%rbx),%esi
+    405c:	cmp    $0x8,%eax
+    405f:	mov    %eax,0x284(%rbx)
+    4065:	jne    40a3 <BZ2_compressBlock+0x3c3>
+    4067:	mov    0x74(%rbx),%ecx
+    406a:	mov    0x50(%rbx),%rax
+    406e:	shr    $0x18,%edx
+    4071:	movslq %ecx,%rcx
+    4074:	mov    %dl,(%rax,%rcx,1)
+    4077:	mov    0x74(%rbx),%eax
+    407a:	mov    0x280(%rbx),%edx
+    4080:	lea    0x1(%rax),%ecx
+    4083:	mov    0x284(%rbx),%eax
+    4089:	shl    $0x8,%edx
+    408c:	mov    %ecx,0x74(%rbx)
+    408f:	mov    %edx,0x280(%rbx)
+    4095:	sub    $0x8,%eax
+    4098:	cmp    $0x7,%eax
+    409b:	mov    %eax,0x284(%rbx)
+    40a1:	jg     406a <BZ2_compressBlock+0x38a>
+    40a3:	mov    $0x8,%ecx
+    40a8:	mov    0x40(%rbx),%rbp
+    40ac:	mov    0x48(%rbx),%rdi
+    40b0:	sub    %eax,%ecx
+    40b2:	add    $0x18,%eax
+    40b5:	movl   $0x0,0x7c(%rbx)
+    40bc:	shl    %cl,%esi
+    40be:	mov    0x38(%rbx),%rcx
+    40c2:	mov    %eax,0x284(%rbx)
+    40c8:	or     %esi,%edx
+    40ca:	lea    0x80(%rbx),%rax
+    40d1:	xor    %esi,%esi
+    40d3:	mov    %edx,0x280(%rbx)
+    40d9:	lea    0x180(%rbx),%rdx
+    40e0:	cmpb   $0x0,(%rax)
+    40e3:	je     40f2 <BZ2_compressBlock+0x412>
+    40e5:	mov    %sil,0x100(%rax)
+    40ec:	add    $0x1,%esi
+    40ef:	mov    %esi,0x7c(%rbx)
+    40f2:	add    $0x1,%rax
+    40f6:	cmp    %rdx,%rax
+    40f9:	jne    40e0 <BZ2_compressBlock+0x400>
+    40fb:	lea    0x1(%rsi),%edx
+    40fe:	lea    0x2a0(%rbx),%rax
+    4105:	mov    %esi,%r9d
+    4108:	mov    %rdx,%r10
+    410b:	lea    0x2a4(,%rdx,4),%rdx
+    4113:	add    %rbx,%rdx
+    4116:	movl   $0x0,(%rax)
+    411c:	add    $0x4,%rax
+    4120:	cmp    %rdx,%rax
+    4123:	jne    4116 <BZ2_compressBlock+0x436>
+    4125:	test   %esi,%esi
+    4127:	je     4657 <BZ2_compressBlock+0x977>
+    412d:	lea    -0x1(%rsi),%edx
+    4130:	lea    0xc0(%rsp),%r14
+    4138:	xor    %eax,%eax
+    413a:	add    $0x1,%rdx
+    413e:	mov    %r14,0x20(%rsp)
+    4143:	mov    0x20(%rsp),%r14
+    4148:	mov    %al,(%r14,%rax,1)
+    414c:	add    $0x1,%rax
+    4150:	cmp    %rdx,%rax
+    4153:	jne    4143 <BZ2_compressBlock+0x463>
+    4155:	jmpq   4664 <BZ2_compressBlock+0x984>
+    415a:	add    0x20(%rdi),%rax
+    415e:	cmpl   $0x1,0x294(%rdi)
+    4165:	mov    %rax,0x50(%rdi)
+    4169:	je     419f <BZ2_compressBlock+0x4bf>
+    416b:	cmpb   $0x0,0x7c(%rsp)
+    4170:	jne    434d <BZ2_compressBlock+0x66d>
+    4176:	mov    0x1c8(%rsp),%rax
+    417e:	xor    %fs:0x28,%rax
+    4187:	jne    4348 <BZ2_compressBlock+0x668>
+    418d:	add    $0x1d8,%rsp
+    4194:	pop    %rbx
+    4195:	pop    %rbp
+    4196:	pop    %r12
+    4198:	pop    %r13
+    419a:	pop    %r14
+    419c:	pop    %r15
+    419e:	retq   
+    419f:	mov    %rbx,%rdi
+    41a2:	callq  3cc0 <BZ2_bsInitWrite>
+    41a7:	mov    0x284(%rbx),%edx
+    41ad:	cmp    $0x7,%edx
+    41b0:	jle    4636 <BZ2_compressBlock+0x956>
+    41b6:	mov    0x74(%rbx),%ecx
+    41b9:	mov    0x280(%rbx),%eax
+    41bf:	mov    0x50(%rbx),%rdx
+    41c3:	shr    $0x18,%eax
+    41c6:	movslq %ecx,%rcx
+    41c9:	mov    %al,(%rdx,%rcx,1)
+    41cc:	mov    0x74(%rbx),%eax
+    41cf:	mov    0x284(%rbx),%edi
+    41d5:	lea    0x1(%rax),%ecx
+    41d8:	mov    0x280(%rbx),%eax
+    41de:	lea    -0x8(%rdi),%edx
+    41e1:	mov    %ecx,0x74(%rbx)
+    41e4:	shl    $0x8,%eax
+    41e7:	cmp    $0x7,%edx
+    41ea:	mov    %edx,0x284(%rbx)
+    41f0:	mov    %eax,0x280(%rbx)
+    41f6:	jg     41bf <BZ2_compressBlock+0x4df>
+    41f8:	mov    $0x18,%ecx
+    41fd:	mov    $0x42,%esi
+    4202:	sub    %edx,%ecx
+    4204:	add    $0x8,%edx
+    4207:	shl    %cl,%esi
+    4209:	mov    %edx,0x284(%rbx)
+    420f:	or     %esi,%eax
+    4211:	cmp    $0x7,%edx
+    4214:	mov    %eax,0x280(%rbx)
+    421a:	jle    4258 <BZ2_compressBlock+0x578>
+    421c:	mov    0x74(%rbx),%ecx
+    421f:	mov    0x50(%rbx),%rdx
+    4223:	shr    $0x18,%eax
+    4226:	movslq %ecx,%rcx
+    4229:	mov    %al,(%rdx,%rcx,1)
+    422c:	mov    0x74(%rbx),%eax
+    422f:	mov    0x284(%rbx),%edi
+    4235:	lea    0x1(%rax),%ecx
+    4238:	mov    0x280(%rbx),%eax
+    423e:	lea    -0x8(%rdi),%edx
+    4241:	mov    %ecx,0x74(%rbx)
+    4244:	shl    $0x8,%eax
+    4247:	cmp    $0x7,%edx
+    424a:	mov    %edx,0x284(%rbx)
+    4250:	mov    %eax,0x280(%rbx)
+    4256:	jg     421f <BZ2_compressBlock+0x53f>
+    4258:	mov    $0x18,%ecx
+    425d:	mov    $0x5a,%esi
+    4262:	sub    %edx,%ecx
+    4264:	add    $0x8,%edx
+    4267:	shl    %cl,%esi
+    4269:	mov    %edx,0x284(%rbx)
+    426f:	or     %esi,%eax
+    4271:	cmp    $0x7,%edx
+    4274:	mov    %eax,0x280(%rbx)
+    427a:	jle    42b8 <BZ2_compressBlock+0x5d8>
+    427c:	mov    0x74(%rbx),%ecx
+    427f:	mov    0x50(%rbx),%rdx
+    4283:	shr    $0x18,%eax
+    4286:	movslq %ecx,%rcx
+    4289:	mov    %al,(%rdx,%rcx,1)
+    428c:	mov    0x74(%rbx),%eax
+    428f:	mov    0x284(%rbx),%edi
+    4295:	lea    0x1(%rax),%ecx
+    4298:	mov    0x280(%rbx),%eax
+    429e:	lea    -0x8(%rdi),%edx
+    42a1:	mov    %ecx,0x74(%rbx)
+    42a4:	shl    $0x8,%eax
+    42a7:	cmp    $0x7,%edx
+    42aa:	mov    %edx,0x284(%rbx)
+    42b0:	mov    %eax,0x280(%rbx)
+    42b6:	jg     427f <BZ2_compressBlock+0x59f>
+    42b8:	movzbl 0x298(%rbx),%edi
+    42bf:	mov    $0x18,%ecx
+    42c4:	mov    $0x68,%esi
+    42c9:	sub    %edx,%ecx
+    42cb:	add    $0x8,%edx
+    42ce:	shl    %cl,%esi
+    42d0:	mov    %edx,0x284(%rbx)
+    42d6:	or     %esi,%eax
+    42d8:	cmp    $0x7,%edx
+    42db:	lea    0x30(%rdi),%esi
+    42de:	mov    %eax,0x280(%rbx)
+    42e4:	movzbl %sil,%esi
+    42e8:	jle    4326 <BZ2_compressBlock+0x646>
+    42ea:	mov    0x74(%rbx),%ecx
+    42ed:	mov    0x50(%rbx),%rdx
+    42f1:	shr    $0x18,%eax
+    42f4:	movslq %ecx,%rcx
+    42f7:	mov    %al,(%rdx,%rcx,1)
+    42fa:	mov    0x74(%rbx),%eax
+    42fd:	mov    0x284(%rbx),%edi
+    4303:	lea    0x1(%rax),%ecx
+    4306:	mov    0x280(%rbx),%eax
+    430c:	lea    -0x8(%rdi),%edx
+    430f:	mov    %ecx,0x74(%rbx)
+    4312:	shl    $0x8,%eax
+    4315:	cmp    $0x7,%edx
+    4318:	mov    %edx,0x284(%rbx)
+    431e:	mov    %eax,0x280(%rbx)
+    4324:	jg     42ed <BZ2_compressBlock+0x60d>
+    4326:	mov    $0x18,%ecx
+    432b:	sub    %edx,%ecx
+    432d:	add    $0x8,%edx
+    4330:	shl    %cl,%esi
+    4332:	mov    %edx,0x284(%rbx)
+    4338:	or     %esi,%eax
+    433a:	mov    %eax,0x280(%rbx)
+    4340:	mov    0x6c(%rbx),%eax
+    4343:	jmpq   3d9f <BZ2_compressBlock+0xbf>
+    4348:	callq  12e0 <__stack_chk_fail@plt>
+    434d:	mov    0x284(%rbx),%edx
+    4353:	cmp    $0x7,%edx
+    4356:	jle    4641 <BZ2_compressBlock+0x961>
+    435c:	mov    0x74(%rbx),%ecx
+    435f:	mov    0x280(%rbx),%eax
+    4365:	mov    0x50(%rbx),%rdx
+    4369:	shr    $0x18,%eax
+    436c:	movslq %ecx,%rcx
+    436f:	mov    %al,(%rdx,%rcx,1)
+    4372:	mov    0x74(%rbx),%eax
+    4375:	mov    0x284(%rbx),%edi
+    437b:	lea    0x1(%rax),%ecx
+    437e:	mov    0x280(%rbx),%eax
+    4384:	lea    -0x8(%rdi),%edx
+    4387:	mov    %ecx,0x74(%rbx)
+    438a:	shl    $0x8,%eax
+    438d:	cmp    $0x7,%edx
+    4390:	mov    %edx,0x284(%rbx)
+    4396:	mov    %eax,0x280(%rbx)
+    439c:	jg     4365 <BZ2_compressBlock+0x685>
+    439e:	mov    $0x18,%ecx
+    43a3:	mov    $0x17,%esi
+    43a8:	sub    %edx,%ecx
+    43aa:	add    $0x8,%edx
+    43ad:	shl    %cl,%esi
+    43af:	mov    %edx,0x284(%rbx)
+    43b5:	or     %esi,%eax
+    43b7:	cmp    $0x7,%edx
+    43ba:	mov    %eax,0x280(%rbx)
+    43c0:	jle    43fe <BZ2_compressBlock+0x71e>
+    43c2:	mov    0x74(%rbx),%ecx
+    43c5:	mov    0x50(%rbx),%rdx
+    43c9:	shr    $0x18,%eax
+    43cc:	movslq %ecx,%rcx
+    43cf:	mov    %al,(%rdx,%rcx,1)
+    43d2:	mov    0x74(%rbx),%eax
+    43d5:	mov    0x284(%rbx),%edi
+    43db:	lea    0x1(%rax),%ecx
+    43de:	mov    0x280(%rbx),%eax
+    43e4:	lea    -0x8(%rdi),%edx
+    43e7:	mov    %ecx,0x74(%rbx)
+    43ea:	shl    $0x8,%eax
+    43ed:	cmp    $0x7,%edx
+    43f0:	mov    %edx,0x284(%rbx)
+    43f6:	mov    %eax,0x280(%rbx)
+    43fc:	jg     43c5 <BZ2_compressBlock+0x6e5>
+    43fe:	mov    $0x18,%ecx
+    4403:	mov    $0x72,%esi
+    4408:	sub    %edx,%ecx
+    440a:	add    $0x8,%edx
+    440d:	shl    %cl,%esi
+    440f:	mov    %edx,0x284(%rbx)
+    4415:	or     %esi,%eax
+    4417:	cmp    $0x7,%edx
+    441a:	mov    %eax,0x280(%rbx)
+    4420:	jle    445e <BZ2_compressBlock+0x77e>
+    4422:	mov    0x74(%rbx),%ecx
+    4425:	mov    0x50(%rbx),%rdx
+    4429:	shr    $0x18,%eax
+    442c:	movslq %ecx,%rcx
+    442f:	mov    %al,(%rdx,%rcx,1)
+    4432:	mov    0x74(%rbx),%eax
+    4435:	mov    0x284(%rbx),%edi
+    443b:	lea    0x1(%rax),%ecx
+    443e:	mov    0x280(%rbx),%eax
+    4444:	lea    -0x8(%rdi),%edx
+    4447:	mov    %ecx,0x74(%rbx)
+    444a:	shl    $0x8,%eax
+    444d:	cmp    $0x7,%edx
+    4450:	mov    %edx,0x284(%rbx)
+    4456:	mov    %eax,0x280(%rbx)
+    445c:	jg     4425 <BZ2_compressBlock+0x745>
+    445e:	mov    $0x18,%ecx
+    4463:	mov    $0x45,%esi
+    4468:	sub    %edx,%ecx
+    446a:	add    $0x8,%edx
+    446d:	shl    %cl,%esi
+    446f:	mov    %edx,0x284(%rbx)
+    4475:	or     %esi,%eax
+    4477:	cmp    $0x7,%edx
+    447a:	mov    %eax,0x280(%rbx)
+    4480:	jle    44be <BZ2_compressBlock+0x7de>
+    4482:	mov    0x74(%rbx),%ecx
+    4485:	mov    0x50(%rbx),%rdx
+    4489:	shr    $0x18,%eax
+    448c:	movslq %ecx,%rcx
+    448f:	mov    %al,(%rdx,%rcx,1)
+    4492:	mov    0x74(%rbx),%eax
+    4495:	mov    0x284(%rbx),%edi
+    449b:	lea    0x1(%rax),%ecx
+    449e:	mov    0x280(%rbx),%eax
+    44a4:	lea    -0x8(%rdi),%edx
+    44a7:	mov    %ecx,0x74(%rbx)
+    44aa:	shl    $0x8,%eax
+    44ad:	cmp    $0x7,%edx
+    44b0:	mov    %edx,0x284(%rbx)
+    44b6:	mov    %eax,0x280(%rbx)
+    44bc:	jg     4485 <BZ2_compressBlock+0x7a5>
+    44be:	mov    $0x18,%ecx
+    44c3:	mov    $0x38,%esi
+    44c8:	sub    %edx,%ecx
+    44ca:	add    $0x8,%edx
+    44cd:	shl    %cl,%esi
+    44cf:	mov    %edx,0x284(%rbx)
+    44d5:	or     %esi,%eax
+    44d7:	cmp    $0x7,%edx
+    44da:	mov    %eax,0x280(%rbx)
+    44e0:	jle    451e <BZ2_compressBlock+0x83e>
+    44e2:	mov    0x74(%rbx),%ecx
+    44e5:	mov    0x50(%rbx),%rdx
+    44e9:	shr    $0x18,%eax
+    44ec:	movslq %ecx,%rcx
+    44ef:	mov    %al,(%rdx,%rcx,1)
+    44f2:	mov    0x74(%rbx),%eax
+    44f5:	mov    0x284(%rbx),%edi
+    44fb:	lea    0x1(%rax),%ecx
+    44fe:	mov    0x280(%rbx),%eax
+    4504:	lea    -0x8(%rdi),%edx
+    4507:	mov    %ecx,0x74(%rbx)
+    450a:	shl    $0x8,%eax
+    450d:	cmp    $0x7,%edx
+    4510:	mov    %edx,0x284(%rbx)
+    4516:	mov    %eax,0x280(%rbx)
+    451c:	jg     44e5 <BZ2_compressBlock+0x805>
+    451e:	mov    $0x18,%ecx
+    4523:	mov    $0x50,%esi
+    4528:	sub    %edx,%ecx
+    452a:	add    $0x8,%edx
+    452d:	shl    %cl,%esi
+    452f:	mov    %edx,0x284(%rbx)
+    4535:	or     %esi,%eax
+    4537:	cmp    $0x7,%edx
+    453a:	mov    %eax,0x280(%rbx)
+    4540:	jle    457e <BZ2_compressBlock+0x89e>
+    4542:	mov    0x74(%rbx),%ecx
+    4545:	mov    0x50(%rbx),%rdx
+    4549:	shr    $0x18,%eax
+    454c:	movslq %ecx,%rcx
+    454f:	mov    %al,(%rdx,%rcx,1)
+    4552:	mov    0x74(%rbx),%eax
+    4555:	mov    0x284(%rbx),%edi
+    455b:	lea    0x1(%rax),%ecx
+    455e:	mov    0x280(%rbx),%eax
+    4564:	lea    -0x8(%rdi),%edx
+    4567:	mov    %ecx,0x74(%rbx)
+    456a:	shl    $0x8,%eax
+    456d:	cmp    $0x7,%edx
+    4570:	mov    %edx,0x284(%rbx)
+    4576:	mov    %eax,0x280(%rbx)
+    457c:	jg     4545 <BZ2_compressBlock+0x865>
+    457e:	mov    $0x18,%ecx
+    4583:	mov    $0x90,%esi
+    4588:	mov    %rbx,%rdi
+    458b:	sub    %edx,%ecx
+    458d:	add    $0x8,%edx
+    4590:	shl    %cl,%esi
+    4592:	mov    %edx,0x284(%rbx)
+    4598:	or     %esi,%eax
+    459a:	mov    0x28c(%rbx),%esi
+    45a0:	mov    %eax,0x280(%rbx)
+    45a6:	callq  3ad0 <BZ2_hbCreateDecodeTables+0x150>
+    45ab:	cmpl   $0x1,0x290(%rbx)
+    45b2:	jle    45d7 <BZ2_compressBlock+0x8f7>
+    45b4:	mov    0x20aa1d(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    45bb:	mov    0x28c(%rbx),%ecx
+    45c1:	lea    0x8d60(%rip),%rdx        # d328 <_fini+0x294>
+    45c8:	mov    $0x1,%esi
+    45cd:	mov    (%rax),%rdi
+    45d0:	xor    %eax,%eax
+    45d2:	callq  1390 <__fprintf_chk@plt>
+    45d7:	mov    0x284(%rbx),%eax
+    45dd:	test   %eax,%eax
+    45df:	jle    4176 <BZ2_compressBlock+0x496>
+    45e5:	mov    0x74(%rbx),%edx
+    45e8:	mov    0x280(%rbx),%eax
+    45ee:	mov    0x50(%rbx),%rcx
+    45f2:	shr    $0x18,%eax
+    45f5:	movslq %edx,%rdx
+    45f8:	mov    %al,(%rcx,%rdx,1)
+    45fb:	mov    0x74(%rbx),%eax
+    45fe:	mov    0x284(%rbx),%edi
+    4604:	lea    0x1(%rax),%edx
+    4607:	mov    0x280(%rbx),%eax
+    460d:	lea    -0x8(%rdi),%ecx
+    4610:	mov    %edx,0x74(%rbx)
+    4613:	shl    $0x8,%eax
+    4616:	test   %ecx,%ecx
+    4618:	mov    %ecx,0x284(%rbx)
+    461e:	mov    %eax,0x280(%rbx)
+    4624:	jg     45ee <BZ2_compressBlock+0x90e>
+    4626:	jmpq   4176 <BZ2_compressBlock+0x496>
+    462b:	mov    0x280(%rbx),%eax
+    4631:	jmpq   3df8 <BZ2_compressBlock+0x118>
+    4636:	mov    0x280(%rbx),%eax
+    463c:	jmpq   41f8 <BZ2_compressBlock+0x518>
+    4641:	mov    0x280(%rbx),%eax
+    4647:	jmpq   439e <BZ2_compressBlock+0x6be>
+    464c:	mov    0x280(%rbx),%edx
+    4652:	jmpq   4056 <BZ2_compressBlock+0x376>
+    4657:	lea    0xc0(%rsp),%rax
+    465f:	mov    %rax,0x20(%rsp)
+    4664:	mov    0x6c(%rbx),%r8d
+    4668:	test   %r8d,%r8d
+    466b:	jle    480e <BZ2_compressBlock+0xb2e>
+    4671:	mov    0x20(%rsp),%r12
+    4676:	mov    %rcx,%r9
+    4679:	xor    %edx,%edx
+    467b:	xor    %eax,%eax
+    467d:	xor    %r11d,%r11d
+    4680:	mov    (%r9),%ecx
+    4683:	movzbl 0xc0(%rsp),%r14d
+    468c:	sub    $0x1,%ecx
+    468f:	lea    (%rcx,%r8,1),%r13d
+    4693:	test   %ecx,%ecx
+    4695:	cmovs  %r13d,%ecx
+    4699:	movslq %ecx,%rcx
+    469c:	movzbl 0x0(%rbp,%rcx,1),%ecx
+    46a1:	movzbl 0x180(%rbx,%rcx,1),%r13d
+    46aa:	cmp    %r14b,%r13b
+    46ad:	je     4806 <BZ2_compressBlock+0xb26>
+    46b3:	test   %eax,%eax
+    46b5:	je     471a <BZ2_compressBlock+0xa3a>
+    46b7:	lea    0x1(%rdx),%r8d
+    46bb:	movslq %edx,%rdx
+    46be:	sub    $0x1,%eax
+    46c1:	lea    (%rdi,%rdx,2),%rcx
+    46c5:	jmp    46ee <BZ2_compressBlock+0xa0e>
+    46c7:	mov    $0x1,%r15d
+    46cd:	mov    %r8d,%edx
+    46d0:	add    $0x2,%rcx
+    46d4:	mov    %r15w,-0x2(%rcx)
+    46d9:	add    $0x1,%r8d
+    46dd:	addl   $0x1,0x2a4(%rbx)
+    46e4:	cmp    $0x1,%eax
+    46e7:	jle    4711 <BZ2_compressBlock+0xa31>
+    46e9:	sub    $0x2,%eax
+    46ec:	sar    %eax
+    46ee:	test   $0x1,%al
+    46f0:	jne    46c7 <BZ2_compressBlock+0x9e7>
+    46f2:	xor    %r14d,%r14d
+    46f5:	mov    %r8d,%edx
+    46f8:	add    $0x2,%rcx
+    46fc:	mov    %r14w,-0x2(%rcx)
+    4701:	add    $0x1,%r8d
+    4705:	addl   $0x1,0x2a0(%rbx)
+    470c:	cmp    $0x1,%eax
+    470f:	jg     46e9 <BZ2_compressBlock+0xa09>
+    4711:	movzbl 0xc0(%rsp),%r14d
+    471a:	movzbl 0xc1(%rsp),%ecx
+    4722:	mov    %r14b,0xc1(%rsp)
+    472a:	cmp    %cl,%r13b
+    472d:	je     47fc <BZ2_compressBlock+0xb1c>
+    4733:	lea    0x1(%r12),%rax
+    4738:	mov    %ecx,%r8d
+    473b:	add    $0x1,%rax
+    473f:	movzbl (%rax),%ecx
+    4742:	mov    %r8b,(%rax)
+    4745:	cmp    %cl,%r13b
+    4748:	mov    %ecx,%r8d
+    474b:	jne    473b <BZ2_compressBlock+0xa5b>
+    474d:	sub    %r12,%rax
+    4750:	mov    %cl,0xc0(%rsp)
+    4757:	movslq %edx,%rcx
+    475a:	lea    0x1(%rax),%r8d
+    475e:	cltq   
+    4760:	add    $0x1,%edx
+    4763:	mov    %r8w,(%rdi,%rcx,2)
+    4768:	addl   $0x1,0x2a4(%rbx,%rax,4)
+    4770:	xor    %eax,%eax
+    4772:	mov    0x6c(%rbx),%r8d
+    4776:	add    $0x1,%r11d
+    477a:	add    $0x4,%r9
+    477e:	cmp    %r11d,%r8d
+    4781:	jg     4680 <BZ2_compressBlock+0x9a0>
+    4787:	test   %eax,%eax
+    4789:	je     4cd0 <BZ2_compressBlock+0xff0>
+    478f:	lea    0x1(%rdx),%ecx
+    4792:	movslq %edx,%rdx
+    4795:	sub    $0x1,%eax
+    4798:	lea    (%rdi,%rdx,2),%rdx
+    479c:	jmp    47c6 <BZ2_compressBlock+0xae6>
+    479e:	xchg   %ax,%ax
+    47a0:	mov    $0x1,%r9d
+    47a6:	mov    %ecx,%r8d
+    47a9:	add    $0x2,%rdx
+    47ad:	mov    %r9w,-0x2(%rdx)
+    47b2:	add    $0x1,%ecx
+    47b5:	addl   $0x1,0x2a4(%rbx)
+    47bc:	cmp    $0x1,%eax
+    47bf:	jle    47e8 <BZ2_compressBlock+0xb08>
+    47c1:	sub    $0x2,%eax
+    47c4:	sar    %eax
+    47c6:	test   $0x1,%al
+    47c8:	jne    47a0 <BZ2_compressBlock+0xac0>
+    47ca:	xor    %r8d,%r8d
+    47cd:	add    $0x2,%rdx
+    47d1:	mov    %r8w,-0x2(%rdx)
+    47d6:	mov    %ecx,%r8d
+    47d9:	addl   $0x1,0x2a0(%rbx)
+    47e0:	add    $0x1,%ecx
+    47e3:	cmp    $0x1,%eax
+    47e6:	jg     47c1 <BZ2_compressBlock+0xae1>
+    47e8:	movslq %r8d,%rax
+    47eb:	mov    0x48(%rbx),%r12
+    47ef:	add    $0x1,%r8d
+    47f3:	add    %rax,%rax
+    47f6:	mov    0x7c(%rbx),%r9d
+    47fa:	jmp    4819 <BZ2_compressBlock+0xb39>
+    47fc:	lea    0x1(%r12),%rax
+    4801:	jmpq   474d <BZ2_compressBlock+0xa6d>
+    4806:	add    $0x1,%eax
+    4809:	jmpq   4776 <BZ2_compressBlock+0xa96>
+    480e:	mov    %rdi,%r12
+    4811:	mov    $0x1,%r8d
+    4817:	xor    %eax,%eax
+    4819:	mov    %r10w,(%rdi,%rax,1)
+    481e:	movslq %esi,%rax
+    4821:	addl   $0x1,0x2a4(%rbx,%rax,4)
+    4829:	mov    %r8d,0x29c(%rbx)
+    4830:	cmpl   $0x2,0x290(%rbx)
+    4837:	jle    4864 <BZ2_compressBlock+0xb84>
+    4839:	mov    0x20a798(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    4840:	mov    0x6c(%rbx),%ecx
+    4843:	lea    0x8a2e(%rip),%rdx        # d278 <_fini+0x1e4>
+    484a:	mov    $0x1,%esi
+    484f:	mov    (%rax),%rdi
+    4852:	xor    %eax,%eax
+    4854:	callq  1390 <__fprintf_chk@plt>
+    4859:	mov    0x29c(%rbx),%r8d
+    4860:	mov    0x7c(%rbx),%r9d
+    4864:	lea    0x2(%r9),%eax
+    4868:	lea    0x1(%r9),%esi
+    486c:	lea    0x9958(%rbx),%rdi
+    4873:	mov    %eax,0xc(%rsp)
+    4877:	lea    0x934c(%rbx),%rax
+    487e:	mov    %esi,0x10(%rsp)
+    4882:	mov    %rdi,0x38(%rsp)
+    4887:	add    $0x1,%rsi
+    488b:	mov    %rax,0x18(%rsp)
+    4890:	mov    %rax,%rcx
+    4893:	mov    0xc(%rsp),%edi
+    4897:	test   %edi,%edi
+    4899:	jle    48ae <BZ2_compressBlock+0xbce>
+    489b:	lea    (%rsi,%rcx,1),%rdx
+    489f:	mov    %rcx,%rax
+    48a2:	movb   $0xf,(%rax)
+    48a5:	add    $0x1,%rax
+    48a9:	cmp    %rdx,%rax
+    48ac:	jne    48a2 <BZ2_compressBlock+0xbc2>
+    48ae:	add    $0x102,%rcx
+    48b5:	cmp    0x38(%rsp),%rcx
+    48ba:	jne    4893 <BZ2_compressBlock+0xbb3>
+    48bc:	test   %r8d,%r8d
+    48bf:	mov    %r8d,%r15d
+    48c2:	jg     48d5 <BZ2_compressBlock+0xbf5>
+    48c4:	mov    $0xbb9,%edi
+    48c9:	callq  ce50 <BZ2_bz__AssertH__fail>
+    48ce:	mov    0x29c(%rbx),%r15d
+    48d5:	cmp    $0xc7,%r15d
+    48dc:	jle    6219 <BZ2_compressBlock+0x2539>
+    48e2:	cmp    $0x257,%r15d
+    48e9:	jle    6206 <BZ2_compressBlock+0x2526>
+    48ef:	cmp    $0x4af,%r15d
+    48f6:	jle    61f3 <BZ2_compressBlock+0x2513>
+    48fc:	xor    %eax,%eax
+    48fe:	cmp    $0x960,%r15d
+    4905:	setge  %al
+    4908:	add    $0x5,%eax
+    490b:	mov    %eax,0x34(%rsp)
+    490f:	mov    %eax,%r13d
+    4912:	mov    0x290(%rbx),%eax
+    4918:	mov    %r12,%r10
+    491b:	mov    %r15d,%ecx
+    491e:	movl   $0x0,(%rsp)
+    4925:	xor    %r11d,%r11d
+    4928:	mov    %r13d,%r14d
+    492b:	mov    %rbx,%r12
+    492e:	mov    %eax,0x78(%rsp)
+    4932:	movslq %r13d,%rax
+    4935:	mov    %rax,%rdx
+    4938:	shl    $0x8,%rdx
+    493c:	lea    0x924a(%rdx,%rax,2),%rax
+    4944:	add    %rbx,%rax
+    4947:	mov    %rax,0x28(%rsp)
+    494c:	mov    %r15d,%eax
+    494f:	xor    %ebx,%ebx
+    4951:	lea    -0x1(%r11),%ebp
+    4955:	cltd   
+    4956:	idiv   %r14d
+    4959:	test   %eax,%eax
+    495b:	jg     4975 <BZ2_compressBlock+0xc95>
+    495d:	jmp    497b <BZ2_compressBlock+0xc9b>
+    495f:	nop
+    4960:	add    $0x1,%ebp
+    4963:	movslq %ebp,%rdx
+    4966:	add    $0xa8,%rdx
+    496d:	add    (%r12,%rdx,4),%ebx
+    4971:	cmp    %ebx,%eax
+    4973:	jle    497b <BZ2_compressBlock+0xc9b>
+    4975:	cmp    0x10(%rsp),%ebp
+    4979:	jl     4960 <BZ2_compressBlock+0xc80>
+    497b:	cmp    %ebp,%r11d
+    497e:	setl   %dl
+    4981:	cmp    %r14d,%r13d
+    4984:	setne  %al
+    4987:	test   %al,%dl
+    4989:	je     499b <BZ2_compressBlock+0xcbb>
+    498b:	cmp    $0x1,%r14d
+    498f:	je     499b <BZ2_compressBlock+0xcbb>
+    4991:	testb  $0x1,(%rsp)
+    4995:	jne    4d6b <BZ2_compressBlock+0x108b>
+    499b:	cmpl   $0x2,0x78(%rsp)
+    49a0:	jg     4ce7 <BZ2_compressBlock+0x1007>
+    49a6:	mov    0xc(%rsp),%eax
+    49aa:	sub    $0x1,%r14d
+    49ae:	test   %eax,%eax
+    49b0:	jle    49e4 <BZ2_compressBlock+0xd04>
+    49b2:	mov    0x28(%rsp),%rdx
+    49b7:	xor    %eax,%eax
+    49b9:	jmp    49d0 <BZ2_compressBlock+0xcf0>
+    49bb:	cmp    %eax,%r11d
+    49be:	jg     49d4 <BZ2_compressBlock+0xcf4>
+    49c0:	movb   $0x0,(%rdx)
+    49c3:	add    $0x1,%eax
+    49c6:	add    $0x1,%rdx
+    49ca:	cmp    0xc(%rsp),%eax
+    49ce:	je     49e4 <BZ2_compressBlock+0xd04>
+    49d0:	cmp    %eax,%ebp
+    49d2:	jge    49bb <BZ2_compressBlock+0xcdb>
+    49d4:	movb   $0xf,(%rdx)
+    49d7:	add    $0x1,%eax
+    49da:	add    $0x1,%rdx
+    49de:	cmp    0xc(%rsp),%eax
+    49e2:	jne    49d0 <BZ2_compressBlock+0xcf0>
+    49e4:	sub    %ebx,%r15d
+    49e7:	addl   $0x1,(%rsp)
+    49eb:	subq   $0x102,0x28(%rsp)
+    49f4:	test   %r14d,%r14d
+    49f7:	lea    0x1(%rbp),%r11d
+    49fb:	jg     494c <BZ2_compressBlock+0xc6c>
+    4a01:	lea    -0x1(%r13),%eax
+    4a05:	mov    %r12,%rbx
+    4a08:	mov    %ecx,(%rsp)
+    4a0b:	lea    0x90(%rsp),%r14
+    4a13:	mov    %r10,%r12
+    4a16:	movl   $0x1,0x30(%rsp)
+    4a1e:	mov    %rax,%rdx
+    4a21:	shl    $0xa,%rdx
+    4a25:	lea    0xb590(%rdx,%rax,8),%rdx
+    4a2d:	lea    (%rbx,%rdx,1),%rdi
+    4a31:	mov    %rax,%rdx
+    4a34:	shl    $0x8,%rdx
+    4a38:	lea    (%rdx,%rax,2),%rax
+    4a3c:	mov    %rdi,0x68(%rsp)
+    4a41:	mov    0x10(%rsp),%edi
+    4a45:	mov    %rax,0x80(%rsp)
+    4a4d:	lea    0x944e(%rbx,%rax,1),%rax
+    4a55:	mov    %rax,0x40(%rsp)
+    4a5a:	lea    0xa0(%rsp),%rax
+    4a62:	lea    0x0(,%rdi,4),%rcx
+    4a6a:	mov    %rdi,0x50(%rsp)
+    4a6f:	shl    $0x4,%rdi
+    4a73:	lea    0xc9c8(%rbx,%rdi,1),%rdi
+    4a7b:	mov    %rax,0x58(%rsp)
+    4a80:	lea    0xb188(%rbx),%rax
+    4a87:	mov    %rcx,0x70(%rsp)
+    4a8c:	mov    %rdi,0x60(%rsp)
+    4a91:	mov    %rax,0x88(%rsp)
+    4a99:	xor    %eax,%eax
+    4a9b:	mov    0x58(%rsp),%rdi
+    4aa0:	movl   $0x0,(%rdi,%rax,4)
+    4aa7:	add    $0x1,%rax
+    4aab:	cmp    %eax,%r13d
+    4aae:	jg     4a9b <BZ2_compressBlock+0xdbb>
+    4ab0:	mov    0x88(%rsp),%rax
+    4ab8:	mov    %rax,0x48(%rsp)
+    4abd:	mov    %rax,%rcx
+    4ac0:	mov    0x70(%rsp),%rax
+    4ac5:	lea    0x4(%rax),%rsi
+    4ac9:	mov    0xc(%rsp),%r10d
+    4ace:	test   %r10d,%r10d
+    4ad1:	jle    4aef <BZ2_compressBlock+0xe0f>
+    4ad3:	lea    (%rsi,%rcx,1),%rdx
+    4ad7:	mov    %rcx,%rax
+    4ada:	nopw   0x0(%rax,%rax,1)
+    4ae0:	movl   $0x0,(%rax)
+    4ae6:	add    $0x4,%rax
+    4aea:	cmp    %rdx,%rax
+    4aed:	jne    4ae0 <BZ2_compressBlock+0xe00>
+    4aef:	add    $0x408,%rcx
+    4af6:	cmp    0x68(%rsp),%rcx
+    4afb:	jne    4ac9 <BZ2_compressBlock+0xde9>
+    4afd:	cmp    $0x6,%r13d
+    4b01:	je     623b <BZ2_compressBlock+0x255b>
+    4b07:	mov    (%rsp),%r9d
+    4b0b:	test   %r9d,%r9d
+    4b0e:	jle    622c <BZ2_compressBlock+0x254c>
+    4b14:	mov    (%rsp),%eax
+    4b17:	lea    0x6a8(%rbx),%r11
+    4b1e:	xor    %ebp,%ebp
+    4b20:	movl   $0x0,0x10(%rsp)
+    4b28:	xor    %r9d,%r9d
+    4b2b:	sub    $0x1,%eax
+    4b2e:	mov    %eax,0x28(%rsp)
+    4b32:	mov    0x80(%rsp),%rax
+    4b3a:	lea    0x102(%rax),%r8
+    4b41:	lea    0x31(%r9),%r15d
+    4b45:	cmp    (%rsp),%r15d
+    4b49:	cmovge 0x28(%rsp),%r15d
+    4b4f:	xor    %eax,%eax
+    4b51:	nopl   0x0(%rax)
+    4b58:	xor    %edi,%edi
+    4b5a:	mov    %di,(%r14,%rax,2)
+    4b5f:	add    $0x1,%rax
+    4b63:	cmp    %eax,%r13d
+    4b66:	jg     4b58 <BZ2_compressBlock+0xe78>
+    4b68:	cmp    $0x6,%r13d
+    4b6c:	je     5110 <BZ2_compressBlock+0x1430>
+    4b72:	cmp    %r9d,%r15d
+    4b75:	jl     4bc2 <BZ2_compressBlock+0xee2>
+    4b77:	mov    %r15d,%edx
+    4b7a:	movslq %r9d,%rax
+    4b7d:	sub    %r9d,%edx
+    4b80:	lea    (%r12,%rax,2),%rdi
+    4b84:	lea    0x1(%rax,%rdx,1),%rax
+    4b89:	lea    (%r12,%rax,2),%r10
+    4b8d:	nopl   (%rax)
+    4b90:	movzwl (%rdi),%esi
+    4b93:	mov    %r14,%rdx
+    4b96:	lea    (%rbx,%rsi,1),%rax
+    4b9a:	add    %r8,%rsi
+    4b9d:	add    %rbx,%rsi
+    4ba0:	movzbl 0x934c(%rax),%ecx
+    4ba7:	add    $0x102,%rax
+    4bad:	add    %cx,(%rdx)
+    4bb0:	add    $0x2,%rdx
+    4bb4:	cmp    %rsi,%rax
+    4bb7:	jne    4ba0 <BZ2_compressBlock+0xec0>
+    4bb9:	add    $0x2,%rdi
+    4bbd:	cmp    %r10,%rdi
+    4bc0:	jne    4b90 <BZ2_compressBlock+0xeb0>
+    4bc2:	movzwl 0x90(%rsp),%eax
+    4bca:	xor    %edx,%edx
+    4bcc:	mov    $0xffffffff,%esi
+    4bd1:	mov    $0x3b9ac9ff,%ecx
+    4bd6:	jmp    4be5 <BZ2_compressBlock+0xf05>
+    4bd8:	nopl   0x0(%rax,%rax,1)
+    4be0:	movzwl (%r14,%rdx,2),%eax
+    4be5:	cmp    %ecx,%eax
+    4be7:	jge    4bed <BZ2_compressBlock+0xf0d>
+    4be9:	mov    %eax,%ecx
+    4beb:	mov    %edx,%esi
+    4bed:	add    $0x1,%rdx
+    4bf1:	cmp    %edx,%r13d
+    4bf4:	jg     4be0 <BZ2_compressBlock+0xf00>
+    4bf6:	movslq %esi,%rax
+    4bf9:	add    %ecx,0x10(%rsp)
+    4bfd:	add    $0x1,%ebp
+    4c00:	addl   $0x1,0xa0(%rsp,%rax,4)
+    4c08:	cmp    $0x6,%r13d
+    4c0c:	mov    %sil,(%r11)
+    4c0f:	je     4d80 <BZ2_compressBlock+0x10a0>
+    4c15:	cmp    %r9d,%r15d
+    4c18:	jl     4c57 <BZ2_compressBlock+0xf77>
+    4c1a:	mov    %r15d,%esi
+    4c1d:	movslq %r9d,%rcx
+    4c20:	sub    %r9d,%esi
+    4c23:	lea    (%r12,%rcx,2),%rdx
+    4c27:	lea    0x1(%rcx,%rsi,1),%rcx
+    4c2c:	mov    %rax,%rsi
+    4c2f:	shl    $0x8,%rsi
+    4c33:	lea    (%r12,%rcx,2),%rcx
+    4c37:	lea    (%rsi,%rax,2),%rsi
+    4c3b:	nopl   0x0(%rax,%rax,1)
+    4c40:	movzwl (%rdx),%eax
+    4c43:	add    $0x2,%rdx
+    4c47:	add    %rsi,%rax
+    4c4a:	addl   $0x1,0xb188(%rbx,%rax,4)
+    4c52:	cmp    %rcx,%rdx
+    4c55:	jne    4c40 <BZ2_compressBlock+0xf60>
+    4c57:	lea    0x1(%r15),%r9d
+    4c5b:	add    $0x1,%r11
+    4c5f:	cmp    (%rsp),%r9d
+    4c63:	jl     4b41 <BZ2_compressBlock+0xe61>
+    4c69:	cmpl   $0x2,0x78(%rsp)
+    4c6e:	jg     593a <BZ2_compressBlock+0x1c5a>
+    4c74:	mov    0x18(%rsp),%r15
+    4c79:	mov    0xc(%rsp),%edx
+    4c7d:	mov    0x48(%rsp),%rsi
+    4c82:	mov    %r15,%rdi
+    4c85:	mov    $0x11,%ecx
+    4c8a:	add    $0x102,%r15
+    4c91:	callq  3450 <BZ2_hbMakeCodeLengths>
+    4c96:	addq   $0x408,0x48(%rsp)
+    4c9f:	cmp    0x40(%rsp),%r15
+    4ca4:	jne    4c79 <BZ2_compressBlock+0xf99>
+    4ca6:	addl   $0x1,0x30(%rsp)
+    4cab:	mov    0x30(%rsp),%eax
+    4caf:	cmp    $0x5,%eax
+    4cb2:	je     59a9 <BZ2_compressBlock+0x1cc9>
+    4cb8:	mov    0x290(%rbx),%eax
+    4cbe:	mov    %eax,0x78(%rsp)
+    4cc2:	mov    0x29c(%rbx),%eax
+    4cc8:	mov    %eax,(%rsp)
+    4ccb:	jmpq   4a99 <BZ2_compressBlock+0xdb9>
+    4cd0:	movslq %edx,%rax
+    4cd3:	mov    0x48(%rbx),%r12
+    4cd7:	lea    0x1(%rdx),%r8d
+    4cdb:	add    %rax,%rax
+    4cde:	mov    0x7c(%rbx),%r9d
+    4ce2:	jmpq   4819 <BZ2_compressBlock+0xb39>
+    4ce7:	pxor   %xmm0,%xmm0
+    4ceb:	mov    0x20a2e6(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    4cf2:	pxor   %xmm1,%xmm1
+    4cf6:	mov    %r10,0x40(%rsp)
+    4cfb:	sub    $0x8,%rsp
+    4cff:	lea    0x85b2(%rip),%rdx        # d2b8 <_fini+0x224>
+    4d06:	mov    %r11d,%r8d
+    4d09:	cvtsi2ss %ebx,%xmm0
+    4d0d:	mov    (%rax),%rdi
+    4d10:	push   %rbx
+    4d11:	mov    %ebp,%r9d
+    4d14:	cvtsi2ss %ecx,%xmm1
+    4d18:	mov    $0x1,%esi
+    4d1d:	mov    %r14d,%ecx
+    4d20:	mov    $0x1,%eax
+    4d25:	mov    %r11d,0x40(%rsp)
+    4d2a:	cvtss2sd %xmm0,%xmm0
+    4d2e:	mulsd  0x8662(%rip),%xmm0        # d398 <_fini+0x304>
+    4d36:	cvtss2sd %xmm1,%xmm1
+    4d3a:	divsd  %xmm1,%xmm0
+    4d3e:	callq  1390 <__fprintf_chk@plt>
+    4d43:	mov    0x290(%r12),%eax
+    4d4b:	mov    0x29c(%r12),%ecx
+    4d53:	mov    %eax,0x88(%rsp)
+    4d5a:	pop    %rax
+    4d5b:	pop    %rdx
+    4d5c:	mov    0x40(%rsp),%r10
+    4d61:	mov    0x30(%rsp),%r11d
+    4d66:	jmpq   49a6 <BZ2_compressBlock+0xcc6>
+    4d6b:	movslq %ebp,%rax
+    4d6e:	sub    $0x1,%ebp
+    4d71:	add    $0xa8,%rax
+    4d77:	sub    (%r12,%rax,4),%ebx
+    4d7b:	jmpq   499b <BZ2_compressBlock+0xcbb>
+    4d80:	mov    %r15d,%edx
+    4d83:	sub    %r9d,%edx
+    4d86:	cmp    $0x31,%edx
+    4d89:	jne    4c15 <BZ2_compressBlock+0xf35>
+    4d8f:	mov    %rax,%rcx
+    4d92:	movslq %r9d,%r9
+    4d95:	shl    $0x8,%rcx
+    4d99:	lea    (%r9,%r9,1),%rdx
+    4d9d:	lea    (%rcx,%rax,2),%rax
+    4da1:	movzwl (%r12,%r9,2),%ecx
+    4da6:	lea    0x1(%r15),%r9d
+    4daa:	add    %rax,%rcx
+    4dad:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4db5:	movzwl 0x2(%r12,%rdx,1),%ecx
+    4dbb:	add    %rax,%rcx
+    4dbe:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4dc6:	movzwl 0x4(%r12,%rdx,1),%ecx
+    4dcc:	add    %rax,%rcx
+    4dcf:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4dd7:	movzwl 0x6(%r12,%rdx,1),%ecx
+    4ddd:	add    %rax,%rcx
+    4de0:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4de8:	movzwl 0x8(%r12,%rdx,1),%ecx
+    4dee:	add    %rax,%rcx
+    4df1:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4df9:	movzwl 0xa(%r12,%rdx,1),%ecx
+    4dff:	add    %rax,%rcx
+    4e02:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e0a:	movzwl 0xc(%r12,%rdx,1),%ecx
+    4e10:	add    %rax,%rcx
+    4e13:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e1b:	movzwl 0xe(%r12,%rdx,1),%ecx
+    4e21:	add    %rax,%rcx
+    4e24:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e2c:	movzwl 0x10(%r12,%rdx,1),%ecx
+    4e32:	add    %rax,%rcx
+    4e35:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e3d:	movzwl 0x12(%r12,%rdx,1),%ecx
+    4e43:	add    %rax,%rcx
+    4e46:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e4e:	movzwl 0x14(%r12,%rdx,1),%ecx
+    4e54:	add    %rax,%rcx
+    4e57:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e5f:	movzwl 0x16(%r12,%rdx,1),%ecx
+    4e65:	add    %rax,%rcx
+    4e68:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e70:	movzwl 0x18(%r12,%rdx,1),%ecx
+    4e76:	add    %rax,%rcx
+    4e79:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e81:	movzwl 0x1a(%r12,%rdx,1),%ecx
+    4e87:	add    %rax,%rcx
+    4e8a:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4e92:	movzwl 0x1c(%r12,%rdx,1),%ecx
+    4e98:	add    %rax,%rcx
+    4e9b:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ea3:	movzwl 0x1e(%r12,%rdx,1),%ecx
+    4ea9:	add    %rax,%rcx
+    4eac:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4eb4:	movzwl 0x20(%r12,%rdx,1),%ecx
+    4eba:	add    %rax,%rcx
+    4ebd:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ec5:	movzwl 0x22(%r12,%rdx,1),%ecx
+    4ecb:	add    %rax,%rcx
+    4ece:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ed6:	movzwl 0x24(%r12,%rdx,1),%ecx
+    4edc:	add    %rax,%rcx
+    4edf:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ee7:	movzwl 0x26(%r12,%rdx,1),%ecx
+    4eed:	add    %rax,%rcx
+    4ef0:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ef8:	movzwl 0x28(%r12,%rdx,1),%ecx
+    4efe:	add    %rax,%rcx
+    4f01:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f09:	movzwl 0x2a(%r12,%rdx,1),%ecx
+    4f0f:	add    %rax,%rcx
+    4f12:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f1a:	movzwl 0x2c(%r12,%rdx,1),%ecx
+    4f20:	add    %rax,%rcx
+    4f23:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f2b:	movzwl 0x2e(%r12,%rdx,1),%ecx
+    4f31:	add    %rax,%rcx
+    4f34:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f3c:	movzwl 0x30(%r12,%rdx,1),%ecx
+    4f42:	add    %rax,%rcx
+    4f45:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f4d:	movzwl 0x32(%r12,%rdx,1),%ecx
+    4f53:	add    %rax,%rcx
+    4f56:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f5e:	movzwl 0x34(%r12,%rdx,1),%ecx
+    4f64:	add    %rax,%rcx
+    4f67:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f6f:	movzwl 0x36(%r12,%rdx,1),%ecx
+    4f75:	add    %rax,%rcx
+    4f78:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f80:	movzwl 0x38(%r12,%rdx,1),%ecx
+    4f86:	add    %rax,%rcx
+    4f89:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4f91:	movzwl 0x3a(%r12,%rdx,1),%ecx
+    4f97:	add    %rax,%rcx
+    4f9a:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4fa2:	movzwl 0x3c(%r12,%rdx,1),%ecx
+    4fa8:	add    %rax,%rcx
+    4fab:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4fb3:	movzwl 0x3e(%r12,%rdx,1),%ecx
+    4fb9:	add    %rax,%rcx
+    4fbc:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4fc4:	movzwl 0x40(%r12,%rdx,1),%ecx
+    4fca:	add    %rax,%rcx
+    4fcd:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4fd5:	movzwl 0x42(%r12,%rdx,1),%ecx
+    4fdb:	add    %rax,%rcx
+    4fde:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4fe6:	movzwl 0x44(%r12,%rdx,1),%ecx
+    4fec:	add    %rax,%rcx
+    4fef:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    4ff7:	movzwl 0x46(%r12,%rdx,1),%ecx
+    4ffd:	add    %rax,%rcx
+    5000:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    5008:	movzwl 0x48(%r12,%rdx,1),%ecx
+    500e:	add    %rax,%rcx
+    5011:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    5019:	movzwl 0x4a(%r12,%rdx,1),%ecx
+    501f:	add    %rax,%rcx
+    5022:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    502a:	movzwl 0x4c(%r12,%rdx,1),%ecx
+    5030:	add    %rax,%rcx
+    5033:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    503b:	movzwl 0x4e(%r12,%rdx,1),%ecx
+    5041:	add    %rax,%rcx
+    5044:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    504c:	movzwl 0x50(%r12,%rdx,1),%ecx
+    5052:	add    %rax,%rcx
+    5055:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    505d:	movzwl 0x52(%r12,%rdx,1),%ecx
+    5063:	add    %rax,%rcx
+    5066:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    506e:	movzwl 0x54(%r12,%rdx,1),%ecx
+    5074:	add    %rax,%rcx
+    5077:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    507f:	movzwl 0x56(%r12,%rdx,1),%ecx
+    5085:	add    %rax,%rcx
+    5088:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    5090:	movzwl 0x58(%r12,%rdx,1),%ecx
+    5096:	add    %rax,%rcx
+    5099:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    50a1:	movzwl 0x5a(%r12,%rdx,1),%ecx
+    50a7:	add    %rax,%rcx
+    50aa:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    50b2:	movzwl 0x5c(%r12,%rdx,1),%ecx
+    50b8:	add    %rax,%rcx
+    50bb:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    50c3:	movzwl 0x5e(%r12,%rdx,1),%ecx
+    50c9:	add    %rax,%rcx
+    50cc:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    50d4:	movzwl 0x60(%r12,%rdx,1),%ecx
+    50da:	add    %rax,%rcx
+    50dd:	addl   $0x1,0xb188(%rbx,%rcx,4)
+    50e5:	movzwl 0x62(%r12,%rdx,1),%edx
+    50eb:	add    %rdx,%rax
+    50ee:	add    $0x1,%r11
+    50f2:	addl   $0x1,0xb188(%rbx,%rax,4)
+    50fa:	cmp    (%rsp),%r9d
+    50fe:	jl     4b41 <BZ2_compressBlock+0xe61>
+    5104:	jmpq   4c69 <BZ2_compressBlock+0xf89>
+    5109:	nopl   0x0(%rax)
+    5110:	mov    %r15d,%eax
+    5113:	sub    %r9d,%eax
+    5116:	cmp    $0x31,%eax
+    5119:	jne    4b72 <BZ2_compressBlock+0xe92>
+    511f:	movslq %r9d,%rcx
+    5122:	lea    (%rcx,%rcx,1),%rax
+    5126:	movzwl (%r12,%rcx,2),%esi
+    512b:	movzwl 0x2(%r12,%rax,1),%edx
+    5131:	lea    0xc9b(%rsi),%rcx
+    5138:	shl    $0x4,%rsi
+    513c:	lea    0xc9b(%rdx),%rdi
+    5143:	shl    $0x4,%rcx
+    5147:	shl    $0x4,%rdx
+    514b:	mov    0x8(%rbx,%rcx,1),%ecx
+    514f:	shl    $0x4,%rdi
+    5153:	add    0x8(%rbx,%rdi,1),%ecx
+    5157:	mov    0xc9bc(%rbx,%rsi,1),%edi
+    515e:	mov    0xc9c0(%rbx,%rsi,1),%esi
+    5165:	add    0xc9bc(%rbx,%rdx,1),%edi
+    516c:	add    0xc9c0(%rbx,%rdx,1),%esi
+    5173:	movzwl 0x4(%r12,%rax,1),%edx
+    5179:	mov    %esi,%r10d
+    517c:	lea    0xc9b(%rdx),%rsi
+    5183:	shl    $0x4,%rdx
+    5187:	add    0xc9bc(%rbx,%rdx,1),%edi
+    518e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5196:	movzwl 0x6(%r12,%rax,1),%edx
+    519c:	shl    $0x4,%rsi
+    51a0:	add    0x8(%rbx,%rsi,1),%ecx
+    51a4:	lea    0xc9b(%rdx),%rsi
+    51ab:	shl    $0x4,%rdx
+    51af:	add    0xc9bc(%rbx,%rdx,1),%edi
+    51b6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    51be:	movzwl 0x8(%r12,%rax,1),%edx
+    51c4:	shl    $0x4,%rsi
+    51c8:	add    0x8(%rbx,%rsi,1),%ecx
+    51cc:	lea    0xc9b(%rdx),%rsi
+    51d3:	shl    $0x4,%rdx
+    51d7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    51de:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    51e6:	movzwl 0xa(%r12,%rax,1),%edx
+    51ec:	shl    $0x4,%rsi
+    51f0:	add    0x8(%rbx,%rsi,1),%ecx
+    51f4:	lea    0xc9b(%rdx),%rsi
+    51fb:	shl    $0x4,%rdx
+    51ff:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5206:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    520e:	movzwl 0xc(%r12,%rax,1),%edx
+    5214:	shl    $0x4,%rsi
+    5218:	add    0x8(%rbx,%rsi,1),%ecx
+    521c:	lea    0xc9b(%rdx),%rsi
+    5223:	shl    $0x4,%rdx
+    5227:	add    0xc9bc(%rbx,%rdx,1),%edi
+    522e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5236:	movzwl 0xe(%r12,%rax,1),%edx
+    523c:	shl    $0x4,%rsi
+    5240:	add    0x8(%rbx,%rsi,1),%ecx
+    5244:	lea    0xc9b(%rdx),%rsi
+    524b:	shl    $0x4,%rsi
+    524f:	add    0x8(%rbx,%rsi,1),%ecx
+    5253:	shl    $0x4,%rdx
+    5257:	add    0xc9bc(%rbx,%rdx,1),%edi
+    525e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5266:	movzwl 0x10(%r12,%rax,1),%edx
+    526c:	lea    0xc9b(%rdx),%rsi
+    5273:	shl    $0x4,%rdx
+    5277:	shl    $0x4,%rsi
+    527b:	add    0x8(%rbx,%rsi,1),%ecx
+    527f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5286:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    528e:	movzwl 0x12(%r12,%rax,1),%edx
+    5294:	lea    0xc9b(%rdx),%rsi
+    529b:	shl    $0x4,%rdx
+    529f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    52a6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    52ae:	movzwl 0x14(%r12,%rax,1),%edx
+    52b4:	shl    $0x4,%rsi
+    52b8:	add    0x8(%rbx,%rsi,1),%ecx
+    52bc:	lea    0xc9b(%rdx),%rsi
+    52c3:	shl    $0x4,%rdx
+    52c7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    52ce:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    52d6:	movzwl 0x16(%r12,%rax,1),%edx
+    52dc:	shl    $0x4,%rsi
+    52e0:	add    0x8(%rbx,%rsi,1),%ecx
+    52e4:	lea    0xc9b(%rdx),%rsi
+    52eb:	shl    $0x4,%rdx
+    52ef:	add    0xc9bc(%rbx,%rdx,1),%edi
+    52f6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    52fe:	movzwl 0x18(%r12,%rax,1),%edx
+    5304:	shl    $0x4,%rsi
+    5308:	add    0x8(%rbx,%rsi,1),%ecx
+    530c:	lea    0xc9b(%rdx),%rsi
+    5313:	shl    $0x4,%rdx
+    5317:	add    0xc9bc(%rbx,%rdx,1),%edi
+    531e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5326:	movzwl 0x1a(%r12,%rax,1),%edx
+    532c:	shl    $0x4,%rsi
+    5330:	add    0x8(%rbx,%rsi,1),%ecx
+    5334:	lea    0xc9b(%rdx),%rsi
+    533b:	shl    $0x4,%rdx
+    533f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5346:	shl    $0x4,%rsi
+    534a:	add    0x8(%rbx,%rsi,1),%ecx
+    534e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5356:	movzwl 0x1c(%r12,%rax,1),%edx
+    535c:	lea    0xc9b(%rdx),%rsi
+    5363:	shl    $0x4,%rdx
+    5367:	add    0xc9bc(%rbx,%rdx,1),%edi
+    536e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5376:	movzwl 0x1e(%r12,%rax,1),%edx
+    537c:	shl    $0x4,%rsi
+    5380:	add    0x8(%rbx,%rsi,1),%ecx
+    5384:	lea    0xc9b(%rdx),%rsi
+    538b:	shl    $0x4,%rdx
+    538f:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5397:	add    0xc9bc(%rbx,%rdx,1),%edi
+    539e:	movzwl 0x20(%r12,%rax,1),%edx
+    53a4:	shl    $0x4,%rsi
+    53a8:	add    0x8(%rbx,%rsi,1),%ecx
+    53ac:	lea    0xc9b(%rdx),%rsi
+    53b3:	shl    $0x4,%rdx
+    53b7:	shl    $0x4,%rsi
+    53bb:	add    0x8(%rbx,%rsi,1),%ecx
+    53bf:	add    0xc9bc(%rbx,%rdx,1),%edi
+    53c6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    53ce:	movzwl 0x22(%r12,%rax,1),%edx
+    53d4:	lea    0xc9b(%rdx),%rsi
+    53db:	shl    $0x4,%rdx
+    53df:	add    0xc9bc(%rbx,%rdx,1),%edi
+    53e6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    53ee:	movzwl 0x24(%r12,%rax,1),%edx
+    53f4:	shl    $0x4,%rsi
+    53f8:	add    0x8(%rbx,%rsi,1),%ecx
+    53fc:	lea    0xc9b(%rdx),%rsi
+    5403:	shl    $0x4,%rdx
+    5407:	add    0xc9bc(%rbx,%rdx,1),%edi
+    540e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5416:	movzwl 0x26(%r12,%rax,1),%edx
+    541c:	shl    $0x4,%rsi
+    5420:	add    0x8(%rbx,%rsi,1),%ecx
+    5424:	lea    0xc9b(%rdx),%rsi
+    542b:	shl    $0x4,%rdx
+    542f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5436:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    543e:	movzwl 0x28(%r12,%rax,1),%edx
+    5444:	shl    $0x4,%rsi
+    5448:	add    0x8(%rbx,%rsi,1),%ecx
+    544c:	lea    0xc9b(%rdx),%rsi
+    5453:	shl    $0x4,%rsi
+    5457:	add    0x8(%rbx,%rsi,1),%ecx
+    545b:	shl    $0x4,%rdx
+    545f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5466:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    546e:	movzwl 0x2a(%r12,%rax,1),%edx
+    5474:	lea    0xc9b(%rdx),%rsi
+    547b:	shl    $0x4,%rdx
+    547f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5486:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    548e:	movzwl 0x2c(%r12,%rax,1),%edx
+    5494:	shl    $0x4,%rsi
+    5498:	add    0x8(%rbx,%rsi,1),%ecx
+    549c:	lea    0xc9b(%rdx),%rsi
+    54a3:	shl    $0x4,%rdx
+    54a7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    54ae:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    54b6:	movzwl 0x2e(%r12,%rax,1),%edx
+    54bc:	shl    $0x4,%rsi
+    54c0:	add    0x8(%rbx,%rsi,1),%ecx
+    54c4:	lea    0xc9b(%rdx),%rsi
+    54cb:	shl    $0x4,%rdx
+    54cf:	add    0xc9bc(%rbx,%rdx,1),%edi
+    54d6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    54de:	movzwl 0x30(%r12,%rax,1),%edx
+    54e4:	shl    $0x4,%rsi
+    54e8:	add    0x8(%rbx,%rsi,1),%ecx
+    54ec:	lea    0xc9b(%rdx),%rsi
+    54f3:	shl    $0x4,%rdx
+    54f7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    54fe:	shl    $0x4,%rsi
+    5502:	add    0x8(%rbx,%rsi,1),%ecx
+    5506:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    550e:	movzwl 0x32(%r12,%rax,1),%edx
+    5514:	lea    0xc9b(%rdx),%rsi
+    551b:	shl    $0x4,%rdx
+    551f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5526:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    552e:	movzwl 0x34(%r12,%rax,1),%edx
+    5534:	shl    $0x4,%rsi
+    5538:	add    0x8(%rbx,%rsi,1),%ecx
+    553c:	lea    0xc9b(%rdx),%rsi
+    5543:	shl    $0x4,%rdx
+    5547:	add    0xc9bc(%rbx,%rdx,1),%edi
+    554e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5556:	movzwl 0x36(%r12,%rax,1),%edx
+    555c:	shl    $0x4,%rsi
+    5560:	add    0x8(%rbx,%rsi,1),%ecx
+    5564:	lea    0xc9b(%rdx),%rsi
+    556b:	shl    $0x4,%rsi
+    556f:	shl    $0x4,%rdx
+    5573:	add    0xc9bc(%rbx,%rdx,1),%edi
+    557a:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5582:	movzwl 0x38(%r12,%rax,1),%edx
+    5588:	add    0x8(%rbx,%rsi,1),%ecx
+    558c:	lea    0xc9b(%rdx),%rsi
+    5593:	shl    $0x4,%rdx
+    5597:	add    0xc9bc(%rbx,%rdx,1),%edi
+    559e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    55a6:	movzwl 0x3a(%r12,%rax,1),%edx
+    55ac:	shl    $0x4,%rsi
+    55b0:	add    0x8(%rbx,%rsi,1),%ecx
+    55b4:	lea    0xc9b(%rdx),%rsi
+    55bb:	shl    $0x4,%rdx
+    55bf:	add    0xc9bc(%rbx,%rdx,1),%edi
+    55c6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    55ce:	movzwl 0x3c(%r12,%rax,1),%edx
+    55d4:	shl    $0x4,%rsi
+    55d8:	add    0x8(%rbx,%rsi,1),%ecx
+    55dc:	lea    0xc9b(%rdx),%rsi
+    55e3:	shl    $0x4,%rdx
+    55e7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    55ee:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    55f6:	movzwl 0x3e(%r12,%rax,1),%edx
+    55fc:	shl    $0x4,%rsi
+    5600:	add    0x8(%rbx,%rsi,1),%ecx
+    5604:	lea    0xc9b(%rdx),%rsi
+    560b:	shl    $0x4,%rdx
+    560f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5616:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    561e:	movzwl 0x40(%r12,%rax,1),%edx
+    5624:	shl    $0x4,%rsi
+    5628:	add    0x8(%rbx,%rsi,1),%ecx
+    562c:	lea    0xc9b(%rdx),%rsi
+    5633:	shl    $0x4,%rdx
+    5637:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    563f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5646:	shl    $0x4,%rsi
+    564a:	add    0x8(%rbx,%rsi,1),%ecx
+    564e:	movzwl 0x42(%r12,%rax,1),%edx
+    5654:	lea    0xc9b(%rdx),%rsi
+    565b:	shl    $0x4,%rdx
+    565f:	shl    $0x4,%rsi
+    5663:	add    0x8(%rbx,%rsi,1),%ecx
+    5667:	add    0xc9bc(%rbx,%rdx,1),%edi
+    566e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5676:	movzwl 0x44(%r12,%rax,1),%edx
+    567c:	lea    0xc9b(%rdx),%rsi
+    5683:	shl    $0x4,%rdx
+    5687:	add    0xc9bc(%rbx,%rdx,1),%edi
+    568e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5696:	movzwl 0x46(%r12,%rax,1),%edx
+    569c:	shl    $0x4,%rsi
+    56a0:	add    0x8(%rbx,%rsi,1),%ecx
+    56a4:	lea    0xc9b(%rdx),%rsi
+    56ab:	shl    $0x4,%rdx
+    56af:	add    0xc9bc(%rbx,%rdx,1),%edi
+    56b6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    56be:	movzwl 0x48(%r12,%rax,1),%edx
+    56c4:	shl    $0x4,%rsi
+    56c8:	add    0x8(%rbx,%rsi,1),%ecx
+    56cc:	lea    0xc9b(%rdx),%rsi
+    56d3:	shl    $0x4,%rdx
+    56d7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    56de:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    56e6:	movzwl 0x4a(%r12,%rax,1),%edx
+    56ec:	shl    $0x4,%rsi
+    56f0:	add    0x8(%rbx,%rsi,1),%ecx
+    56f4:	lea    0xc9b(%rdx),%rsi
+    56fb:	shl    $0x4,%rdx
+    56ff:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5706:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    570e:	movzwl 0x4c(%r12,%rax,1),%edx
+    5714:	shl    $0x4,%rsi
+    5718:	add    0x8(%rbx,%rsi,1),%ecx
+    571c:	lea    0xc9b(%rdx),%rsi
+    5723:	shl    $0x4,%rdx
+    5727:	add    0xc9bc(%rbx,%rdx,1),%edi
+    572e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5736:	movzwl 0x4e(%r12,%rax,1),%edx
+    573c:	shl    $0x4,%rsi
+    5740:	add    0x8(%rbx,%rsi,1),%ecx
+    5744:	lea    0xc9b(%rdx),%rsi
+    574b:	shl    $0x4,%rdx
+    574f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5756:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    575e:	movzwl 0x50(%r12,%rax,1),%edx
+    5764:	shl    $0x4,%rsi
+    5768:	add    0x8(%rbx,%rsi,1),%ecx
+    576c:	lea    0xc9b(%rdx),%rsi
+    5773:	shl    $0x4,%rsi
+    5777:	add    0x8(%rbx,%rsi,1),%ecx
+    577b:	shl    $0x4,%rdx
+    577f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5786:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    578e:	movzwl 0x52(%r12,%rax,1),%edx
+    5794:	lea    0xc9b(%rdx),%rsi
+    579b:	shl    $0x4,%rdx
+    579f:	shl    $0x4,%rsi
+    57a3:	add    0x8(%rbx,%rsi,1),%ecx
+    57a7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    57ae:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    57b6:	movzwl 0x54(%r12,%rax,1),%edx
+    57bc:	lea    0xc9b(%rdx),%rsi
+    57c3:	shl    $0x4,%rdx
+    57c7:	add    0xc9bc(%rbx,%rdx,1),%edi
+    57ce:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    57d6:	movzwl 0x56(%r12,%rax,1),%edx
+    57dc:	shl    $0x4,%rsi
+    57e0:	add    0x8(%rbx,%rsi,1),%ecx
+    57e4:	lea    0xc9b(%rdx),%rsi
+    57eb:	shl    $0x4,%rdx
+    57ef:	add    0xc9bc(%rbx,%rdx,1),%edi
+    57f6:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    57fe:	movzwl 0x58(%r12,%rax,1),%edx
+    5804:	shl    $0x4,%rsi
+    5808:	add    0x8(%rbx,%rsi,1),%ecx
+    580c:	lea    0xc9b(%rdx),%rsi
+    5813:	shl    $0x4,%rdx
+    5817:	add    0xc9bc(%rbx,%rdx,1),%edi
+    581e:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    5826:	movzwl 0x5a(%r12,%rax,1),%edx
+    582c:	shl    $0x4,%rsi
+    5830:	add    0x8(%rbx,%rsi,1),%ecx
+    5834:	lea    0xc9b(%rdx),%rsi
+    583b:	shl    $0x4,%rdx
+    583f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5846:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    584e:	movzwl 0x5c(%r12,%rax,1),%edx
+    5854:	shl    $0x4,%rsi
+    5858:	add    0x8(%rbx,%rsi,1),%ecx
+    585c:	lea    0xc9b(%rdx),%rsi
+    5863:	shl    $0x4,%rdx
+    5867:	add    0xc9bc(%rbx,%rdx,1),%edi
+    586e:	shl    $0x4,%rsi
+    5872:	add    0x8(%rbx,%rsi,1),%ecx
+    5876:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    587e:	movzwl 0x5e(%r12,%rax,1),%edx
+    5884:	lea    0xc9b(%rdx),%rsi
+    588b:	shl    $0x4,%rdx
+    588f:	add    0xc9bc(%rbx,%rdx,1),%edi
+    5896:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    589e:	movzwl 0x60(%r12,%rax,1),%edx
+    58a4:	movzwl 0x62(%r12,%rax,1),%eax
+    58aa:	shl    $0x4,%rsi
+    58ae:	add    0x8(%rbx,%rsi,1),%ecx
+    58b2:	lea    0xc9b(%rdx),%rsi
+    58b9:	shl    $0x4,%rdx
+    58bd:	add    0xc9c0(%rbx,%rdx,1),%r10d
+    58c5:	add    0xc9bc(%rbx,%rdx,1),%edi
+    58cc:	lea    0xc9b(%rax),%rdx
+    58d3:	shl    $0x4,%rsi
+    58d7:	shl    $0x4,%rax
+    58db:	add    0x8(%rbx,%rsi,1),%ecx
+    58df:	shl    $0x4,%rdx
+    58e3:	add    0x8(%rbx,%rdx,1),%ecx
+    58e7:	add    0xc9bc(%rbx,%rax,1),%edi
+    58ee:	add    0xc9c0(%rbx,%rax,1),%r10d
+    58f6:	mov    %cx,0x90(%rsp)
+    58fe:	movzwl %cx,%eax
+    5901:	mov    %di,0x94(%rsp)
+    5909:	shr    $0x10,%ecx
+    590c:	shr    $0x10,%edi
+    590f:	mov    %r10w,0x98(%rsp)
+    5918:	shr    $0x10,%r10d
+    591c:	mov    %cx,0x92(%rsp)
+    5924:	mov    %di,0x96(%rsp)
+    592c:	mov    %r10w,0x9a(%rsp)
+    5935:	jmpq   4bca <BZ2_compressBlock+0xeea>
+    593a:	mov    0x209697(%rip),%r15        # 20efd8 <_fini+0x201f44>
+    5941:	mov    0x10(%rsp),%r8d
+    5946:	lea    0x79ab(%rip),%rdx        # d2f8 <_fini+0x264>
+    594d:	mov    0x30(%rsp),%ecx
+    5951:	mov    $0x1,%esi
+    5956:	xor    %eax,%eax
+    5958:	mov    (%r15),%rdi
+    595b:	sar    $0x3,%r8d
+    595f:	callq  1390 <__fprintf_chk@plt>
+    5964:	xor    %r8d,%r8d
+    5967:	mov    0x58(%rsp),%rax
+    596c:	mov    (%r15),%rdi
+    596f:	lea    0x79d6(%rip),%rdx        # d34c <_fini+0x2b8>
+    5976:	mov    $0x1,%esi
+    597b:	mov    %r8,(%rsp)
+    597f:	mov    (%rax,%r8,4),%ecx
+    5983:	xor    %eax,%eax
+    5985:	callq  1390 <__fprintf_chk@plt>
+    598a:	mov    (%rsp),%r8
+    598e:	add    $0x1,%r8
+    5992:	cmp    %r8d,%r13d
+    5995:	jg     5967 <BZ2_compressBlock+0x1c87>
+    5997:	mov    (%r15),%rsi
+    599a:	mov    $0xa,%edi
+    599f:	callq  1300 <fputc@plt>
+    59a4:	jmpq   4c74 <BZ2_compressBlock+0xf94>
+    59a9:	cmp    $0x4652,%ebp
+    59af:	jle    59bb <BZ2_compressBlock+0x1cdb>
+    59b1:	mov    $0xbbb,%edi
+    59b6:	callq  ce50 <BZ2_bz__AssertH__fail>
+    59bb:	xor    %eax,%eax
+    59bd:	mov    0x20(%rsp),%rdi
+    59c2:	mov    %al,(%rdi,%rax,1)
+    59c5:	add    $0x1,%rax
+    59c9:	cmp    %eax,%r13d
+    59cc:	jg     59bd <BZ2_compressBlock+0x1cdd>
+    59ce:	test   %ebp,%ebp
+    59d0:	je     5a2e <BZ2_compressBlock+0x1d4e>
+    59d2:	lea    -0x1(%rbp),%eax
+    59d5:	movzbl 0xc0(%rsp),%esi
+    59dd:	lea    0x6a8(%rbx),%rdi
+    59e4:	lea    0x6a9(%rbx,%rax,1),%r8
+    59ec:	movzbl (%rdi),%r9d
+    59f0:	cmp    %sil,%r9b
+    59f3:	je     61d0 <BZ2_compressBlock+0x24f0>
+    59f9:	mov    0x20(%rsp),%rax
+    59fe:	mov    %esi,%edx
+    5a00:	xor    %ecx,%ecx
+    5a02:	movzbl 0x1(%rax),%esi
+    5a06:	add    $0x1,%ecx
+    5a09:	mov    %dl,0x1(%rax)
+    5a0c:	add    $0x1,%rax
+    5a10:	cmp    %sil,%r9b
+    5a13:	mov    %esi,%edx
+    5a15:	jne    5a02 <BZ2_compressBlock+0x1d22>
+    5a17:	mov    %cl,0x4652(%rdi)
+    5a1d:	add    $0x1,%rdi
+    5a21:	mov    %sil,0xc0(%rsp)
+    5a29:	cmp    %r8,%rdi
+    5a2c:	jne    59ec <BZ2_compressBlock+0x1d0c>
+    5a2e:	mov    0x50(%rsp),%rax
+    5a33:	mov    0x18(%rsp),%r14
+    5a38:	mov    %rbx,0x10(%rsp)
+    5a3d:	add    $0x1,%rax
+    5a41:	mov    %r14,%r15
+    5a44:	mov    %rax,(%rsp)
+    5a48:	mov    0xc(%rsp),%esi
+    5a4c:	test   %esi,%esi
+    5a4e:	jle    61d7 <BZ2_compressBlock+0x24f7>
+    5a54:	mov    (%rsp),%rax
+    5a58:	mov    %r15,%rcx
+    5a5b:	mov    $0x20,%ebx
+    5a60:	xor    %edi,%edi
+    5a62:	lea    (%rax,%r15,1),%rsi
+    5a66:	nopw   %cs:0x0(%rax,%rax,1)
+    5a70:	movzbl (%rcx),%eax
+    5a73:	cmp    %eax,%edi
+    5a75:	cmovl  %eax,%edi
+    5a78:	cmp    %eax,%ebx
+    5a7a:	cmovg  %eax,%ebx
+    5a7d:	add    $0x1,%rcx
+    5a81:	cmp    %rsi,%rcx
+    5a84:	jne    5a70 <BZ2_compressBlock+0x1d90>
+    5a86:	cmp    $0x11,%edi
+    5a89:	mov    %edi,%r14d
+    5a8c:	jg     62af <BZ2_compressBlock+0x25cf>
+    5a92:	test   %ebx,%ebx
+    5a94:	je     61e4 <BZ2_compressBlock+0x2504>
+    5a9a:	mov    %ebx,%edx
+    5a9c:	mov    0x38(%rsp),%rbx
+    5aa1:	mov    0xc(%rsp),%r8d
+    5aa6:	mov    %r15,%rsi
+    5aa9:	mov    %r14d,%ecx
+    5aac:	add    $0x102,%r15
+    5ab3:	mov    %rbx,%rdi
+    5ab6:	callq  3930 <BZ2_hbAssignCodes>
+    5abb:	mov    %rbx,%rax
+    5abe:	add    $0x408,%rax
+    5ac4:	cmp    0x40(%rsp),%r15
+    5ac9:	mov    %rax,0x38(%rsp)
+    5ace:	jne    5a48 <BZ2_compressBlock+0x1d68>
+    5ad4:	mov    0x20(%rsp),%rcx
+    5ad9:	mov    0x10(%rsp),%rbx
+    5ade:	xor    %eax,%eax
+    5ae0:	mov    %rcx,%r8
+    5ae3:	lea    0x10(%rax),%esi
+    5ae6:	movb   $0x0,(%rcx)
+    5ae9:	movslq %eax,%rdx
+    5aec:	cmpb   $0x0,0x80(%rbx,%rdx,1)
+    5af4:	je     5af9 <BZ2_compressBlock+0x1e19>
+    5af6:	movb   $0x1,(%rcx)
+    5af9:	add    $0x1,%eax
+    5afc:	cmp    %esi,%eax
+    5afe:	jne    5ae9 <BZ2_compressBlock+0x1e09>
+    5b00:	add    $0x1,%rcx
+    5b04:	cmp    $0x100,%eax
+    5b09:	jne    5ae3 <BZ2_compressBlock+0x1e03>
+    5b0b:	mov    0x20(%rsp),%rax
+    5b10:	mov    0x74(%rbx),%r10d
+    5b14:	mov    $0x1f,%r11d
+    5b1a:	mov    $0x1,%r14d
+    5b20:	lea    0x10(%rax),%r9
+    5b24:	mov    %r10d,%esi
+    5b27:	cmpb   $0x0,(%rax)
+    5b2a:	jne    62c0 <BZ2_compressBlock+0x25e0>
+    5b30:	mov    0x284(%rbx),%edx
+    5b36:	cmp    $0x7,%edx
+    5b39:	jle    5b7a <BZ2_compressBlock+0x1e9a>
+    5b3b:	mov    0x280(%rbx),%ecx
+    5b41:	mov    0x50(%rbx),%rdx
+    5b45:	shr    $0x18,%ecx
+    5b48:	movslq %esi,%rsi
+    5b4b:	mov    %cl,(%rdx,%rsi,1)
+    5b4e:	mov    0x74(%rbx),%edi
+    5b51:	mov    0x280(%rbx),%ecx
+    5b57:	lea    0x1(%rdi),%esi
+    5b5a:	mov    0x284(%rbx),%edi
+    5b60:	shl    $0x8,%ecx
+    5b63:	mov    %esi,0x74(%rbx)
+    5b66:	mov    %ecx,0x280(%rbx)
+    5b6c:	lea    -0x8(%rdi),%edx
+    5b6f:	cmp    $0x7,%edx
+    5b72:	mov    %edx,0x284(%rbx)
+    5b78:	jg     5b41 <BZ2_compressBlock+0x1e61>
+    5b7a:	add    $0x1,%edx
+    5b7d:	mov    %edx,0x284(%rbx)
+    5b83:	add    $0x1,%rax
+    5b87:	cmp    %r9,%rax
+    5b8a:	jne    5b27 <BZ2_compressBlock+0x1e47>
+    5b8c:	xor    %edi,%edi
+    5b8e:	mov    $0x1f,%r11d
+    5b94:	mov    $0x1,%r14d
+    5b9a:	cmpb   $0x0,(%r8)
+    5b9e:	lea    0x10(%rdi),%r9d
+    5ba2:	je     5c12 <BZ2_compressBlock+0x1f32>
+    5ba4:	mov    %edi,%edx
+    5ba6:	movslq %edx,%rax
+    5ba9:	cmpb   $0x0,0x80(%rbx,%rax,1)
+    5bb1:	jne    632c <BZ2_compressBlock+0x264c>
+    5bb7:	mov    0x284(%rbx),%ecx
+    5bbd:	cmp    $0x7,%ecx
+    5bc0:	jle    5c01 <BZ2_compressBlock+0x1f21>
+    5bc2:	mov    0x280(%rbx),%eax
+    5bc8:	mov    0x50(%rbx),%rcx
+    5bcc:	shr    $0x18,%eax
+    5bcf:	movslq %esi,%rsi
+    5bd2:	mov    %al,(%rcx,%rsi,1)
+    5bd5:	mov    0x74(%rbx),%eax
+    5bd8:	mov    0x284(%rbx),%edi
+    5bde:	lea    0x1(%rax),%esi
+    5be1:	mov    0x280(%rbx),%eax
+    5be7:	lea    -0x8(%rdi),%ecx
+    5bea:	mov    %esi,0x74(%rbx)
+    5bed:	shl    $0x8,%eax
+    5bf0:	cmp    $0x7,%ecx
+    5bf3:	mov    %ecx,0x284(%rbx)
+    5bf9:	mov    %eax,0x280(%rbx)
+    5bff:	jg     5bc8 <BZ2_compressBlock+0x1ee8>
+    5c01:	add    $0x1,%ecx
+    5c04:	mov    %ecx,0x284(%rbx)
+    5c0a:	add    $0x1,%edx
+    5c0d:	cmp    %r9d,%edx
+    5c10:	jne    5ba6 <BZ2_compressBlock+0x1ec6>
+    5c12:	add    $0x1,%r8
+    5c16:	cmp    $0x100,%r9d
+    5c1d:	mov    %r9d,%edi
+    5c20:	jne    5b9a <BZ2_compressBlock+0x1eba>
+    5c26:	cmpl   $0x2,0x290(%rbx)
+    5c2d:	jle    5c54 <BZ2_compressBlock+0x1f74>
+    5c2f:	mov    0x2093a2(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    5c36:	mov    %esi,%ecx
+    5c38:	lea    0x7711(%rip),%rdx        # d350 <_fini+0x2bc>
+    5c3f:	mov    $0x1,%esi
+    5c44:	sub    %r10d,%ecx
+    5c47:	mov    (%rax),%rdi
+    5c4a:	xor    %eax,%eax
+    5c4c:	callq  1390 <__fprintf_chk@plt>
+    5c51:	mov    0x74(%rbx),%esi
+    5c54:	mov    0x284(%rbx),%edx
+    5c5a:	mov    0x280(%rbx),%r8d
+    5c61:	mov    %esi,%edi
+    5c63:	cmp    $0x7,%edx
+    5c66:	jle    5ca6 <BZ2_compressBlock+0x1fc6>
+    5c68:	mov    0x50(%rbx),%rax
+    5c6c:	shr    $0x18,%r8d
+    5c70:	movslq %edi,%rdi
+    5c73:	mov    %r8b,(%rax,%rdi,1)
+    5c77:	mov    0x74(%rbx),%eax
+    5c7a:	mov    0x280(%rbx),%r8d
+    5c81:	lea    0x1(%rax),%edi
+    5c84:	mov    0x284(%rbx),%eax
+    5c8a:	shl    $0x8,%r8d
+    5c8e:	mov    %edi,0x74(%rbx)
+    5c91:	mov    %r8d,0x280(%rbx)
+    5c98:	lea    -0x8(%rax),%edx
+    5c9b:	cmp    $0x7,%edx
+    5c9e:	mov    %edx,0x284(%rbx)
+    5ca4:	jg     5c68 <BZ2_compressBlock+0x1f88>
+    5ca6:	mov    0x34(%rsp),%eax
+    5caa:	mov    $0x1d,%ecx
+    5caf:	sub    %edx,%ecx
+    5cb1:	add    $0x3,%edx
+    5cb4:	mov    %edx,0x284(%rbx)
+    5cba:	shl    %cl,%eax
+    5cbc:	or     %r8d,%eax
+    5cbf:	cmp    $0x7,%edx
+    5cc2:	mov    %eax,0x280(%rbx)
+    5cc8:	jle    5d03 <BZ2_compressBlock+0x2023>
+    5cca:	mov    0x50(%rbx),%rdx
+    5cce:	shr    $0x18,%eax
+    5cd1:	movslq %edi,%rdi
+    5cd4:	mov    %al,(%rdx,%rdi,1)
+    5cd7:	mov    0x74(%rbx),%eax
+    5cda:	mov    0x284(%rbx),%ecx
+    5ce0:	lea    0x1(%rax),%edi
+    5ce3:	mov    0x280(%rbx),%eax
+    5ce9:	lea    -0x8(%rcx),%edx
+    5cec:	mov    %edi,0x74(%rbx)
+    5cef:	shl    $0x8,%eax
+    5cf2:	cmp    $0x7,%edx
+    5cf5:	mov    %edx,0x284(%rbx)
+    5cfb:	mov    %eax,0x280(%rbx)
+    5d01:	jg     5cca <BZ2_compressBlock+0x1fea>
+    5d03:	mov    $0x11,%ecx
+    5d08:	mov    %ebp,%r14d
+    5d0b:	sub    %edx,%ecx
+    5d0d:	add    $0xf,%edx
+    5d10:	shl    %cl,%r14d
+    5d13:	mov    %edx,0x284(%rbx)
+    5d19:	or     %r14d,%eax
+    5d1c:	test   %ebp,%ebp
+    5d1e:	mov    %eax,0x280(%rbx)
+    5d24:	je     5e1f <BZ2_compressBlock+0x213f>
+    5d2a:	lea    -0x1(%rbp),%eax
+    5d2d:	lea    0x4cfa(%rbx),%r9
+    5d34:	mov    $0x1f,%r11d
+    5d3a:	mov    $0x1,%r10d
+    5d40:	lea    0x4cfb(%rbx,%rax,1),%r14
+    5d48:	cmpb   $0x0,(%r9)
+    5d4c:	je     5dc3 <BZ2_compressBlock+0x20e3>
+    5d4e:	mov    0x280(%rbx),%eax
+    5d54:	xor    %r8d,%r8d
+    5d57:	jmp    5d94 <BZ2_compressBlock+0x20b4>
+    5d59:	nopl   0x0(%rax)
+    5d60:	mov    0x50(%rbx),%rdx
+    5d64:	movslq %edi,%rdi
+    5d67:	shr    $0x18,%eax
+    5d6a:	mov    %al,(%rdx,%rdi,1)
+    5d6d:	mov    0x74(%rbx),%eax
+    5d70:	mov    0x284(%rbx),%ecx
+    5d76:	lea    0x1(%rax),%edi
+    5d79:	mov    0x280(%rbx),%eax
+    5d7f:	lea    -0x8(%rcx),%edx
+    5d82:	mov    %edi,0x74(%rbx)
+    5d85:	shl    $0x8,%eax
+    5d88:	mov    %edx,0x284(%rbx)
+    5d8e:	mov    %eax,0x280(%rbx)
+    5d94:	cmp    $0x7,%edx
+    5d97:	jg     5d60 <BZ2_compressBlock+0x2080>
+    5d99:	mov    %r11d,%ecx
+    5d9c:	mov    %r10d,%r15d
+    5d9f:	add    $0x1,%r8d
+    5da3:	sub    %edx,%ecx
+    5da5:	add    $0x1,%edx
+    5da8:	shl    %cl,%r15d
+    5dab:	mov    %edx,0x284(%rbx)
+    5db1:	or     %r15d,%eax
+    5db4:	mov    %eax,0x280(%rbx)
+    5dba:	movzbl (%r9),%ecx
+    5dbe:	cmp    %ecx,%r8d
+    5dc1:	jl     5d94 <BZ2_compressBlock+0x20b4>
+    5dc3:	cmp    $0x7,%edx
+    5dc6:	jle    5e09 <BZ2_compressBlock+0x2129>
+    5dc8:	mov    0x280(%rbx),%eax
+    5dce:	xchg   %ax,%ax
+    5dd0:	mov    0x50(%rbx),%rdx
+    5dd4:	shr    $0x18,%eax
+    5dd7:	movslq %edi,%rdi
+    5dda:	mov    %al,(%rdx,%rdi,1)
+    5ddd:	mov    0x74(%rbx),%eax
+    5de0:	mov    0x284(%rbx),%ecx
+    5de6:	lea    0x1(%rax),%edi
+    5de9:	mov    0x280(%rbx),%eax
+    5def:	lea    -0x8(%rcx),%edx
+    5df2:	mov    %edi,0x74(%rbx)
+    5df5:	shl    $0x8,%eax
+    5df8:	cmp    $0x7,%edx
+    5dfb:	mov    %edx,0x284(%rbx)
+    5e01:	mov    %eax,0x280(%rbx)
+    5e07:	jg     5dd0 <BZ2_compressBlock+0x20f0>
+    5e09:	add    $0x1,%r9
+    5e0d:	add    $0x1,%edx
+    5e10:	cmp    %r14,%r9
+    5e13:	mov    %edx,0x284(%rbx)
+    5e19:	jne    5d48 <BZ2_compressBlock+0x2068>
+    5e1f:	cmpl   $0x2,0x290(%rbx)
+    5e26:	jle    5e4c <BZ2_compressBlock+0x216c>
+    5e28:	mov    0x2091a9(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    5e2f:	sub    %esi,%edi
+    5e31:	lea    0x7532(%rip),%rdx        # d36a <_fini+0x2d6>
+    5e38:	mov    %edi,%ecx
+    5e3a:	mov    $0x1,%esi
+    5e3f:	mov    (%rax),%rdi
+    5e42:	xor    %eax,%eax
+    5e44:	callq  1390 <__fprintf_chk@plt>
+    5e49:	mov    0x74(%rbx),%edi
+    5e4c:	mov    0x50(%rsp),%rcx
+    5e51:	mov    %edi,%eax
+    5e53:	mov    $0x1e,%r10d
+    5e59:	mov    $0x2,%r14d
+    5e5f:	add    $0x1,%rcx
+    5e63:	mov    %rcx,(%rsp)
+    5e67:	mov    0x284(%rbx),%edx
+    5e6d:	mov    0x18(%rsp),%rcx
+    5e72:	mov    0x280(%rbx),%esi
+    5e78:	cmp    $0x7,%edx
+    5e7b:	movzbl (%rcx),%r8d
+    5e7f:	jle    5eba <BZ2_compressBlock+0x21da>
+    5e81:	mov    0x50(%rbx),%rdx
+    5e85:	shr    $0x18,%esi
+    5e88:	cltq   
+    5e8a:	mov    %sil,(%rdx,%rax,1)
+    5e8e:	mov    0x284(%rbx),%ecx
+    5e94:	mov    0x74(%rbx),%eax
+    5e97:	mov    0x280(%rbx),%esi
+    5e9d:	lea    -0x8(%rcx),%edx
+    5ea0:	add    $0x1,%eax
+    5ea3:	shl    $0x8,%esi
+    5ea6:	cmp    $0x7,%edx
+    5ea9:	mov    %eax,0x74(%rbx)
+    5eac:	mov    %esi,0x280(%rbx)
+    5eb2:	mov    %edx,0x284(%rbx)
+    5eb8:	jg     5e81 <BZ2_compressBlock+0x21a1>
+    5eba:	mov    $0x1b,%ecx
+    5ebf:	mov    %r8d,%r15d
+    5ec2:	sub    %edx,%ecx
+    5ec4:	add    $0x5,%edx
+    5ec7:	shl    %cl,%r15d
+    5eca:	mov    0xc(%rsp),%ecx
+    5ece:	mov    %edx,0x284(%rbx)
+    5ed4:	or     %r15d,%esi
+    5ed7:	mov    %esi,0x280(%rbx)
+    5edd:	test   %ecx,%ecx
+    5edf:	jle    6046 <BZ2_compressBlock+0x2366>
+    5ee5:	mov    0x18(%rsp),%rcx
+    5eea:	mov    (%rsp),%r15
+    5eee:	mov    %rcx,%r9
+    5ef1:	add    %rcx,%r15
+    5ef4:	movzbl (%r9),%ecx
+    5ef8:	cmp    %ecx,%r8d
+    5efb:	jge    5f6b <BZ2_compressBlock+0x228b>
+    5efd:	mov    0x280(%rbx),%esi
+    5f03:	jmp    5f3c <BZ2_compressBlock+0x225c>
+    5f05:	nopl   (%rax)
+    5f08:	mov    0x50(%rbx),%rdx
+    5f0c:	cltq   
+    5f0e:	shr    $0x18,%esi
+    5f11:	mov    %sil,(%rdx,%rax,1)
+    5f15:	mov    0x284(%rbx),%ecx
+    5f1b:	mov    0x74(%rbx),%eax
+    5f1e:	mov    0x280(%rbx),%esi
+    5f24:	lea    -0x8(%rcx),%edx
+    5f27:	add    $0x1,%eax
+    5f2a:	shl    $0x8,%esi
+    5f2d:	mov    %eax,0x74(%rbx)
+    5f30:	mov    %esi,0x280(%rbx)
+    5f36:	mov    %edx,0x284(%rbx)
+    5f3c:	cmp    $0x7,%edx
+    5f3f:	jg     5f08 <BZ2_compressBlock+0x2228>
+    5f41:	mov    %r10d,%ecx
+    5f44:	mov    %r14d,%r11d
+    5f47:	add    $0x1,%r8d
+    5f4b:	sub    %edx,%ecx
+    5f4d:	add    $0x2,%edx
+    5f50:	shl    %cl,%r11d
+    5f53:	mov    %edx,0x284(%rbx)
+    5f59:	or     %r11d,%esi
+    5f5c:	mov    %esi,0x280(%rbx)
+    5f62:	movzbl (%r9),%ecx
+    5f66:	cmp    %ecx,%r8d
+    5f69:	jl     5f3c <BZ2_compressBlock+0x225c>
+    5f6b:	cmp    %ecx,%r8d
+    5f6e:	jle    5fe6 <BZ2_compressBlock+0x2306>
+    5f70:	mov    0x280(%rbx),%esi
+    5f76:	jmp    5fb4 <BZ2_compressBlock+0x22d4>
+    5f78:	nopl   0x0(%rax,%rax,1)
+    5f80:	mov    0x50(%rbx),%rdx
+    5f84:	cltq   
+    5f86:	shr    $0x18,%esi
+    5f89:	mov    %sil,(%rdx,%rax,1)
+    5f8d:	mov    0x284(%rbx),%ecx
+    5f93:	mov    0x74(%rbx),%eax
+    5f96:	mov    0x280(%rbx),%esi
+    5f9c:	lea    -0x8(%rcx),%edx
+    5f9f:	add    $0x1,%eax
+    5fa2:	shl    $0x8,%esi
+    5fa5:	mov    %eax,0x74(%rbx)
+    5fa8:	mov    %esi,0x280(%rbx)
+    5fae:	mov    %edx,0x284(%rbx)
+    5fb4:	cmp    $0x7,%edx
+    5fb7:	jg     5f80 <BZ2_compressBlock+0x22a0>
+    5fb9:	mov    %r10d,%ecx
+    5fbc:	mov    $0x3,%r11d
+    5fc2:	sub    $0x1,%r8d
+    5fc6:	sub    %edx,%ecx
+    5fc8:	add    $0x2,%edx
+    5fcb:	shl    %cl,%r11d
+    5fce:	mov    %edx,0x284(%rbx)
+    5fd4:	or     %r11d,%esi
+    5fd7:	mov    %esi,0x280(%rbx)
+    5fdd:	movzbl (%r9),%ecx
+    5fe1:	cmp    %ecx,%r8d
+    5fe4:	jg     5fb4 <BZ2_compressBlock+0x22d4>
+    5fe6:	cmp    $0x7,%edx
+    5fe9:	jle    6030 <BZ2_compressBlock+0x2350>
+    5feb:	mov    0x280(%rbx),%ecx
+    5ff1:	nopl   0x0(%rax)
+    5ff8:	mov    0x50(%rbx),%rdx
+    5ffc:	shr    $0x18,%ecx
+    5fff:	cltq   
+    6001:	mov    %cl,(%rdx,%rax,1)
+    6004:	mov    0x284(%rbx),%edx
+    600a:	mov    0x74(%rbx),%eax
+    600d:	mov    0x280(%rbx),%ecx
+    6013:	sub    $0x8,%edx
+    6016:	add    $0x1,%eax
+    6019:	shl    $0x8,%ecx
+    601c:	cmp    $0x7,%edx
+    601f:	mov    %eax,0x74(%rbx)
+    6022:	mov    %ecx,0x280(%rbx)
+    6028:	mov    %edx,0x284(%rbx)
+    602e:	jg     5ff8 <BZ2_compressBlock+0x2318>
+    6030:	add    $0x1,%r9
+    6034:	add    $0x1,%edx
+    6037:	cmp    %r9,%r15
+    603a:	mov    %edx,0x284(%rbx)
+    6040:	jne    5ef4 <BZ2_compressBlock+0x2214>
+    6046:	addq   $0x102,0x18(%rsp)
+    604f:	mov    0x18(%rsp),%rcx
+    6054:	cmp    0x40(%rsp),%rcx
+    6059:	jne    5e67 <BZ2_compressBlock+0x2187>
+    605f:	cmpl   $0x2,0x290(%rbx)
+    6066:	mov    %eax,(%rsp)
+    6069:	jle    6092 <BZ2_compressBlock+0x23b2>
+    606b:	mov    %eax,%ecx
+    606d:	mov    0x208f64(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    6074:	lea    0x72fe(%rip),%rdx        # d379 <_fini+0x2e5>
+    607b:	sub    %edi,%ecx
+    607d:	mov    $0x1,%esi
+    6082:	mov    (%rax),%rdi
+    6085:	xor    %eax,%eax
+    6087:	callq  1390 <__fprintf_chk@plt>
+    608c:	mov    0x74(%rbx),%eax
+    608f:	mov    %eax,(%rsp)
+    6092:	mov    0x29c(%rbx),%eax
+    6098:	test   %eax,%eax
+    609a:	jle    7b15 <BZ2_compressBlock+0x3e35>
+    60a0:	mov    %rbx,%r15
+    60a3:	xor    %ecx,%ecx
+    60a5:	mov    $0x20,%r14d
+    60ab:	mov    %ebp,%r9d
+    60ae:	lea    0x31(%rcx),%ebp
+    60b1:	lea    -0x1(%rax),%edx
+    60b4:	cmp    %eax,%ebp
+    60b6:	movzbl 0x6a8(%r15),%eax
+    60be:	cmovge %edx,%ebp
+    60c1:	cmp    %eax,%r13d
+    60c4:	jle    7af4 <BZ2_compressBlock+0x3e14>
+    60ca:	cmp    $0x6,%r13d
+    60ce:	je     6398 <BZ2_compressBlock+0x26b8>
+    60d4:	cmp    %ecx,%ebp
+    60d6:	jl     61a6 <BZ2_compressBlock+0x24c6>
+    60dc:	mov    %ebp,%edi
+    60de:	movslq %ecx,%rdx
+    60e1:	mov    0x284(%rbx),%r11d
+    60e8:	sub    %ecx,%edi
+    60ea:	lea    (%r12,%rdx,2),%rsi
+    60ee:	mov    0x280(%rbx),%eax
+    60f4:	lea    0x1(%rdx,%rdi,1),%rdx
+    60f9:	lea    (%r12,%rdx,2),%r10
+    60fd:	nopl   (%rax)
+    6100:	movzbl 0x6a8(%r15),%edx
+    6108:	movzwl (%rsi),%ecx
+    610b:	mov    %rdx,%rdi
+    610e:	shl    $0x8,%rdi
+    6112:	lea    (%rdi,%rdx,2),%rdx
+    6116:	lea    0x2654(%rcx,%rdx,1),%rdi
+    611e:	add    %rbx,%rdx
+    6121:	cmp    $0x7,%r11d
+    6125:	movzbl 0x934c(%rcx,%rdx,1),%r8d
+    612e:	mov    0x8(%rbx,%rdi,4),%edi
+    6132:	jle    617c <BZ2_compressBlock+0x249c>
+    6134:	mov    0x74(%rbx),%edx
+    6137:	nopw   0x0(%rax,%rax,1)
+    6140:	mov    0x50(%rbx),%rcx
+    6144:	shr    $0x18,%eax
+    6147:	movslq %edx,%rdx
+    614a:	mov    %al,(%rcx,%rdx,1)
+    614d:	mov    0x74(%rbx),%eax
+    6150:	mov    0x284(%rbx),%ecx
+    6156:	lea    0x1(%rax),%edx
+    6159:	mov    0x280(%rbx),%eax
+    615f:	lea    -0x8(%rcx),%r11d
+    6163:	mov    %edx,0x74(%rbx)
+    6166:	shl    $0x8,%eax
+    6169:	cmp    $0x7,%r11d
+    616d:	mov    %r11d,0x284(%rbx)
+    6174:	mov    %eax,0x280(%rbx)
+    617a:	jg     6140 <BZ2_compressBlock+0x2460>
+    617c:	mov    %r14d,%ecx
+    617f:	add    $0x2,%rsi
+    6183:	sub    %r11d,%ecx
+    6186:	add    %r8d,%r11d
+    6189:	sub    %r8d,%ecx
+    618c:	mov    %r11d,0x284(%rbx)
+    6193:	shl    %cl,%edi
+    6195:	or     %edi,%eax
+    6197:	cmp    %r10,%rsi
+    619a:	mov    %eax,0x280(%rbx)
+    61a0:	jne    6100 <BZ2_compressBlock+0x2420>
+    61a6:	mov    %r15d,%eax
+    61a9:	lea    0x1(%rbp),%ecx
+    61ac:	add    $0x1,%r15
+    61b0:	sub    %ebx,%eax
+    61b2:	lea    0x1(%rax),%edx
+    61b5:	mov    0x29c(%rbx),%eax
+    61bb:	cmp    %ecx,%eax
+    61bd:	jg     60ae <BZ2_compressBlock+0x23ce>
+    61c3:	mov    %r9d,%ebp
+    61c6:	jmpq   7b17 <BZ2_compressBlock+0x3e37>
+    61cb:	nopl   0x0(%rax,%rax,1)
+    61d0:	xor    %ecx,%ecx
+    61d2:	jmpq   5a17 <BZ2_compressBlock+0x1d37>
+    61d7:	mov    $0x20,%ebx
+    61dc:	xor    %r14d,%r14d
+    61df:	jmpq   5a9a <BZ2_compressBlock+0x1dba>
+    61e4:	mov    $0xbbd,%edi
+    61e9:	callq  ce50 <BZ2_bz__AssertH__fail>
+    61ee:	jmpq   5a9a <BZ2_compressBlock+0x1dba>
+    61f3:	movl   $0x4,0x34(%rsp)
+    61fb:	mov    $0x4,%r13d
+    6201:	jmpq   4912 <BZ2_compressBlock+0xc32>
+    6206:	movl   $0x3,0x34(%rsp)
+    620e:	mov    $0x3,%r13d
+    6214:	jmpq   4912 <BZ2_compressBlock+0xc32>
+    6219:	movl   $0x2,0x34(%rsp)
+    6221:	mov    $0x2,%r13d
+    6227:	jmpq   4912 <BZ2_compressBlock+0xc32>
+    622c:	xor    %ebp,%ebp
+    622e:	movl   $0x0,0x10(%rsp)
+    6236:	jmpq   4c69 <BZ2_compressBlock+0xf89>
+    623b:	mov    0xc(%rsp),%r8d
+    6240:	test   %r8d,%r8d
+    6243:	jle    4b07 <BZ2_compressBlock+0xe27>
+    6249:	lea    0x944e(%rbx),%rax
+    6250:	lea    0xc9b8(%rbx),%rcx
+    6257:	movzbl (%rax),%edx
+    625a:	add    $0x10,%rcx
+    625e:	add    $0x1,%rax
+    6262:	shl    $0x10,%edx
+    6265:	mov    %edx,%esi
+    6267:	movzbl -0x103(%rax),%edx
+    626e:	or     %esi,%edx
+    6270:	mov    %edx,-0x10(%rcx)
+    6273:	movzbl 0x203(%rax),%edx
+    627a:	shl    $0x10,%edx
+    627d:	mov    %edx,%esi
+    627f:	movzbl 0x101(%rax),%edx
+    6286:	or     %esi,%edx
+    6288:	mov    %edx,-0xc(%rcx)
+    628b:	movzbl 0x407(%rax),%edx
+    6292:	shl    $0x10,%edx
+    6295:	mov    %edx,%esi
+    6297:	movzbl 0x305(%rax),%edx
+    629e:	or     %esi,%edx
+    62a0:	mov    %edx,-0x8(%rcx)
+    62a3:	cmp    0x60(%rsp),%rcx
+    62a8:	jne    6257 <BZ2_compressBlock+0x2577>
+    62aa:	jmpq   4b07 <BZ2_compressBlock+0xe27>
+    62af:	mov    $0xbbc,%edi
+    62b4:	callq  ce50 <BZ2_bz__AssertH__fail>
+    62b9:	jmpq   5a92 <BZ2_compressBlock+0x1db2>
+    62be:	xchg   %ax,%ax
+    62c0:	mov    0x284(%rbx),%edi
+    62c6:	mov    0x280(%rbx),%edx
+    62cc:	cmp    $0x7,%edi
+    62cf:	jle    630a <BZ2_compressBlock+0x262a>
+    62d1:	mov    0x50(%rbx),%rcx
+    62d5:	shr    $0x18,%edx
+    62d8:	movslq %esi,%rsi
+    62db:	mov    %dl,(%rcx,%rsi,1)
+    62de:	mov    0x74(%rbx),%edi
+    62e1:	mov    0x280(%rbx),%edx
+    62e7:	lea    0x1(%rdi),%esi
+    62ea:	mov    0x284(%rbx),%edi
+    62f0:	shl    $0x8,%edx
+    62f3:	mov    %esi,0x74(%rbx)
+    62f6:	mov    %edx,0x280(%rbx)
+    62fc:	sub    $0x8,%edi
+    62ff:	cmp    $0x7,%edi
+    6302:	mov    %edi,0x284(%rbx)
+    6308:	jg     62d1 <BZ2_compressBlock+0x25f1>
+    630a:	mov    %r11d,%ecx
+    630d:	mov    %r14d,%r15d
+    6310:	sub    %edi,%ecx
+    6312:	shl    %cl,%r15d
+    6315:	or     %r15d,%edx
+    6318:	mov    %edx,0x280(%rbx)
+    631e:	lea    0x1(%rdi),%edx
+    6321:	mov    %edx,0x284(%rbx)
+    6327:	jmpq   5b83 <BZ2_compressBlock+0x1ea3>
+    632c:	mov    0x284(%rbx),%edi
+    6332:	mov    0x280(%rbx),%eax
+    6338:	cmp    $0x7,%edi
+    633b:	jle    6376 <BZ2_compressBlock+0x2696>
+    633d:	mov    0x50(%rbx),%rcx
+    6341:	shr    $0x18,%eax
+    6344:	movslq %esi,%rsi
+    6347:	mov    %al,(%rcx,%rsi,1)
+    634a:	mov    0x74(%rbx),%eax
+    634d:	mov    0x284(%rbx),%edi
+    6353:	lea    0x1(%rax),%esi
+    6356:	mov    0x280(%rbx),%eax
+    635c:	sub    $0x8,%edi
+    635f:	mov    %esi,0x74(%rbx)
+    6362:	mov    %edi,0x284(%rbx)
+    6368:	shl    $0x8,%eax
+    636b:	cmp    $0x7,%edi
+    636e:	mov    %eax,0x280(%rbx)
+    6374:	jg     633d <BZ2_compressBlock+0x265d>
+    6376:	mov    %r11d,%ecx
+    6379:	mov    %r14d,%r15d
+    637c:	sub    %edi,%ecx
+    637e:	add    $0x1,%edi
+    6381:	shl    %cl,%r15d
+    6384:	mov    %edi,0x284(%rbx)
+    638a:	or     %r15d,%eax
+    638d:	mov    %eax,0x280(%rbx)
+    6393:	jmpq   5c0a <BZ2_compressBlock+0x1f2a>
+    6398:	mov    %ebp,%eax
+    639a:	sub    %ecx,%eax
+    639c:	cmp    $0x31,%eax
+    639f:	jne    60d4 <BZ2_compressBlock+0x23f4>
+    63a5:	movzbl 0x6a8(%r15),%eax
+    63ad:	movslq %ecx,%rcx
+    63b0:	mov    0x284(%rbx),%r8d
+    63b7:	lea    (%rcx,%rcx,1),%rdi
+    63bb:	mov    %rax,%rdx
+    63be:	mov    %rax,%rsi
+    63c1:	shl    $0xa,%rsi
+    63c5:	shl    $0x8,%rdx
+    63c9:	lea    0x9340(%rdx,%rax,2),%rdx
+    63d1:	lea    0x9950(%rsi,%rax,8),%rax
+    63d9:	lea    0x8(%rbx,%rax,1),%rsi
+    63de:	movzwl (%r12,%rcx,2),%eax
+    63e3:	add    %rbx,%rdx
+    63e6:	cmp    $0x7,%r8d
+    63ea:	mov    (%rsi,%rax,4),%r11d
+    63ee:	movzbl 0xc(%rax,%rdx,1),%r10d
+    63f4:	jle    7b5a <BZ2_compressBlock+0x3e7a>
+    63fa:	mov    0x74(%rbx),%ecx
+    63fd:	mov    0x280(%rbx),%eax
+    6403:	mov    0x50(%rbx),%r8
+    6407:	shr    $0x18,%eax
+    640a:	movslq %ecx,%rcx
+    640d:	mov    %al,(%r8,%rcx,1)
+    6411:	mov    0x74(%rbx),%eax
+    6414:	mov    0x284(%rbx),%r8d
+    641b:	lea    0x1(%rax),%ecx
+    641e:	mov    0x280(%rbx),%eax
+    6424:	sub    $0x8,%r8d
+    6428:	mov    %ecx,0x74(%rbx)
+    642b:	mov    %r8d,0x284(%rbx)
+    6432:	shl    $0x8,%eax
+    6435:	cmp    $0x7,%r8d
+    6439:	mov    %eax,0x280(%rbx)
+    643f:	jg     6403 <BZ2_compressBlock+0x2723>
+    6441:	mov    %r14d,%ecx
+    6444:	sub    %r8d,%ecx
+    6447:	add    %r10d,%r8d
+    644a:	sub    %r10d,%ecx
+    644d:	mov    %r8d,0x284(%rbx)
+    6454:	shl    %cl,%r11d
+    6457:	movzwl 0x2(%r12,%rdi,1),%ecx
+    645d:	or     %r11d,%eax
+    6460:	cmp    $0x7,%r8d
+    6464:	mov    %eax,0x280(%rbx)
+    646a:	mov    (%rsi,%rcx,4),%r11d
+    646e:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6474:	jle    64b7 <BZ2_compressBlock+0x27d7>
+    6476:	mov    0x74(%rbx),%ecx
+    6479:	mov    0x50(%rbx),%r8
+    647d:	shr    $0x18,%eax
+    6480:	movslq %ecx,%rcx
+    6483:	mov    %al,(%r8,%rcx,1)
+    6487:	mov    0x74(%rbx),%eax
+    648a:	mov    0x284(%rbx),%r8d
+    6491:	lea    0x1(%rax),%ecx
+    6494:	mov    0x280(%rbx),%eax
+    649a:	sub    $0x8,%r8d
+    649e:	mov    %ecx,0x74(%rbx)
+    64a1:	mov    %r8d,0x284(%rbx)
+    64a8:	shl    $0x8,%eax
+    64ab:	cmp    $0x7,%r8d
+    64af:	mov    %eax,0x280(%rbx)
+    64b5:	jg     6479 <BZ2_compressBlock+0x2799>
+    64b7:	mov    %r14d,%ecx
+    64ba:	sub    %r8d,%ecx
+    64bd:	add    %r10d,%r8d
+    64c0:	sub    %r10d,%ecx
+    64c3:	mov    %r8d,0x284(%rbx)
+    64ca:	shl    %cl,%r11d
+    64cd:	movzwl 0x4(%r12,%rdi,1),%ecx
+    64d3:	or     %r11d,%eax
+    64d6:	cmp    $0x7,%r8d
+    64da:	mov    %eax,0x280(%rbx)
+    64e0:	mov    (%rsi,%rcx,4),%r11d
+    64e4:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    64ea:	jle    652d <BZ2_compressBlock+0x284d>
+    64ec:	mov    0x74(%rbx),%ecx
+    64ef:	mov    0x50(%rbx),%r8
+    64f3:	shr    $0x18,%eax
+    64f6:	movslq %ecx,%rcx
+    64f9:	mov    %al,(%r8,%rcx,1)
+    64fd:	mov    0x74(%rbx),%eax
+    6500:	mov    0x284(%rbx),%r8d
+    6507:	lea    0x1(%rax),%ecx
+    650a:	mov    0x280(%rbx),%eax
+    6510:	sub    $0x8,%r8d
+    6514:	mov    %ecx,0x74(%rbx)
+    6517:	mov    %r8d,0x284(%rbx)
+    651e:	shl    $0x8,%eax
+    6521:	cmp    $0x7,%r8d
+    6525:	mov    %eax,0x280(%rbx)
+    652b:	jg     64ef <BZ2_compressBlock+0x280f>
+    652d:	mov    %r14d,%ecx
+    6530:	sub    %r8d,%ecx
+    6533:	add    %r10d,%r8d
+    6536:	sub    %r10d,%ecx
+    6539:	mov    %r8d,0x284(%rbx)
+    6540:	shl    %cl,%r11d
+    6543:	movzwl 0x6(%r12,%rdi,1),%ecx
+    6549:	or     %r11d,%eax
+    654c:	cmp    $0x7,%r8d
+    6550:	mov    %eax,0x280(%rbx)
+    6556:	mov    (%rsi,%rcx,4),%r11d
+    655a:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6560:	jle    65a3 <BZ2_compressBlock+0x28c3>
+    6562:	mov    0x74(%rbx),%ecx
+    6565:	mov    0x50(%rbx),%r8
+    6569:	shr    $0x18,%eax
+    656c:	movslq %ecx,%rcx
+    656f:	mov    %al,(%r8,%rcx,1)
+    6573:	mov    0x74(%rbx),%eax
+    6576:	mov    0x284(%rbx),%r8d
+    657d:	lea    0x1(%rax),%ecx
+    6580:	mov    0x280(%rbx),%eax
+    6586:	sub    $0x8,%r8d
+    658a:	mov    %ecx,0x74(%rbx)
+    658d:	mov    %r8d,0x284(%rbx)
+    6594:	shl    $0x8,%eax
+    6597:	cmp    $0x7,%r8d
+    659b:	mov    %eax,0x280(%rbx)
+    65a1:	jg     6565 <BZ2_compressBlock+0x2885>
+    65a3:	mov    %r14d,%ecx
+    65a6:	sub    %r8d,%ecx
+    65a9:	add    %r10d,%r8d
+    65ac:	sub    %r10d,%ecx
+    65af:	mov    %r8d,0x284(%rbx)
+    65b6:	shl    %cl,%r11d
+    65b9:	movzwl 0x8(%r12,%rdi,1),%ecx
+    65bf:	or     %r11d,%eax
+    65c2:	cmp    $0x7,%r8d
+    65c6:	mov    %eax,0x280(%rbx)
+    65cc:	mov    (%rsi,%rcx,4),%r11d
+    65d0:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    65d6:	jle    6619 <BZ2_compressBlock+0x2939>
+    65d8:	mov    0x74(%rbx),%ecx
+    65db:	mov    0x50(%rbx),%r8
+    65df:	shr    $0x18,%eax
+    65e2:	movslq %ecx,%rcx
+    65e5:	mov    %al,(%r8,%rcx,1)
+    65e9:	mov    0x74(%rbx),%eax
+    65ec:	mov    0x284(%rbx),%r8d
+    65f3:	lea    0x1(%rax),%ecx
+    65f6:	mov    0x280(%rbx),%eax
+    65fc:	sub    $0x8,%r8d
+    6600:	mov    %ecx,0x74(%rbx)
+    6603:	mov    %r8d,0x284(%rbx)
+    660a:	shl    $0x8,%eax
+    660d:	cmp    $0x7,%r8d
+    6611:	mov    %eax,0x280(%rbx)
+    6617:	jg     65db <BZ2_compressBlock+0x28fb>
+    6619:	mov    %r14d,%ecx
+    661c:	sub    %r8d,%ecx
+    661f:	add    %r10d,%r8d
+    6622:	sub    %r10d,%ecx
+    6625:	mov    %r8d,0x284(%rbx)
+    662c:	shl    %cl,%r11d
+    662f:	movzwl 0xa(%r12,%rdi,1),%ecx
+    6635:	or     %r11d,%eax
+    6638:	cmp    $0x7,%r8d
+    663c:	mov    %eax,0x280(%rbx)
+    6642:	mov    (%rsi,%rcx,4),%r11d
+    6646:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    664c:	jle    668f <BZ2_compressBlock+0x29af>
+    664e:	mov    0x74(%rbx),%ecx
+    6651:	mov    0x50(%rbx),%r8
+    6655:	shr    $0x18,%eax
+    6658:	movslq %ecx,%rcx
+    665b:	mov    %al,(%r8,%rcx,1)
+    665f:	mov    0x74(%rbx),%eax
+    6662:	mov    0x284(%rbx),%r8d
+    6669:	lea    0x1(%rax),%ecx
+    666c:	mov    0x280(%rbx),%eax
+    6672:	sub    $0x8,%r8d
+    6676:	mov    %ecx,0x74(%rbx)
+    6679:	mov    %r8d,0x284(%rbx)
+    6680:	shl    $0x8,%eax
+    6683:	cmp    $0x7,%r8d
+    6687:	mov    %eax,0x280(%rbx)
+    668d:	jg     6651 <BZ2_compressBlock+0x2971>
+    668f:	mov    %r14d,%ecx
+    6692:	sub    %r8d,%ecx
+    6695:	add    %r10d,%r8d
+    6698:	sub    %r10d,%ecx
+    669b:	mov    %r8d,0x284(%rbx)
+    66a2:	shl    %cl,%r11d
+    66a5:	movzwl 0xc(%r12,%rdi,1),%ecx
+    66ab:	or     %r11d,%eax
+    66ae:	cmp    $0x7,%r8d
+    66b2:	mov    %eax,0x280(%rbx)
+    66b8:	mov    (%rsi,%rcx,4),%r11d
+    66bc:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    66c2:	jle    6705 <BZ2_compressBlock+0x2a25>
+    66c4:	mov    0x74(%rbx),%ecx
+    66c7:	mov    0x50(%rbx),%r8
+    66cb:	shr    $0x18,%eax
+    66ce:	movslq %ecx,%rcx
+    66d1:	mov    %al,(%r8,%rcx,1)
+    66d5:	mov    0x74(%rbx),%eax
+    66d8:	mov    0x284(%rbx),%r8d
+    66df:	lea    0x1(%rax),%ecx
+    66e2:	mov    0x280(%rbx),%eax
+    66e8:	sub    $0x8,%r8d
+    66ec:	mov    %ecx,0x74(%rbx)
+    66ef:	mov    %r8d,0x284(%rbx)
+    66f6:	shl    $0x8,%eax
+    66f9:	cmp    $0x7,%r8d
+    66fd:	mov    %eax,0x280(%rbx)
+    6703:	jg     66c7 <BZ2_compressBlock+0x29e7>
+    6705:	mov    %r14d,%ecx
+    6708:	sub    %r8d,%ecx
+    670b:	add    %r10d,%r8d
+    670e:	sub    %r10d,%ecx
+    6711:	mov    %r8d,0x284(%rbx)
+    6718:	shl    %cl,%r11d
+    671b:	movzwl 0xe(%r12,%rdi,1),%ecx
+    6721:	or     %r11d,%eax
+    6724:	cmp    $0x7,%r8d
+    6728:	mov    %eax,0x280(%rbx)
+    672e:	mov    (%rsi,%rcx,4),%r11d
+    6732:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6738:	jle    677b <BZ2_compressBlock+0x2a9b>
+    673a:	mov    0x74(%rbx),%ecx
+    673d:	mov    0x50(%rbx),%r8
+    6741:	shr    $0x18,%eax
+    6744:	movslq %ecx,%rcx
+    6747:	mov    %al,(%r8,%rcx,1)
+    674b:	mov    0x74(%rbx),%eax
+    674e:	mov    0x284(%rbx),%r8d
+    6755:	lea    0x1(%rax),%ecx
+    6758:	mov    0x280(%rbx),%eax
+    675e:	sub    $0x8,%r8d
+    6762:	mov    %ecx,0x74(%rbx)
+    6765:	mov    %r8d,0x284(%rbx)
+    676c:	shl    $0x8,%eax
+    676f:	cmp    $0x7,%r8d
+    6773:	mov    %eax,0x280(%rbx)
+    6779:	jg     673d <BZ2_compressBlock+0x2a5d>
+    677b:	mov    %r14d,%ecx
+    677e:	sub    %r8d,%ecx
+    6781:	add    %r10d,%r8d
+    6784:	sub    %r10d,%ecx
+    6787:	mov    %r8d,0x284(%rbx)
+    678e:	shl    %cl,%r11d
+    6791:	movzwl 0x10(%r12,%rdi,1),%ecx
+    6797:	or     %r11d,%eax
+    679a:	cmp    $0x7,%r8d
+    679e:	mov    %eax,0x280(%rbx)
+    67a4:	mov    (%rsi,%rcx,4),%r11d
+    67a8:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    67ae:	jle    67f1 <BZ2_compressBlock+0x2b11>
+    67b0:	mov    0x74(%rbx),%ecx
+    67b3:	mov    0x50(%rbx),%r8
+    67b7:	shr    $0x18,%eax
+    67ba:	movslq %ecx,%rcx
+    67bd:	mov    %al,(%r8,%rcx,1)
+    67c1:	mov    0x74(%rbx),%eax
+    67c4:	mov    0x284(%rbx),%r8d
+    67cb:	lea    0x1(%rax),%ecx
+    67ce:	mov    0x280(%rbx),%eax
+    67d4:	sub    $0x8,%r8d
+    67d8:	mov    %ecx,0x74(%rbx)
+    67db:	mov    %r8d,0x284(%rbx)
+    67e2:	shl    $0x8,%eax
+    67e5:	cmp    $0x7,%r8d
+    67e9:	mov    %eax,0x280(%rbx)
+    67ef:	jg     67b3 <BZ2_compressBlock+0x2ad3>
+    67f1:	mov    %r14d,%ecx
+    67f4:	sub    %r8d,%ecx
+    67f7:	add    %r10d,%r8d
+    67fa:	sub    %r10d,%ecx
+    67fd:	mov    %r8d,0x284(%rbx)
+    6804:	shl    %cl,%r11d
+    6807:	movzwl 0x12(%r12,%rdi,1),%ecx
+    680d:	or     %r11d,%eax
+    6810:	cmp    $0x7,%r8d
+    6814:	mov    %eax,0x280(%rbx)
+    681a:	mov    (%rsi,%rcx,4),%r11d
+    681e:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6824:	jle    6867 <BZ2_compressBlock+0x2b87>
+    6826:	mov    0x74(%rbx),%ecx
+    6829:	mov    0x50(%rbx),%r8
+    682d:	shr    $0x18,%eax
+    6830:	movslq %ecx,%rcx
+    6833:	mov    %al,(%r8,%rcx,1)
+    6837:	mov    0x74(%rbx),%eax
+    683a:	mov    0x284(%rbx),%r8d
+    6841:	lea    0x1(%rax),%ecx
+    6844:	mov    0x280(%rbx),%eax
+    684a:	sub    $0x8,%r8d
+    684e:	mov    %ecx,0x74(%rbx)
+    6851:	mov    %r8d,0x284(%rbx)
+    6858:	shl    $0x8,%eax
+    685b:	cmp    $0x7,%r8d
+    685f:	mov    %eax,0x280(%rbx)
+    6865:	jg     6829 <BZ2_compressBlock+0x2b49>
+    6867:	mov    %r14d,%ecx
+    686a:	sub    %r8d,%ecx
+    686d:	add    %r10d,%r8d
+    6870:	sub    %r10d,%ecx
+    6873:	mov    %r8d,0x284(%rbx)
+    687a:	shl    %cl,%r11d
+    687d:	movzwl 0x14(%r12,%rdi,1),%ecx
+    6883:	or     %r11d,%eax
+    6886:	cmp    $0x7,%r8d
+    688a:	mov    %eax,0x280(%rbx)
+    6890:	mov    (%rsi,%rcx,4),%r11d
+    6894:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    689a:	jle    68dd <BZ2_compressBlock+0x2bfd>
+    689c:	mov    0x74(%rbx),%ecx
+    689f:	mov    0x50(%rbx),%r8
+    68a3:	shr    $0x18,%eax
+    68a6:	movslq %ecx,%rcx
+    68a9:	mov    %al,(%r8,%rcx,1)
+    68ad:	mov    0x74(%rbx),%eax
+    68b0:	mov    0x284(%rbx),%r8d
+    68b7:	lea    0x1(%rax),%ecx
+    68ba:	mov    0x280(%rbx),%eax
+    68c0:	sub    $0x8,%r8d
+    68c4:	mov    %ecx,0x74(%rbx)
+    68c7:	mov    %r8d,0x284(%rbx)
+    68ce:	shl    $0x8,%eax
+    68d1:	cmp    $0x7,%r8d
+    68d5:	mov    %eax,0x280(%rbx)
+    68db:	jg     689f <BZ2_compressBlock+0x2bbf>
+    68dd:	mov    %r14d,%ecx
+    68e0:	sub    %r8d,%ecx
+    68e3:	add    %r10d,%r8d
+    68e6:	sub    %r10d,%ecx
+    68e9:	mov    %r8d,0x284(%rbx)
+    68f0:	shl    %cl,%r11d
+    68f3:	movzwl 0x16(%r12,%rdi,1),%ecx
+    68f9:	or     %r11d,%eax
+    68fc:	cmp    $0x7,%r8d
+    6900:	mov    %eax,0x280(%rbx)
+    6906:	mov    (%rsi,%rcx,4),%r11d
+    690a:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6910:	jle    6953 <BZ2_compressBlock+0x2c73>
+    6912:	mov    0x74(%rbx),%ecx
+    6915:	mov    0x50(%rbx),%r8
+    6919:	shr    $0x18,%eax
+    691c:	movslq %ecx,%rcx
+    691f:	mov    %al,(%r8,%rcx,1)
+    6923:	mov    0x74(%rbx),%eax
+    6926:	mov    0x284(%rbx),%r8d
+    692d:	lea    0x1(%rax),%ecx
+    6930:	mov    0x280(%rbx),%eax
+    6936:	sub    $0x8,%r8d
+    693a:	mov    %ecx,0x74(%rbx)
+    693d:	mov    %r8d,0x284(%rbx)
+    6944:	shl    $0x8,%eax
+    6947:	cmp    $0x7,%r8d
+    694b:	mov    %eax,0x280(%rbx)
+    6951:	jg     6915 <BZ2_compressBlock+0x2c35>
+    6953:	mov    %r14d,%ecx
+    6956:	sub    %r8d,%ecx
+    6959:	add    %r10d,%r8d
+    695c:	sub    %r10d,%ecx
+    695f:	mov    %r8d,0x284(%rbx)
+    6966:	shl    %cl,%r11d
+    6969:	movzwl 0x18(%r12,%rdi,1),%ecx
+    696f:	or     %r11d,%eax
+    6972:	cmp    $0x7,%r8d
+    6976:	mov    %eax,0x280(%rbx)
+    697c:	mov    (%rsi,%rcx,4),%r11d
+    6980:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6986:	jle    69c9 <BZ2_compressBlock+0x2ce9>
+    6988:	mov    0x74(%rbx),%ecx
+    698b:	mov    0x50(%rbx),%r8
+    698f:	shr    $0x18,%eax
+    6992:	movslq %ecx,%rcx
+    6995:	mov    %al,(%r8,%rcx,1)
+    6999:	mov    0x74(%rbx),%eax
+    699c:	mov    0x284(%rbx),%r8d
+    69a3:	lea    0x1(%rax),%ecx
+    69a6:	mov    0x280(%rbx),%eax
+    69ac:	sub    $0x8,%r8d
+    69b0:	mov    %ecx,0x74(%rbx)
+    69b3:	mov    %r8d,0x284(%rbx)
+    69ba:	shl    $0x8,%eax
+    69bd:	cmp    $0x7,%r8d
+    69c1:	mov    %eax,0x280(%rbx)
+    69c7:	jg     698b <BZ2_compressBlock+0x2cab>
+    69c9:	mov    %r14d,%ecx
+    69cc:	sub    %r8d,%ecx
+    69cf:	add    %r10d,%r8d
+    69d2:	sub    %r10d,%ecx
+    69d5:	mov    %r8d,0x284(%rbx)
+    69dc:	shl    %cl,%r11d
+    69df:	movzwl 0x1a(%r12,%rdi,1),%ecx
+    69e5:	or     %r11d,%eax
+    69e8:	cmp    $0x7,%r8d
+    69ec:	mov    %eax,0x280(%rbx)
+    69f2:	mov    (%rsi,%rcx,4),%r11d
+    69f6:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    69fc:	jle    6a3f <BZ2_compressBlock+0x2d5f>
+    69fe:	mov    0x74(%rbx),%ecx
+    6a01:	mov    0x50(%rbx),%r8
+    6a05:	shr    $0x18,%eax
+    6a08:	movslq %ecx,%rcx
+    6a0b:	mov    %al,(%r8,%rcx,1)
+    6a0f:	mov    0x74(%rbx),%eax
+    6a12:	mov    0x284(%rbx),%r8d
+    6a19:	lea    0x1(%rax),%ecx
+    6a1c:	mov    0x280(%rbx),%eax
+    6a22:	sub    $0x8,%r8d
+    6a26:	mov    %ecx,0x74(%rbx)
+    6a29:	mov    %r8d,0x284(%rbx)
+    6a30:	shl    $0x8,%eax
+    6a33:	cmp    $0x7,%r8d
+    6a37:	mov    %eax,0x280(%rbx)
+    6a3d:	jg     6a01 <BZ2_compressBlock+0x2d21>
+    6a3f:	mov    %r14d,%ecx
+    6a42:	sub    %r8d,%ecx
+    6a45:	add    %r10d,%r8d
+    6a48:	sub    %r10d,%ecx
+    6a4b:	mov    %r8d,0x284(%rbx)
+    6a52:	shl    %cl,%r11d
+    6a55:	movzwl 0x1c(%r12,%rdi,1),%ecx
+    6a5b:	or     %r11d,%eax
+    6a5e:	cmp    $0x7,%r8d
+    6a62:	mov    %eax,0x280(%rbx)
+    6a68:	mov    (%rsi,%rcx,4),%r11d
+    6a6c:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6a72:	jle    6ab5 <BZ2_compressBlock+0x2dd5>
+    6a74:	mov    0x74(%rbx),%ecx
+    6a77:	mov    0x50(%rbx),%r8
+    6a7b:	shr    $0x18,%eax
+    6a7e:	movslq %ecx,%rcx
+    6a81:	mov    %al,(%r8,%rcx,1)
+    6a85:	mov    0x74(%rbx),%eax
+    6a88:	mov    0x284(%rbx),%r8d
+    6a8f:	lea    0x1(%rax),%ecx
+    6a92:	mov    0x280(%rbx),%eax
+    6a98:	sub    $0x8,%r8d
+    6a9c:	mov    %ecx,0x74(%rbx)
+    6a9f:	mov    %r8d,0x284(%rbx)
+    6aa6:	shl    $0x8,%eax
+    6aa9:	cmp    $0x7,%r8d
+    6aad:	mov    %eax,0x280(%rbx)
+    6ab3:	jg     6a77 <BZ2_compressBlock+0x2d97>
+    6ab5:	mov    %r14d,%ecx
+    6ab8:	sub    %r8d,%ecx
+    6abb:	add    %r10d,%r8d
+    6abe:	sub    %r10d,%ecx
+    6ac1:	mov    %r8d,0x284(%rbx)
+    6ac8:	shl    %cl,%r11d
+    6acb:	movzwl 0x1e(%r12,%rdi,1),%ecx
+    6ad1:	or     %r11d,%eax
+    6ad4:	cmp    $0x7,%r8d
+    6ad8:	mov    %eax,0x280(%rbx)
+    6ade:	mov    (%rsi,%rcx,4),%r11d
+    6ae2:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6ae8:	jle    6b2b <BZ2_compressBlock+0x2e4b>
+    6aea:	mov    0x74(%rbx),%ecx
+    6aed:	mov    0x50(%rbx),%r8
+    6af1:	shr    $0x18,%eax
+    6af4:	movslq %ecx,%rcx
+    6af7:	mov    %al,(%r8,%rcx,1)
+    6afb:	mov    0x74(%rbx),%eax
+    6afe:	mov    0x284(%rbx),%r8d
+    6b05:	lea    0x1(%rax),%ecx
+    6b08:	mov    0x280(%rbx),%eax
+    6b0e:	sub    $0x8,%r8d
+    6b12:	mov    %ecx,0x74(%rbx)
+    6b15:	mov    %r8d,0x284(%rbx)
+    6b1c:	shl    $0x8,%eax
+    6b1f:	cmp    $0x7,%r8d
+    6b23:	mov    %eax,0x280(%rbx)
+    6b29:	jg     6aed <BZ2_compressBlock+0x2e0d>
+    6b2b:	mov    %r14d,%ecx
+    6b2e:	sub    %r8d,%ecx
+    6b31:	add    %r10d,%r8d
+    6b34:	sub    %r10d,%ecx
+    6b37:	mov    %r8d,0x284(%rbx)
+    6b3e:	shl    %cl,%r11d
+    6b41:	movzwl 0x20(%r12,%rdi,1),%ecx
+    6b47:	or     %r11d,%eax
+    6b4a:	cmp    $0x7,%r8d
+    6b4e:	mov    %eax,0x280(%rbx)
+    6b54:	mov    (%rsi,%rcx,4),%r11d
+    6b58:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6b5e:	jle    6ba1 <BZ2_compressBlock+0x2ec1>
+    6b60:	mov    0x74(%rbx),%ecx
+    6b63:	mov    0x50(%rbx),%r8
+    6b67:	shr    $0x18,%eax
+    6b6a:	movslq %ecx,%rcx
+    6b6d:	mov    %al,(%r8,%rcx,1)
+    6b71:	mov    0x74(%rbx),%eax
+    6b74:	mov    0x284(%rbx),%r8d
+    6b7b:	lea    0x1(%rax),%ecx
+    6b7e:	mov    0x280(%rbx),%eax
+    6b84:	sub    $0x8,%r8d
+    6b88:	mov    %ecx,0x74(%rbx)
+    6b8b:	mov    %r8d,0x284(%rbx)
+    6b92:	shl    $0x8,%eax
+    6b95:	cmp    $0x7,%r8d
+    6b99:	mov    %eax,0x280(%rbx)
+    6b9f:	jg     6b63 <BZ2_compressBlock+0x2e83>
+    6ba1:	mov    %r14d,%ecx
+    6ba4:	sub    %r8d,%ecx
+    6ba7:	add    %r10d,%r8d
+    6baa:	sub    %r10d,%ecx
+    6bad:	mov    %r8d,0x284(%rbx)
+    6bb4:	shl    %cl,%r11d
+    6bb7:	movzwl 0x22(%r12,%rdi,1),%ecx
+    6bbd:	or     %r11d,%eax
+    6bc0:	cmp    $0x7,%r8d
+    6bc4:	mov    %eax,0x280(%rbx)
+    6bca:	mov    (%rsi,%rcx,4),%r11d
+    6bce:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6bd4:	jle    6c17 <BZ2_compressBlock+0x2f37>
+    6bd6:	mov    0x74(%rbx),%ecx
+    6bd9:	mov    0x50(%rbx),%r8
+    6bdd:	shr    $0x18,%eax
+    6be0:	movslq %ecx,%rcx
+    6be3:	mov    %al,(%r8,%rcx,1)
+    6be7:	mov    0x74(%rbx),%eax
+    6bea:	mov    0x284(%rbx),%r8d
+    6bf1:	lea    0x1(%rax),%ecx
+    6bf4:	mov    0x280(%rbx),%eax
+    6bfa:	sub    $0x8,%r8d
+    6bfe:	mov    %ecx,0x74(%rbx)
+    6c01:	mov    %r8d,0x284(%rbx)
+    6c08:	shl    $0x8,%eax
+    6c0b:	cmp    $0x7,%r8d
+    6c0f:	mov    %eax,0x280(%rbx)
+    6c15:	jg     6bd9 <BZ2_compressBlock+0x2ef9>
+    6c17:	mov    %r14d,%ecx
+    6c1a:	sub    %r8d,%ecx
+    6c1d:	add    %r10d,%r8d
+    6c20:	sub    %r10d,%ecx
+    6c23:	mov    %r8d,0x284(%rbx)
+    6c2a:	shl    %cl,%r11d
+    6c2d:	movzwl 0x24(%r12,%rdi,1),%ecx
+    6c33:	or     %r11d,%eax
+    6c36:	cmp    $0x7,%r8d
+    6c3a:	mov    %eax,0x280(%rbx)
+    6c40:	mov    (%rsi,%rcx,4),%r11d
+    6c44:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6c4a:	jle    6c8d <BZ2_compressBlock+0x2fad>
+    6c4c:	mov    0x74(%rbx),%ecx
+    6c4f:	mov    0x50(%rbx),%r8
+    6c53:	shr    $0x18,%eax
+    6c56:	movslq %ecx,%rcx
+    6c59:	mov    %al,(%r8,%rcx,1)
+    6c5d:	mov    0x74(%rbx),%eax
+    6c60:	mov    0x284(%rbx),%r8d
+    6c67:	lea    0x1(%rax),%ecx
+    6c6a:	mov    0x280(%rbx),%eax
+    6c70:	sub    $0x8,%r8d
+    6c74:	mov    %ecx,0x74(%rbx)
+    6c77:	mov    %r8d,0x284(%rbx)
+    6c7e:	shl    $0x8,%eax
+    6c81:	cmp    $0x7,%r8d
+    6c85:	mov    %eax,0x280(%rbx)
+    6c8b:	jg     6c4f <BZ2_compressBlock+0x2f6f>
+    6c8d:	mov    %r14d,%ecx
+    6c90:	sub    %r8d,%ecx
+    6c93:	add    %r10d,%r8d
+    6c96:	sub    %r10d,%ecx
+    6c99:	mov    %r8d,0x284(%rbx)
+    6ca0:	shl    %cl,%r11d
+    6ca3:	movzwl 0x26(%r12,%rdi,1),%ecx
+    6ca9:	or     %r11d,%eax
+    6cac:	cmp    $0x7,%r8d
+    6cb0:	mov    %eax,0x280(%rbx)
+    6cb6:	mov    (%rsi,%rcx,4),%r11d
+    6cba:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6cc0:	jle    6d03 <BZ2_compressBlock+0x3023>
+    6cc2:	mov    0x74(%rbx),%ecx
+    6cc5:	mov    0x50(%rbx),%r8
+    6cc9:	shr    $0x18,%eax
+    6ccc:	movslq %ecx,%rcx
+    6ccf:	mov    %al,(%r8,%rcx,1)
+    6cd3:	mov    0x74(%rbx),%eax
+    6cd6:	mov    0x284(%rbx),%r8d
+    6cdd:	lea    0x1(%rax),%ecx
+    6ce0:	mov    0x280(%rbx),%eax
+    6ce6:	sub    $0x8,%r8d
+    6cea:	mov    %ecx,0x74(%rbx)
+    6ced:	mov    %r8d,0x284(%rbx)
+    6cf4:	shl    $0x8,%eax
+    6cf7:	cmp    $0x7,%r8d
+    6cfb:	mov    %eax,0x280(%rbx)
+    6d01:	jg     6cc5 <BZ2_compressBlock+0x2fe5>
+    6d03:	mov    %r14d,%ecx
+    6d06:	sub    %r8d,%ecx
+    6d09:	add    %r10d,%r8d
+    6d0c:	sub    %r10d,%ecx
+    6d0f:	mov    %r8d,0x284(%rbx)
+    6d16:	shl    %cl,%r11d
+    6d19:	movzwl 0x28(%r12,%rdi,1),%ecx
+    6d1f:	or     %r11d,%eax
+    6d22:	cmp    $0x7,%r8d
+    6d26:	mov    %eax,0x280(%rbx)
+    6d2c:	mov    (%rsi,%rcx,4),%r11d
+    6d30:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6d36:	jle    6d79 <BZ2_compressBlock+0x3099>
+    6d38:	mov    0x74(%rbx),%ecx
+    6d3b:	mov    0x50(%rbx),%r8
+    6d3f:	shr    $0x18,%eax
+    6d42:	movslq %ecx,%rcx
+    6d45:	mov    %al,(%r8,%rcx,1)
+    6d49:	mov    0x74(%rbx),%eax
+    6d4c:	mov    0x284(%rbx),%r8d
+    6d53:	lea    0x1(%rax),%ecx
+    6d56:	mov    0x280(%rbx),%eax
+    6d5c:	sub    $0x8,%r8d
+    6d60:	mov    %ecx,0x74(%rbx)
+    6d63:	mov    %r8d,0x284(%rbx)
+    6d6a:	shl    $0x8,%eax
+    6d6d:	cmp    $0x7,%r8d
+    6d71:	mov    %eax,0x280(%rbx)
+    6d77:	jg     6d3b <BZ2_compressBlock+0x305b>
+    6d79:	mov    %r14d,%ecx
+    6d7c:	sub    %r8d,%ecx
+    6d7f:	add    %r10d,%r8d
+    6d82:	sub    %r10d,%ecx
+    6d85:	mov    %r8d,0x284(%rbx)
+    6d8c:	shl    %cl,%r11d
+    6d8f:	movzwl 0x2a(%r12,%rdi,1),%ecx
+    6d95:	or     %r11d,%eax
+    6d98:	cmp    $0x7,%r8d
+    6d9c:	mov    %eax,0x280(%rbx)
+    6da2:	mov    (%rsi,%rcx,4),%r11d
+    6da6:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6dac:	jle    6def <BZ2_compressBlock+0x310f>
+    6dae:	mov    0x74(%rbx),%ecx
+    6db1:	mov    0x50(%rbx),%r8
+    6db5:	shr    $0x18,%eax
+    6db8:	movslq %ecx,%rcx
+    6dbb:	mov    %al,(%r8,%rcx,1)
+    6dbf:	mov    0x74(%rbx),%eax
+    6dc2:	mov    0x284(%rbx),%r8d
+    6dc9:	lea    0x1(%rax),%ecx
+    6dcc:	mov    0x280(%rbx),%eax
+    6dd2:	sub    $0x8,%r8d
+    6dd6:	mov    %ecx,0x74(%rbx)
+    6dd9:	mov    %r8d,0x284(%rbx)
+    6de0:	shl    $0x8,%eax
+    6de3:	cmp    $0x7,%r8d
+    6de7:	mov    %eax,0x280(%rbx)
+    6ded:	jg     6db1 <BZ2_compressBlock+0x30d1>
+    6def:	mov    %r14d,%ecx
+    6df2:	sub    %r8d,%ecx
+    6df5:	add    %r10d,%r8d
+    6df8:	sub    %r10d,%ecx
+    6dfb:	mov    %r8d,0x284(%rbx)
+    6e02:	shl    %cl,%r11d
+    6e05:	movzwl 0x2c(%r12,%rdi,1),%ecx
+    6e0b:	or     %r11d,%eax
+    6e0e:	cmp    $0x7,%r8d
+    6e12:	mov    %eax,0x280(%rbx)
+    6e18:	mov    (%rsi,%rcx,4),%r11d
+    6e1c:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6e22:	jle    6e65 <BZ2_compressBlock+0x3185>
+    6e24:	mov    0x74(%rbx),%ecx
+    6e27:	mov    0x50(%rbx),%r8
+    6e2b:	shr    $0x18,%eax
+    6e2e:	movslq %ecx,%rcx
+    6e31:	mov    %al,(%r8,%rcx,1)
+    6e35:	mov    0x74(%rbx),%eax
+    6e38:	mov    0x284(%rbx),%r8d
+    6e3f:	lea    0x1(%rax),%ecx
+    6e42:	mov    0x280(%rbx),%eax
+    6e48:	sub    $0x8,%r8d
+    6e4c:	mov    %ecx,0x74(%rbx)
+    6e4f:	mov    %r8d,0x284(%rbx)
+    6e56:	shl    $0x8,%eax
+    6e59:	cmp    $0x7,%r8d
+    6e5d:	mov    %eax,0x280(%rbx)
+    6e63:	jg     6e27 <BZ2_compressBlock+0x3147>
+    6e65:	mov    %r14d,%ecx
+    6e68:	sub    %r8d,%ecx
+    6e6b:	add    %r10d,%r8d
+    6e6e:	sub    %r10d,%ecx
+    6e71:	mov    %r8d,0x284(%rbx)
+    6e78:	shl    %cl,%r11d
+    6e7b:	movzwl 0x2e(%r12,%rdi,1),%ecx
+    6e81:	or     %r11d,%eax
+    6e84:	cmp    $0x7,%r8d
+    6e88:	mov    %eax,0x280(%rbx)
+    6e8e:	mov    (%rsi,%rcx,4),%r11d
+    6e92:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6e98:	jle    6edb <BZ2_compressBlock+0x31fb>
+    6e9a:	mov    0x74(%rbx),%ecx
+    6e9d:	mov    0x50(%rbx),%r8
+    6ea1:	shr    $0x18,%eax
+    6ea4:	movslq %ecx,%rcx
+    6ea7:	mov    %al,(%r8,%rcx,1)
+    6eab:	mov    0x74(%rbx),%eax
+    6eae:	mov    0x284(%rbx),%r8d
+    6eb5:	lea    0x1(%rax),%ecx
+    6eb8:	mov    0x280(%rbx),%eax
+    6ebe:	sub    $0x8,%r8d
+    6ec2:	mov    %ecx,0x74(%rbx)
+    6ec5:	mov    %r8d,0x284(%rbx)
+    6ecc:	shl    $0x8,%eax
+    6ecf:	cmp    $0x7,%r8d
+    6ed3:	mov    %eax,0x280(%rbx)
+    6ed9:	jg     6e9d <BZ2_compressBlock+0x31bd>
+    6edb:	mov    %r14d,%ecx
+    6ede:	sub    %r8d,%ecx
+    6ee1:	add    %r10d,%r8d
+    6ee4:	sub    %r10d,%ecx
+    6ee7:	mov    %r8d,0x284(%rbx)
+    6eee:	shl    %cl,%r11d
+    6ef1:	movzwl 0x30(%r12,%rdi,1),%ecx
+    6ef7:	or     %r11d,%eax
+    6efa:	cmp    $0x7,%r8d
+    6efe:	mov    %eax,0x280(%rbx)
+    6f04:	mov    (%rsi,%rcx,4),%r11d
+    6f08:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6f0e:	jle    6f51 <BZ2_compressBlock+0x3271>
+    6f10:	mov    0x74(%rbx),%ecx
+    6f13:	mov    0x50(%rbx),%r8
+    6f17:	shr    $0x18,%eax
+    6f1a:	movslq %ecx,%rcx
+    6f1d:	mov    %al,(%r8,%rcx,1)
+    6f21:	mov    0x74(%rbx),%eax
+    6f24:	mov    0x284(%rbx),%r8d
+    6f2b:	lea    0x1(%rax),%ecx
+    6f2e:	mov    0x280(%rbx),%eax
+    6f34:	sub    $0x8,%r8d
+    6f38:	mov    %ecx,0x74(%rbx)
+    6f3b:	mov    %r8d,0x284(%rbx)
+    6f42:	shl    $0x8,%eax
+    6f45:	cmp    $0x7,%r8d
+    6f49:	mov    %eax,0x280(%rbx)
+    6f4f:	jg     6f13 <BZ2_compressBlock+0x3233>
+    6f51:	mov    %r14d,%ecx
+    6f54:	sub    %r8d,%ecx
+    6f57:	add    %r10d,%r8d
+    6f5a:	sub    %r10d,%ecx
+    6f5d:	mov    %r8d,0x284(%rbx)
+    6f64:	shl    %cl,%r11d
+    6f67:	movzwl 0x32(%r12,%rdi,1),%ecx
+    6f6d:	or     %r11d,%eax
+    6f70:	cmp    $0x7,%r8d
+    6f74:	mov    %eax,0x280(%rbx)
+    6f7a:	mov    (%rsi,%rcx,4),%r11d
+    6f7e:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6f84:	jle    6fc7 <BZ2_compressBlock+0x32e7>
+    6f86:	mov    0x74(%rbx),%ecx
+    6f89:	mov    0x50(%rbx),%r8
+    6f8d:	shr    $0x18,%eax
+    6f90:	movslq %ecx,%rcx
+    6f93:	mov    %al,(%r8,%rcx,1)
+    6f97:	mov    0x74(%rbx),%eax
+    6f9a:	mov    0x284(%rbx),%r8d
+    6fa1:	lea    0x1(%rax),%ecx
+    6fa4:	mov    0x280(%rbx),%eax
+    6faa:	sub    $0x8,%r8d
+    6fae:	mov    %ecx,0x74(%rbx)
+    6fb1:	mov    %r8d,0x284(%rbx)
+    6fb8:	shl    $0x8,%eax
+    6fbb:	cmp    $0x7,%r8d
+    6fbf:	mov    %eax,0x280(%rbx)
+    6fc5:	jg     6f89 <BZ2_compressBlock+0x32a9>
+    6fc7:	mov    %r14d,%ecx
+    6fca:	sub    %r8d,%ecx
+    6fcd:	add    %r10d,%r8d
+    6fd0:	sub    %r10d,%ecx
+    6fd3:	mov    %r8d,0x284(%rbx)
+    6fda:	shl    %cl,%r11d
+    6fdd:	movzwl 0x34(%r12,%rdi,1),%ecx
+    6fe3:	or     %r11d,%eax
+    6fe6:	cmp    $0x7,%r8d
+    6fea:	mov    %eax,0x280(%rbx)
+    6ff0:	mov    (%rsi,%rcx,4),%r11d
+    6ff4:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    6ffa:	jle    703d <BZ2_compressBlock+0x335d>
+    6ffc:	mov    0x74(%rbx),%ecx
+    6fff:	mov    0x50(%rbx),%r8
+    7003:	shr    $0x18,%eax
+    7006:	movslq %ecx,%rcx
+    7009:	mov    %al,(%r8,%rcx,1)
+    700d:	mov    0x74(%rbx),%eax
+    7010:	mov    0x284(%rbx),%r8d
+    7017:	lea    0x1(%rax),%ecx
+    701a:	mov    0x280(%rbx),%eax
+    7020:	sub    $0x8,%r8d
+    7024:	mov    %ecx,0x74(%rbx)
+    7027:	mov    %r8d,0x284(%rbx)
+    702e:	shl    $0x8,%eax
+    7031:	cmp    $0x7,%r8d
+    7035:	mov    %eax,0x280(%rbx)
+    703b:	jg     6fff <BZ2_compressBlock+0x331f>
+    703d:	mov    %r14d,%ecx
+    7040:	sub    %r8d,%ecx
+    7043:	add    %r10d,%r8d
+    7046:	sub    %r10d,%ecx
+    7049:	mov    %r8d,0x284(%rbx)
+    7050:	shl    %cl,%r11d
+    7053:	movzwl 0x36(%r12,%rdi,1),%ecx
+    7059:	or     %r11d,%eax
+    705c:	cmp    $0x7,%r8d
+    7060:	mov    %eax,0x280(%rbx)
+    7066:	mov    (%rsi,%rcx,4),%r11d
+    706a:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7070:	jle    70b3 <BZ2_compressBlock+0x33d3>
+    7072:	mov    0x74(%rbx),%ecx
+    7075:	mov    0x50(%rbx),%r8
+    7079:	shr    $0x18,%eax
+    707c:	movslq %ecx,%rcx
+    707f:	mov    %al,(%r8,%rcx,1)
+    7083:	mov    0x74(%rbx),%eax
+    7086:	mov    0x284(%rbx),%r8d
+    708d:	lea    0x1(%rax),%ecx
+    7090:	mov    0x280(%rbx),%eax
+    7096:	sub    $0x8,%r8d
+    709a:	mov    %ecx,0x74(%rbx)
+    709d:	mov    %r8d,0x284(%rbx)
+    70a4:	shl    $0x8,%eax
+    70a7:	cmp    $0x7,%r8d
+    70ab:	mov    %eax,0x280(%rbx)
+    70b1:	jg     7075 <BZ2_compressBlock+0x3395>
+    70b3:	mov    %r14d,%ecx
+    70b6:	sub    %r8d,%ecx
+    70b9:	add    %r10d,%r8d
+    70bc:	sub    %r10d,%ecx
+    70bf:	mov    %r8d,0x284(%rbx)
+    70c6:	shl    %cl,%r11d
+    70c9:	movzwl 0x38(%r12,%rdi,1),%ecx
+    70cf:	or     %r11d,%eax
+    70d2:	cmp    $0x7,%r8d
+    70d6:	mov    %eax,0x280(%rbx)
+    70dc:	mov    (%rsi,%rcx,4),%r11d
+    70e0:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    70e6:	jle    7129 <BZ2_compressBlock+0x3449>
+    70e8:	mov    0x74(%rbx),%ecx
+    70eb:	mov    0x50(%rbx),%r8
+    70ef:	shr    $0x18,%eax
+    70f2:	movslq %ecx,%rcx
+    70f5:	mov    %al,(%r8,%rcx,1)
+    70f9:	mov    0x74(%rbx),%eax
+    70fc:	mov    0x284(%rbx),%r8d
+    7103:	lea    0x1(%rax),%ecx
+    7106:	mov    0x280(%rbx),%eax
+    710c:	sub    $0x8,%r8d
+    7110:	mov    %ecx,0x74(%rbx)
+    7113:	mov    %r8d,0x284(%rbx)
+    711a:	shl    $0x8,%eax
+    711d:	cmp    $0x7,%r8d
+    7121:	mov    %eax,0x280(%rbx)
+    7127:	jg     70eb <BZ2_compressBlock+0x340b>
+    7129:	mov    %r14d,%ecx
+    712c:	sub    %r8d,%ecx
+    712f:	add    %r10d,%r8d
+    7132:	sub    %r10d,%ecx
+    7135:	mov    %r8d,0x284(%rbx)
+    713c:	shl    %cl,%r11d
+    713f:	movzwl 0x3a(%r12,%rdi,1),%ecx
+    7145:	or     %r11d,%eax
+    7148:	cmp    $0x7,%r8d
+    714c:	mov    %eax,0x280(%rbx)
+    7152:	mov    (%rsi,%rcx,4),%r11d
+    7156:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    715c:	jle    719f <BZ2_compressBlock+0x34bf>
+    715e:	mov    0x74(%rbx),%ecx
+    7161:	mov    0x50(%rbx),%r8
+    7165:	shr    $0x18,%eax
+    7168:	movslq %ecx,%rcx
+    716b:	mov    %al,(%r8,%rcx,1)
+    716f:	mov    0x74(%rbx),%eax
+    7172:	mov    0x284(%rbx),%r8d
+    7179:	lea    0x1(%rax),%ecx
+    717c:	mov    0x280(%rbx),%eax
+    7182:	sub    $0x8,%r8d
+    7186:	mov    %ecx,0x74(%rbx)
+    7189:	mov    %r8d,0x284(%rbx)
+    7190:	shl    $0x8,%eax
+    7193:	cmp    $0x7,%r8d
+    7197:	mov    %eax,0x280(%rbx)
+    719d:	jg     7161 <BZ2_compressBlock+0x3481>
+    719f:	mov    %r14d,%ecx
+    71a2:	sub    %r8d,%ecx
+    71a5:	add    %r10d,%r8d
+    71a8:	sub    %r10d,%ecx
+    71ab:	mov    %r8d,0x284(%rbx)
+    71b2:	shl    %cl,%r11d
+    71b5:	movzwl 0x3c(%r12,%rdi,1),%ecx
+    71bb:	or     %r11d,%eax
+    71be:	cmp    $0x7,%r8d
+    71c2:	mov    %eax,0x280(%rbx)
+    71c8:	mov    (%rsi,%rcx,4),%r11d
+    71cc:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    71d2:	jle    7215 <BZ2_compressBlock+0x3535>
+    71d4:	mov    0x74(%rbx),%ecx
+    71d7:	mov    0x50(%rbx),%r8
+    71db:	shr    $0x18,%eax
+    71de:	movslq %ecx,%rcx
+    71e1:	mov    %al,(%r8,%rcx,1)
+    71e5:	mov    0x74(%rbx),%eax
+    71e8:	mov    0x284(%rbx),%r8d
+    71ef:	lea    0x1(%rax),%ecx
+    71f2:	mov    0x280(%rbx),%eax
+    71f8:	sub    $0x8,%r8d
+    71fc:	mov    %ecx,0x74(%rbx)
+    71ff:	mov    %r8d,0x284(%rbx)
+    7206:	shl    $0x8,%eax
+    7209:	cmp    $0x7,%r8d
+    720d:	mov    %eax,0x280(%rbx)
+    7213:	jg     71d7 <BZ2_compressBlock+0x34f7>
+    7215:	mov    %r14d,%ecx
+    7218:	sub    %r8d,%ecx
+    721b:	add    %r10d,%r8d
+    721e:	sub    %r10d,%ecx
+    7221:	mov    %r8d,0x284(%rbx)
+    7228:	shl    %cl,%r11d
+    722b:	movzwl 0x3e(%r12,%rdi,1),%ecx
+    7231:	or     %r11d,%eax
+    7234:	cmp    $0x7,%r8d
+    7238:	mov    %eax,0x280(%rbx)
+    723e:	mov    (%rsi,%rcx,4),%r11d
+    7242:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7248:	jle    728b <BZ2_compressBlock+0x35ab>
+    724a:	mov    0x74(%rbx),%ecx
+    724d:	mov    0x50(%rbx),%r8
+    7251:	shr    $0x18,%eax
+    7254:	movslq %ecx,%rcx
+    7257:	mov    %al,(%r8,%rcx,1)
+    725b:	mov    0x74(%rbx),%eax
+    725e:	mov    0x284(%rbx),%r8d
+    7265:	lea    0x1(%rax),%ecx
+    7268:	mov    0x280(%rbx),%eax
+    726e:	sub    $0x8,%r8d
+    7272:	mov    %ecx,0x74(%rbx)
+    7275:	mov    %r8d,0x284(%rbx)
+    727c:	shl    $0x8,%eax
+    727f:	cmp    $0x7,%r8d
+    7283:	mov    %eax,0x280(%rbx)
+    7289:	jg     724d <BZ2_compressBlock+0x356d>
+    728b:	mov    %r14d,%ecx
+    728e:	sub    %r8d,%ecx
+    7291:	add    %r10d,%r8d
+    7294:	sub    %r10d,%ecx
+    7297:	mov    %r8d,0x284(%rbx)
+    729e:	shl    %cl,%r11d
+    72a1:	movzwl 0x40(%r12,%rdi,1),%ecx
+    72a7:	or     %r11d,%eax
+    72aa:	cmp    $0x7,%r8d
+    72ae:	mov    %eax,0x280(%rbx)
+    72b4:	mov    (%rsi,%rcx,4),%r11d
+    72b8:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    72be:	jle    7301 <BZ2_compressBlock+0x3621>
+    72c0:	mov    0x74(%rbx),%ecx
+    72c3:	mov    0x50(%rbx),%r8
+    72c7:	shr    $0x18,%eax
+    72ca:	movslq %ecx,%rcx
+    72cd:	mov    %al,(%r8,%rcx,1)
+    72d1:	mov    0x74(%rbx),%eax
+    72d4:	mov    0x284(%rbx),%r8d
+    72db:	lea    0x1(%rax),%ecx
+    72de:	mov    0x280(%rbx),%eax
+    72e4:	sub    $0x8,%r8d
+    72e8:	mov    %ecx,0x74(%rbx)
+    72eb:	mov    %r8d,0x284(%rbx)
+    72f2:	shl    $0x8,%eax
+    72f5:	cmp    $0x7,%r8d
+    72f9:	mov    %eax,0x280(%rbx)
+    72ff:	jg     72c3 <BZ2_compressBlock+0x35e3>
+    7301:	mov    %r14d,%ecx
+    7304:	sub    %r8d,%ecx
+    7307:	add    %r10d,%r8d
+    730a:	sub    %r10d,%ecx
+    730d:	mov    %r8d,0x284(%rbx)
+    7314:	shl    %cl,%r11d
+    7317:	movzwl 0x42(%r12,%rdi,1),%ecx
+    731d:	or     %r11d,%eax
+    7320:	cmp    $0x7,%r8d
+    7324:	mov    %eax,0x280(%rbx)
+    732a:	mov    (%rsi,%rcx,4),%r11d
+    732e:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7334:	jle    7377 <BZ2_compressBlock+0x3697>
+    7336:	mov    0x74(%rbx),%ecx
+    7339:	mov    0x50(%rbx),%r8
+    733d:	shr    $0x18,%eax
+    7340:	movslq %ecx,%rcx
+    7343:	mov    %al,(%r8,%rcx,1)
+    7347:	mov    0x74(%rbx),%eax
+    734a:	mov    0x284(%rbx),%r8d
+    7351:	lea    0x1(%rax),%ecx
+    7354:	mov    0x280(%rbx),%eax
+    735a:	sub    $0x8,%r8d
+    735e:	mov    %ecx,0x74(%rbx)
+    7361:	mov    %r8d,0x284(%rbx)
+    7368:	shl    $0x8,%eax
+    736b:	cmp    $0x7,%r8d
+    736f:	mov    %eax,0x280(%rbx)
+    7375:	jg     7339 <BZ2_compressBlock+0x3659>
+    7377:	mov    %r14d,%ecx
+    737a:	sub    %r8d,%ecx
+    737d:	add    %r10d,%r8d
+    7380:	sub    %r10d,%ecx
+    7383:	mov    %r8d,0x284(%rbx)
+    738a:	shl    %cl,%r11d
+    738d:	movzwl 0x44(%r12,%rdi,1),%ecx
+    7393:	or     %r11d,%eax
+    7396:	cmp    $0x7,%r8d
+    739a:	mov    %eax,0x280(%rbx)
+    73a0:	mov    (%rsi,%rcx,4),%r11d
+    73a4:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    73aa:	jle    73ed <BZ2_compressBlock+0x370d>
+    73ac:	mov    0x74(%rbx),%ecx
+    73af:	mov    0x50(%rbx),%r8
+    73b3:	shr    $0x18,%eax
+    73b6:	movslq %ecx,%rcx
+    73b9:	mov    %al,(%r8,%rcx,1)
+    73bd:	mov    0x74(%rbx),%eax
+    73c0:	mov    0x284(%rbx),%r8d
+    73c7:	lea    0x1(%rax),%ecx
+    73ca:	mov    0x280(%rbx),%eax
+    73d0:	sub    $0x8,%r8d
+    73d4:	mov    %ecx,0x74(%rbx)
+    73d7:	mov    %r8d,0x284(%rbx)
+    73de:	shl    $0x8,%eax
+    73e1:	cmp    $0x7,%r8d
+    73e5:	mov    %eax,0x280(%rbx)
+    73eb:	jg     73af <BZ2_compressBlock+0x36cf>
+    73ed:	mov    %r14d,%ecx
+    73f0:	sub    %r8d,%ecx
+    73f3:	add    %r10d,%r8d
+    73f6:	sub    %r10d,%ecx
+    73f9:	mov    %r8d,0x284(%rbx)
+    7400:	shl    %cl,%r11d
+    7403:	movzwl 0x46(%r12,%rdi,1),%ecx
+    7409:	or     %r11d,%eax
+    740c:	cmp    $0x7,%r8d
+    7410:	mov    %eax,0x280(%rbx)
+    7416:	mov    (%rsi,%rcx,4),%r11d
+    741a:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7420:	jle    7463 <BZ2_compressBlock+0x3783>
+    7422:	mov    0x74(%rbx),%ecx
+    7425:	mov    0x50(%rbx),%r8
+    7429:	shr    $0x18,%eax
+    742c:	movslq %ecx,%rcx
+    742f:	mov    %al,(%r8,%rcx,1)
+    7433:	mov    0x74(%rbx),%eax
+    7436:	mov    0x284(%rbx),%r8d
+    743d:	lea    0x1(%rax),%ecx
+    7440:	mov    0x280(%rbx),%eax
+    7446:	sub    $0x8,%r8d
+    744a:	mov    %ecx,0x74(%rbx)
+    744d:	mov    %r8d,0x284(%rbx)
+    7454:	shl    $0x8,%eax
+    7457:	cmp    $0x7,%r8d
+    745b:	mov    %eax,0x280(%rbx)
+    7461:	jg     7425 <BZ2_compressBlock+0x3745>
+    7463:	mov    %r14d,%ecx
+    7466:	sub    %r8d,%ecx
+    7469:	add    %r10d,%r8d
+    746c:	sub    %r10d,%ecx
+    746f:	mov    %r8d,0x284(%rbx)
+    7476:	shl    %cl,%r11d
+    7479:	movzwl 0x48(%r12,%rdi,1),%ecx
+    747f:	or     %r11d,%eax
+    7482:	cmp    $0x7,%r8d
+    7486:	mov    %eax,0x280(%rbx)
+    748c:	mov    (%rsi,%rcx,4),%r11d
+    7490:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7496:	jle    74d9 <BZ2_compressBlock+0x37f9>
+    7498:	mov    0x74(%rbx),%ecx
+    749b:	mov    0x50(%rbx),%r8
+    749f:	shr    $0x18,%eax
+    74a2:	movslq %ecx,%rcx
+    74a5:	mov    %al,(%r8,%rcx,1)
+    74a9:	mov    0x74(%rbx),%eax
+    74ac:	mov    0x284(%rbx),%r8d
+    74b3:	lea    0x1(%rax),%ecx
+    74b6:	mov    0x280(%rbx),%eax
+    74bc:	sub    $0x8,%r8d
+    74c0:	mov    %ecx,0x74(%rbx)
+    74c3:	mov    %r8d,0x284(%rbx)
+    74ca:	shl    $0x8,%eax
+    74cd:	cmp    $0x7,%r8d
+    74d1:	mov    %eax,0x280(%rbx)
+    74d7:	jg     749b <BZ2_compressBlock+0x37bb>
+    74d9:	mov    %r14d,%ecx
+    74dc:	sub    %r8d,%ecx
+    74df:	add    %r10d,%r8d
+    74e2:	sub    %r10d,%ecx
+    74e5:	mov    %r8d,0x284(%rbx)
+    74ec:	shl    %cl,%r11d
+    74ef:	movzwl 0x4a(%r12,%rdi,1),%ecx
+    74f5:	or     %r11d,%eax
+    74f8:	cmp    $0x7,%r8d
+    74fc:	mov    %eax,0x280(%rbx)
+    7502:	mov    (%rsi,%rcx,4),%r11d
+    7506:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    750c:	jle    754f <BZ2_compressBlock+0x386f>
+    750e:	mov    0x74(%rbx),%ecx
+    7511:	mov    0x50(%rbx),%r8
+    7515:	shr    $0x18,%eax
+    7518:	movslq %ecx,%rcx
+    751b:	mov    %al,(%r8,%rcx,1)
+    751f:	mov    0x74(%rbx),%eax
+    7522:	mov    0x284(%rbx),%r8d
+    7529:	lea    0x1(%rax),%ecx
+    752c:	mov    0x280(%rbx),%eax
+    7532:	sub    $0x8,%r8d
+    7536:	mov    %ecx,0x74(%rbx)
+    7539:	mov    %r8d,0x284(%rbx)
+    7540:	shl    $0x8,%eax
+    7543:	cmp    $0x7,%r8d
+    7547:	mov    %eax,0x280(%rbx)
+    754d:	jg     7511 <BZ2_compressBlock+0x3831>
+    754f:	mov    %r14d,%ecx
+    7552:	sub    %r8d,%ecx
+    7555:	add    %r10d,%r8d
+    7558:	sub    %r10d,%ecx
+    755b:	mov    %r8d,0x284(%rbx)
+    7562:	shl    %cl,%r11d
+    7565:	movzwl 0x4c(%r12,%rdi,1),%ecx
+    756b:	or     %r11d,%eax
+    756e:	cmp    $0x7,%r8d
+    7572:	mov    %eax,0x280(%rbx)
+    7578:	mov    (%rsi,%rcx,4),%r11d
+    757c:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7582:	jle    75c5 <BZ2_compressBlock+0x38e5>
+    7584:	mov    0x74(%rbx),%ecx
+    7587:	mov    0x50(%rbx),%r8
+    758b:	shr    $0x18,%eax
+    758e:	movslq %ecx,%rcx
+    7591:	mov    %al,(%r8,%rcx,1)
+    7595:	mov    0x74(%rbx),%eax
+    7598:	mov    0x284(%rbx),%r8d
+    759f:	lea    0x1(%rax),%ecx
+    75a2:	mov    0x280(%rbx),%eax
+    75a8:	sub    $0x8,%r8d
+    75ac:	mov    %ecx,0x74(%rbx)
+    75af:	mov    %r8d,0x284(%rbx)
+    75b6:	shl    $0x8,%eax
+    75b9:	cmp    $0x7,%r8d
+    75bd:	mov    %eax,0x280(%rbx)
+    75c3:	jg     7587 <BZ2_compressBlock+0x38a7>
+    75c5:	mov    %r14d,%ecx
+    75c8:	sub    %r8d,%ecx
+    75cb:	add    %r10d,%r8d
+    75ce:	sub    %r10d,%ecx
+    75d1:	mov    %r8d,0x284(%rbx)
+    75d8:	shl    %cl,%r11d
+    75db:	movzwl 0x4e(%r12,%rdi,1),%ecx
+    75e1:	or     %r11d,%eax
+    75e4:	cmp    $0x7,%r8d
+    75e8:	mov    %eax,0x280(%rbx)
+    75ee:	mov    (%rsi,%rcx,4),%r11d
+    75f2:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    75f8:	jle    763b <BZ2_compressBlock+0x395b>
+    75fa:	mov    0x74(%rbx),%ecx
+    75fd:	mov    0x50(%rbx),%r8
+    7601:	shr    $0x18,%eax
+    7604:	movslq %ecx,%rcx
+    7607:	mov    %al,(%r8,%rcx,1)
+    760b:	mov    0x74(%rbx),%eax
+    760e:	mov    0x284(%rbx),%r8d
+    7615:	lea    0x1(%rax),%ecx
+    7618:	mov    0x280(%rbx),%eax
+    761e:	sub    $0x8,%r8d
+    7622:	mov    %ecx,0x74(%rbx)
+    7625:	mov    %r8d,0x284(%rbx)
+    762c:	shl    $0x8,%eax
+    762f:	cmp    $0x7,%r8d
+    7633:	mov    %eax,0x280(%rbx)
+    7639:	jg     75fd <BZ2_compressBlock+0x391d>
+    763b:	mov    %r14d,%ecx
+    763e:	sub    %r8d,%ecx
+    7641:	add    %r10d,%r8d
+    7644:	sub    %r10d,%ecx
+    7647:	mov    %r8d,0x284(%rbx)
+    764e:	shl    %cl,%r11d
+    7651:	movzwl 0x50(%r12,%rdi,1),%ecx
+    7657:	or     %r11d,%eax
+    765a:	cmp    $0x7,%r8d
+    765e:	mov    %eax,0x280(%rbx)
+    7664:	mov    (%rsi,%rcx,4),%r11d
+    7668:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    766e:	jle    76b1 <BZ2_compressBlock+0x39d1>
+    7670:	mov    0x74(%rbx),%ecx
+    7673:	mov    0x50(%rbx),%r8
+    7677:	shr    $0x18,%eax
+    767a:	movslq %ecx,%rcx
+    767d:	mov    %al,(%r8,%rcx,1)
+    7681:	mov    0x74(%rbx),%eax
+    7684:	mov    0x284(%rbx),%r8d
+    768b:	lea    0x1(%rax),%ecx
+    768e:	mov    0x280(%rbx),%eax
+    7694:	sub    $0x8,%r8d
+    7698:	mov    %ecx,0x74(%rbx)
+    769b:	mov    %r8d,0x284(%rbx)
+    76a2:	shl    $0x8,%eax
+    76a5:	cmp    $0x7,%r8d
+    76a9:	mov    %eax,0x280(%rbx)
+    76af:	jg     7673 <BZ2_compressBlock+0x3993>
+    76b1:	mov    %r14d,%ecx
+    76b4:	sub    %r8d,%ecx
+    76b7:	add    %r10d,%r8d
+    76ba:	sub    %r10d,%ecx
+    76bd:	mov    %r8d,0x284(%rbx)
+    76c4:	shl    %cl,%r11d
+    76c7:	movzwl 0x52(%r12,%rdi,1),%ecx
+    76cd:	or     %r11d,%eax
+    76d0:	cmp    $0x7,%r8d
+    76d4:	mov    %eax,0x280(%rbx)
+    76da:	mov    (%rsi,%rcx,4),%r11d
+    76de:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    76e4:	jle    7727 <BZ2_compressBlock+0x3a47>
+    76e6:	mov    0x74(%rbx),%ecx
+    76e9:	mov    0x50(%rbx),%r8
+    76ed:	shr    $0x18,%eax
+    76f0:	movslq %ecx,%rcx
+    76f3:	mov    %al,(%r8,%rcx,1)
+    76f7:	mov    0x74(%rbx),%eax
+    76fa:	mov    0x284(%rbx),%r8d
+    7701:	lea    0x1(%rax),%ecx
+    7704:	mov    0x280(%rbx),%eax
+    770a:	sub    $0x8,%r8d
+    770e:	mov    %ecx,0x74(%rbx)
+    7711:	mov    %r8d,0x284(%rbx)
+    7718:	shl    $0x8,%eax
+    771b:	cmp    $0x7,%r8d
+    771f:	mov    %eax,0x280(%rbx)
+    7725:	jg     76e9 <BZ2_compressBlock+0x3a09>
+    7727:	mov    %r14d,%ecx
+    772a:	sub    %r8d,%ecx
+    772d:	add    %r10d,%r8d
+    7730:	sub    %r10d,%ecx
+    7733:	mov    %r8d,0x284(%rbx)
+    773a:	shl    %cl,%r11d
+    773d:	movzwl 0x54(%r12,%rdi,1),%ecx
+    7743:	or     %r11d,%eax
+    7746:	cmp    $0x7,%r8d
+    774a:	mov    %eax,0x280(%rbx)
+    7750:	mov    (%rsi,%rcx,4),%r11d
+    7754:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    775a:	jle    779d <BZ2_compressBlock+0x3abd>
+    775c:	mov    0x74(%rbx),%ecx
+    775f:	mov    0x50(%rbx),%r8
+    7763:	shr    $0x18,%eax
+    7766:	movslq %ecx,%rcx
+    7769:	mov    %al,(%r8,%rcx,1)
+    776d:	mov    0x74(%rbx),%eax
+    7770:	mov    0x284(%rbx),%r8d
+    7777:	lea    0x1(%rax),%ecx
+    777a:	mov    0x280(%rbx),%eax
+    7780:	sub    $0x8,%r8d
+    7784:	mov    %ecx,0x74(%rbx)
+    7787:	mov    %r8d,0x284(%rbx)
+    778e:	shl    $0x8,%eax
+    7791:	cmp    $0x7,%r8d
+    7795:	mov    %eax,0x280(%rbx)
+    779b:	jg     775f <BZ2_compressBlock+0x3a7f>
+    779d:	mov    %r14d,%ecx
+    77a0:	sub    %r8d,%ecx
+    77a3:	add    %r10d,%r8d
+    77a6:	sub    %r10d,%ecx
+    77a9:	mov    %r8d,0x284(%rbx)
+    77b0:	shl    %cl,%r11d
+    77b3:	movzwl 0x56(%r12,%rdi,1),%ecx
+    77b9:	or     %r11d,%eax
+    77bc:	cmp    $0x7,%r8d
+    77c0:	mov    %eax,0x280(%rbx)
+    77c6:	mov    (%rsi,%rcx,4),%r11d
+    77ca:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    77d0:	jle    7813 <BZ2_compressBlock+0x3b33>
+    77d2:	mov    0x74(%rbx),%ecx
+    77d5:	mov    0x50(%rbx),%r8
+    77d9:	shr    $0x18,%eax
+    77dc:	movslq %ecx,%rcx
+    77df:	mov    %al,(%r8,%rcx,1)
+    77e3:	mov    0x74(%rbx),%eax
+    77e6:	mov    0x284(%rbx),%r8d
+    77ed:	lea    0x1(%rax),%ecx
+    77f0:	mov    0x280(%rbx),%eax
+    77f6:	sub    $0x8,%r8d
+    77fa:	mov    %ecx,0x74(%rbx)
+    77fd:	mov    %r8d,0x284(%rbx)
+    7804:	shl    $0x8,%eax
+    7807:	cmp    $0x7,%r8d
+    780b:	mov    %eax,0x280(%rbx)
+    7811:	jg     77d5 <BZ2_compressBlock+0x3af5>
+    7813:	mov    %r14d,%ecx
+    7816:	sub    %r8d,%ecx
+    7819:	add    %r10d,%r8d
+    781c:	sub    %r10d,%ecx
+    781f:	mov    %r8d,0x284(%rbx)
+    7826:	shl    %cl,%r11d
+    7829:	movzwl 0x58(%r12,%rdi,1),%ecx
+    782f:	or     %r11d,%eax
+    7832:	cmp    $0x7,%r8d
+    7836:	mov    %eax,0x280(%rbx)
+    783c:	mov    (%rsi,%rcx,4),%r11d
+    7840:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7846:	jle    7889 <BZ2_compressBlock+0x3ba9>
+    7848:	mov    0x74(%rbx),%ecx
+    784b:	mov    0x50(%rbx),%r8
+    784f:	shr    $0x18,%eax
+    7852:	movslq %ecx,%rcx
+    7855:	mov    %al,(%r8,%rcx,1)
+    7859:	mov    0x74(%rbx),%eax
+    785c:	mov    0x284(%rbx),%r8d
+    7863:	lea    0x1(%rax),%ecx
+    7866:	mov    0x280(%rbx),%eax
+    786c:	sub    $0x8,%r8d
+    7870:	mov    %ecx,0x74(%rbx)
+    7873:	mov    %r8d,0x284(%rbx)
+    787a:	shl    $0x8,%eax
+    787d:	cmp    $0x7,%r8d
+    7881:	mov    %eax,0x280(%rbx)
+    7887:	jg     784b <BZ2_compressBlock+0x3b6b>
+    7889:	mov    %r14d,%ecx
+    788c:	sub    %r8d,%ecx
+    788f:	add    %r10d,%r8d
+    7892:	sub    %r10d,%ecx
+    7895:	mov    %r8d,0x284(%rbx)
+    789c:	shl    %cl,%r11d
+    789f:	movzwl 0x5a(%r12,%rdi,1),%ecx
+    78a5:	or     %r11d,%eax
+    78a8:	cmp    $0x7,%r8d
+    78ac:	mov    %eax,0x280(%rbx)
+    78b2:	mov    (%rsi,%rcx,4),%r11d
+    78b6:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    78bc:	jle    78ff <BZ2_compressBlock+0x3c1f>
+    78be:	mov    0x74(%rbx),%ecx
+    78c1:	mov    0x50(%rbx),%r8
+    78c5:	shr    $0x18,%eax
+    78c8:	movslq %ecx,%rcx
+    78cb:	mov    %al,(%r8,%rcx,1)
+    78cf:	mov    0x74(%rbx),%eax
+    78d2:	mov    0x284(%rbx),%r8d
+    78d9:	lea    0x1(%rax),%ecx
+    78dc:	mov    0x280(%rbx),%eax
+    78e2:	sub    $0x8,%r8d
+    78e6:	mov    %ecx,0x74(%rbx)
+    78e9:	mov    %r8d,0x284(%rbx)
+    78f0:	shl    $0x8,%eax
+    78f3:	cmp    $0x7,%r8d
+    78f7:	mov    %eax,0x280(%rbx)
+    78fd:	jg     78c1 <BZ2_compressBlock+0x3be1>
+    78ff:	mov    %r14d,%ecx
+    7902:	sub    %r8d,%ecx
+    7905:	add    %r10d,%r8d
+    7908:	sub    %r10d,%ecx
+    790b:	mov    %r8d,0x284(%rbx)
+    7912:	shl    %cl,%r11d
+    7915:	movzwl 0x5c(%r12,%rdi,1),%ecx
+    791b:	or     %r11d,%eax
+    791e:	cmp    $0x7,%r8d
+    7922:	mov    %eax,0x280(%rbx)
+    7928:	mov    (%rsi,%rcx,4),%r11d
+    792c:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7932:	jle    7975 <BZ2_compressBlock+0x3c95>
+    7934:	mov    0x74(%rbx),%ecx
+    7937:	mov    0x50(%rbx),%r8
+    793b:	shr    $0x18,%eax
+    793e:	movslq %ecx,%rcx
+    7941:	mov    %al,(%r8,%rcx,1)
+    7945:	mov    0x74(%rbx),%eax
+    7948:	mov    0x284(%rbx),%r8d
+    794f:	lea    0x1(%rax),%ecx
+    7952:	mov    0x280(%rbx),%eax
+    7958:	sub    $0x8,%r8d
+    795c:	mov    %ecx,0x74(%rbx)
+    795f:	mov    %r8d,0x284(%rbx)
+    7966:	shl    $0x8,%eax
+    7969:	cmp    $0x7,%r8d
+    796d:	mov    %eax,0x280(%rbx)
+    7973:	jg     7937 <BZ2_compressBlock+0x3c57>
+    7975:	mov    %r14d,%ecx
+    7978:	sub    %r8d,%ecx
+    797b:	add    %r10d,%r8d
+    797e:	sub    %r10d,%ecx
+    7981:	mov    %r8d,0x284(%rbx)
+    7988:	shl    %cl,%r11d
+    798b:	movzwl 0x5e(%r12,%rdi,1),%ecx
+    7991:	or     %r11d,%eax
+    7994:	cmp    $0x7,%r8d
+    7998:	mov    %eax,0x280(%rbx)
+    799e:	mov    (%rsi,%rcx,4),%r11d
+    79a2:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    79a8:	jle    79eb <BZ2_compressBlock+0x3d0b>
+    79aa:	mov    0x74(%rbx),%ecx
+    79ad:	mov    0x50(%rbx),%r8
+    79b1:	shr    $0x18,%eax
+    79b4:	movslq %ecx,%rcx
+    79b7:	mov    %al,(%r8,%rcx,1)
+    79bb:	mov    0x74(%rbx),%eax
+    79be:	mov    0x284(%rbx),%r8d
+    79c5:	lea    0x1(%rax),%ecx
+    79c8:	mov    0x280(%rbx),%eax
+    79ce:	sub    $0x8,%r8d
+    79d2:	mov    %ecx,0x74(%rbx)
+    79d5:	mov    %r8d,0x284(%rbx)
+    79dc:	shl    $0x8,%eax
+    79df:	cmp    $0x7,%r8d
+    79e3:	mov    %eax,0x280(%rbx)
+    79e9:	jg     79ad <BZ2_compressBlock+0x3ccd>
+    79eb:	mov    %r14d,%ecx
+    79ee:	sub    %r8d,%ecx
+    79f1:	add    %r10d,%r8d
+    79f4:	sub    %r10d,%ecx
+    79f7:	mov    %r8d,0x284(%rbx)
+    79fe:	shl    %cl,%r11d
+    7a01:	movzwl 0x60(%r12,%rdi,1),%ecx
+    7a07:	or     %r11d,%eax
+    7a0a:	cmp    $0x7,%r8d
+    7a0e:	mov    %eax,0x280(%rbx)
+    7a14:	mov    (%rsi,%rcx,4),%r11d
+    7a18:	movzbl 0xc(%rcx,%rdx,1),%r10d
+    7a1e:	jle    7a61 <BZ2_compressBlock+0x3d81>
+    7a20:	mov    0x74(%rbx),%ecx
+    7a23:	mov    0x50(%rbx),%r8
+    7a27:	shr    $0x18,%eax
+    7a2a:	movslq %ecx,%rcx
+    7a2d:	mov    %al,(%r8,%rcx,1)
+    7a31:	mov    0x74(%rbx),%eax
+    7a34:	mov    0x284(%rbx),%r8d
+    7a3b:	lea    0x1(%rax),%ecx
+    7a3e:	mov    0x280(%rbx),%eax
+    7a44:	sub    $0x8,%r8d
+    7a48:	mov    %ecx,0x74(%rbx)
+    7a4b:	mov    %r8d,0x284(%rbx)
+    7a52:	shl    $0x8,%eax
+    7a55:	cmp    $0x7,%r8d
+    7a59:	mov    %eax,0x280(%rbx)
+    7a5f:	jg     7a23 <BZ2_compressBlock+0x3d43>
+    7a61:	mov    %r14d,%ecx
+    7a64:	sub    %r8d,%ecx
+    7a67:	add    %r10d,%r8d
+    7a6a:	sub    %r10d,%ecx
+    7a6d:	mov    %r8d,0x284(%rbx)
+    7a74:	shl    %cl,%r11d
+    7a77:	movzwl 0x62(%r12,%rdi,1),%ecx
+    7a7d:	or     %r11d,%eax
+    7a80:	cmp    $0x7,%r8d
+    7a84:	mov    %eax,0x280(%rbx)
+    7a8a:	mov    (%rsi,%rcx,4),%esi
+    7a8d:	movzbl 0xc(%rcx,%rdx,1),%edi
+    7a92:	jle    7ad3 <BZ2_compressBlock+0x3df3>
+    7a94:	mov    0x74(%rbx),%edx
+    7a97:	mov    0x50(%rbx),%rcx
+    7a9b:	shr    $0x18,%eax
+    7a9e:	movslq %edx,%rdx
+    7aa1:	mov    %al,(%rcx,%rdx,1)
+    7aa4:	mov    0x74(%rbx),%eax
+    7aa7:	mov    0x284(%rbx),%ecx
+    7aad:	lea    0x1(%rax),%edx
+    7ab0:	mov    0x280(%rbx),%eax
+    7ab6:	lea    -0x8(%rcx),%r8d
+    7aba:	mov    %edx,0x74(%rbx)
+    7abd:	shl    $0x8,%eax
+    7ac0:	cmp    $0x7,%r8d
+    7ac4:	mov    %r8d,0x284(%rbx)
+    7acb:	mov    %eax,0x280(%rbx)
+    7ad1:	jg     7a97 <BZ2_compressBlock+0x3db7>
+    7ad3:	mov    %r14d,%ecx
+    7ad6:	sub    %r8d,%ecx
+    7ad9:	add    %edi,%r8d
+    7adc:	sub    %edi,%ecx
+    7ade:	mov    %r8d,0x284(%rbx)
+    7ae5:	shl    %cl,%esi
+    7ae7:	or     %esi,%eax
+    7ae9:	mov    %eax,0x280(%rbx)
+    7aef:	jmpq   61a6 <BZ2_compressBlock+0x24c6>
+    7af4:	mov    $0xbbe,%edi
+    7af9:	mov    %ecx,0x10(%rsp)
+    7afd:	mov    %r9d,0xc(%rsp)
+    7b02:	callq  ce50 <BZ2_bz__AssertH__fail>
+    7b07:	mov    0x10(%rsp),%ecx
+    7b0b:	mov    0xc(%rsp),%r9d
+    7b10:	jmpq   60ca <BZ2_compressBlock+0x23ea>
+    7b15:	xor    %edx,%edx
+    7b17:	cmp    %ebp,%edx
+    7b19:	je     7b25 <BZ2_compressBlock+0x3e45>
+    7b1b:	mov    $0xbbf,%edi
+    7b20:	callq  ce50 <BZ2_bz__AssertH__fail>
+    7b25:	cmpl   $0x2,0x290(%rbx)
+    7b2c:	jle    416b <BZ2_compressBlock+0x48b>
+    7b32:	mov    0x20749f(%rip),%rax        # 20efd8 <_fini+0x201f44>
+    7b39:	mov    0x74(%rbx),%ecx
+    7b3c:	lea    0x5848(%rip),%rdx        # d38b <_fini+0x2f7>
+    7b43:	sub    (%rsp),%ecx
+    7b46:	mov    $0x1,%esi
+    7b4b:	mov    (%rax),%rdi
+    7b4e:	xor    %eax,%eax
+    7b50:	callq  1390 <__fprintf_chk@plt>
+    7b55:	jmpq   416b <BZ2_compressBlock+0x48b>
+    7b5a:	mov    0x280(%rbx),%eax
+    7b60:	jmpq   6441 <BZ2_compressBlock+0x2761>
+    7b65:	nopw   %cs:0x0(%rax,%rax,1)
+    7b6f:	nop

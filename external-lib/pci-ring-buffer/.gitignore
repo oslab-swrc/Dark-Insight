@@ -1,0 +1,10 @@
+*~
+*#
+*.o
+*.o.cmd
+*.mod.c
+*.ko
+*.ko.cmd
+build_kernel/.tmp_versions/
+build_kernel/Module.symvers
+build_kernel/modules.order

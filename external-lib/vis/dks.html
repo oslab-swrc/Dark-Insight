@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<link href="dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+#dks_canvas {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+</style>
+<div id="dks_canvas"></div>
+<script src="dist/vis.js"></script>
+<script type="text/javascript">
+function loadJSON(path, success, error)
+{
+  const xhr = new XMLHttpRequest();
+  xhr.overrideMimeType("application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200)
+        success(JSON.parse(xhr.responseText));
+      else
+        error(xhr);
+    }
+  };
+  xhr.open('GET', path, true);
+  xhr.send();
+}
+
+function makeClusters()
+{
+  var clusterLevels = {};
+  for (var clusterID in info.callchains) {
+    var lockAddr = clusterID.split("-", 1);
+    if (!(lockAddr in clusterLevels))
+      clusterLevels[lockAddr] = 0;
+    else
+      clusterLevels[lockAddr]++;
+
+    const callchainInfo = info.callchains[clusterID];
+    const clusterLevel = clusterLevels[lockAddr];
+    const clusterOptionsByData = {
+      joinCondition: function(childOptions) {
+        return childOptions.cid == clusterID;
+      },
+      processProperties: function(clusterOptions, childNodes, childEdges) {
+	clusterOptions.label = "cid " + clusterID;
+	clusterOptions.color = callchainInfo.color;
+	clusterOptions.level = clusterLevel;
+
+        clusters.push({id: clusterID})
+	return clusterOptions;
+      },
+      clusterNodeProperties: {
+	id: clusterID,
+	shape: 'square',
+        allowSingleNodeCluster: true
+      }
+    };
+    network.cluster(clusterOptionsByData);
+
+    const totalNextCallchains = callchainInfo.total_next_callchains;
+    const nextCallchains = callchainInfo.next_callchains;
+    for (var nextCallchainID in nextCallchains) {
+      const callchainCausalityEdge = {
+	from: clusterID,
+	to: nextCallchainID,
+	arrows: "to",
+	color: "black",
+	dashes: true,
+	font: {strokeColor: "yellow", strokeWidth: 2},
+	label: (nextCallchains[nextCallchainID] / totalNextCallchains * 100).toFixed(2) + " %",
+	id: clusterID + '-' + nextCallchainID,
+      }
+      callchainCausalityEdges.push(callchainCausalityEdge);
+      nodesAndEdges.edges.add(callchainCausalityEdge);
+    }
+  }
+
+  for (var lockID in info.locks) {
+    const lockInfo = info.locks[lockID];
+    const totalNextLocks = lockInfo.total_next_locks;
+    const nextLocks = lockInfo.next_locks;
+    for (var nextLockID in nextLocks) {
+      const lockCausalityEdge = {
+	from: lockID,
+	to: nextLockID,
+	arrows: "to",
+	color: "darkgray",
+	dashes: true,
+	font: {strokeColor: "greenyellow", strokeWidth: 2},
+	label: (nextLocks[nextLockID] / totalNextLocks * 100).toFixed(2) + " %",
+	id: lockID + '-' + nextLockID,
+      };
+      lockCausalityEdges.push(lockCausalityEdge);
+      nodesAndEdges.edges.add(lockCausalityEdge);
+    }
+  }
+}
+
+function openClusters(cluster_id)
+{
+  for (var i = 0; i < callchainCausalityEdges.length; ++i) {
+    callchainCausalityEdge = callchainCausalityEdges[i];
+    nodesAndEdges.edges.remove(callchainCausalityEdge);
+  }
+  callchainCausalityEdges = [];
+
+  for (var i = 0; i < lockCausalityEdges.length; ++i) {
+    lockCausalityEdge = lockCausalityEdges[i];
+    nodesAndEdges.edges.remove(lockCausalityEdge);
+  }
+  lockCausalityEdges = [];
+
+  if (!cluster_id) {
+    for (var i = 0; i < clusters.length; ++i)
+      network.openCluster(clusters[i].id);
+    clusters = [];
+    return;
+  }
+
+  network.openCluster(cluster_id);
+  for (var i = 0; i < clusters.length; ++i) {
+    if (clusters[i].id == cluster_id)
+      clusters.splice(i, 1);
+  }
+}
+
+function onLoadFile(json)
+{
+  var container = document.getElementById('dks_canvas');
+
+  var nodes = new vis.DataSet();
+  nodes.add(json.nodes);
+  var edges = new vis.DataSet();
+  edges.add(json.edges);
+
+  nodesAndEdges = {
+    nodes: nodes,
+    edges: edges
+  };
+
+  network = new vis.Network(container, nodesAndEdges, options);
+  network.on("selectNode", function(params) {
+    if (params.nodes.length == 1 && network.isCluster(params.nodes[0])) {
+      openClusters(params.nodes[0]);
+      network.setOptions({
+	layout:{hierarchical:true},
+	physics:{enabled:false, stabilization:{fit: false}}
+      });
+    }
+  });
+
+  const keys = vis.keycharm({
+    container: document,
+    preventDefault: true
+  });
+  keys.bind("c", function(event) {
+    if (clusters.length == 0) {
+      network.setOptions({
+	layout:{hierarchical:false},
+	physics:{enabled:false, stabilization:{fit: false}}
+      });
+      makeClusters();
+    } else if (clusters.length > 0) {
+      openClusters();
+      network.setOptions({
+	layout:{hierarchical:true},
+	physics:{enabled:false, stabilization:{fit: false}}
+      });
+    }
+  });
+
+  info = json.info;
+}
+
+var clusters = [];
+var network = null;
+var nodesAndEdges = null;
+var callchainCausalityEdges = [];
+var lockCausalityEdges = [];
+var info = null
+var options = {
+  clickToUse: true,
+  edges: {
+    arrowStrikethrough: false,
+    length: 400,
+    font: {
+      align: "middle",
+      size: 20,
+      strokeWidth: 2,
+      strokeColor: "white"
+    }
+  },
+  height: '100%',
+  interaction: {
+    hover: true,
+    hoverConnectedEdges: true,
+  },
+  layout: {
+    improvedLayout: true,
+    randomSeed: 8,
+    hierarchical: {
+      enabled: true,
+      levelSeparation: 200,
+      treeSpacing: 500,
+    },
+  },
+  manipulation: false,
+  nodes: {
+    shape: 'dot',
+    size: 25,
+  },
+  physics: {
+    enabled: false,
+    adaptiveTimestep: true,
+    repulsion: {
+      centralGravity: 0,
+      nodeDistance: 400,
+      springLength: 400,
+    },
+  },
+};
+
+loadJSON("dks_profile.json", onLoadFile, function(err) { console.log('error') })
+</script>

@@ -1,0 +1,267 @@
+#!/usr/bin/env python3
+"""
+SPNF: spin finder
+"""
+import os
+import string
+import argparse
+import multiprocessing
+from spnf.utils.debug import *
+from spnf.utils.disasm import *
+from spnf.utils.cache import *
+from spnf.utils.bin_utils import *
+from spnf.analysis.asm_parser import *
+from spnf.analysis.cfg import *
+from spnf.analysis.loop import *
+from spnf.analysis.sync_loop import *
+import logging
+log = logging.getLogger(__name__)
+
+__QUIET = False
+
+def get_sync_info_bin(binfile):
+    """Get synchronization information of a binary file"""
+    sync_info_str = None
+    asmfile = get_tmpfile_name()
+    try:
+        # disassemble
+        k_fname, _ = get_kernel_image()
+        if binfile == k_fname:
+            ret = disassemble_kernel(asmfile)
+        else:
+            ret = disassemble_bin(binfile, asmfile)
+            if ret:
+                return sync_info_str # goto finally block
+        # find sync loops
+        sync_info_str = get_sync_info_asm(asmfile)
+    finally:
+        # clean up and return sync_info_str
+        if os.path.isfile(asmfile):
+            os.unlink(asmfile)
+        return sync_info_str
+
+
+def get_sync_info_asm(asmfile):
+    """Get synchronization information of an assembly file"""
+    # find sync loops
+    file_sync_infos = []
+    with open(asmfile) as asmfd:
+        parser = AsmParser(asmfd)
+        for func in parser.parse_func():
+            sync_loop_ranges = find_sync_loop_ranges(func)
+            for sync_loop_range in sync_loop_ranges:
+                out_str = sync_loop_range.str_demangle_opt(not __QUIET)
+                file_sync_infos.append(out_str)
+    return "\n".join(sorted(file_sync_infos))
+
+def cache_file_name():
+    """Get cache file name"""
+    # cache_dir
+    cache_dir = os.path.abspath("%s/.dark-insight" % os.environ['HOME'])
+    if not os.path.exists(cache_dir):
+        os.system("mkdir -p %s" % cache_dir)
+    # cache_file
+    return os.path.join(cache_dir, "cache.p")
+
+def clear_cache_file():
+    """Clear cache file"""
+    fn = os.path.abspath("%s/.dark-insight/cache.p" % os.environ['HOME'])
+    os.system("rm -f %s" % fn)
+
+def collect_cache_miss_file(cache, miss_files, fn):
+    """Collect cache-miss files"""
+    sz_fn = (os.stat(fn).st_size , fn)
+    miss_files.append(sz_fn)
+
+def handle_cache_miss(cache, fn_sync_info_map, fn):
+    """Handle cache miss of binfile"""
+    sync_info_str = fn_sync_info_map[fn]
+    cache.put(fn, sync_info_str)
+
+def get_cache_miss_files(bin_file_list):
+    """Collect a list of cache-miss files"""
+    # init
+    miss_files = []
+    cfile = cache_file_name()
+    cache = Cache(cfile, collect_cache_miss_file, miss_files)
+    # loop up each binary file to collect missing files
+    for fn in bin_file_list:
+        sync_info_str = cache.get(fn)
+        # if cached results do not have requested demangled name,
+        # simply invalidate those entries to rebuild them.
+        if __QUIET is False and sync_info_str is not None:
+            if "#" not in sync_info_str:
+                cache.remove(fn)
+                collect_cache_miss_file(cache, miss_files, fn)
+    # descending sorting by file size to reduce load imbalance
+    sorted_fn_list = []
+    for sz, fn in sorted(miss_files, reverse=True):
+        sorted_fn_list.append(fn)
+    return sorted_fn_list
+
+def shuffle_file_list(file_list, ncpu):
+    """Shuffule a file list for parallel processing of ncpu"""
+    # init fllist
+    fllist = []
+    for _ in range(ncpu):
+        fllist.append([])
+    # scatter
+    for (i, fn) in enumerate(file_list):
+        flist = fllist[i % ncpu]
+        flist.append(fn)
+    # gather
+    new_file_list = []
+    for i in range(ncpu):
+        new_file_list.extend(fllist[i])
+    return new_file_list
+
+def process_file(fn):
+    """Process a file"""
+    sync_info_str = get_sync_info_bin(fn)
+    return sync_info_str if sync_info_str else ""
+
+def parallel_process_files(file_list, ncpu_limit):
+    """Process a list of files and keep results in a map"""
+    # processing files
+    ncpu = max(min(ncpu_limit, len(file_list)), 1)
+    if ncpu > 1:
+        file_list = shuffle_file_list(file_list, ncpu)
+        pool = multiprocessing.Pool(processes=ncpu)
+        sync_info_list = pool.map(process_file, file_list)
+        pool.close()
+        pool.join()
+    else:
+        sync_info_list = []
+        for fn in file_list:
+            sync_info_str = process_file(fn)
+            sync_info_list.append(sync_info_str)
+    # build up map
+    fn_sync_info_map = {}
+    for (fn, sync_info_str) in zip(file_list, sync_info_list):
+        fn_sync_info_map[fn] = sync_info_str
+    return fn_sync_info_map
+
+def print_output_format():
+    """Print output format"""
+    print("")
+    print("output format:")
+    print("  {bin-{fixed,pic},asm}: file name")
+    print("  - function_name,start_address,end_address,spin_variables # demangled function name")
+    print("    * spin_variable follows GAS indirect address syntax")
+    print("      - d(b, o, m) == *(b + (o * m) + d)")
+    print("      - d<b, o, m> ==  (b + (o * m) + d)")
+    print("      - $CONST     == CONST is a constant")
+    print("  - '#'")
+    print("    * line comment")
+    print("")
+
+def remove_demangled_name(sync_info_str):
+    str_list = []
+    for line in sync_info_str.split("\n"):
+        idx = line.find("#")
+        if idx is not -1:
+            line = line[:line.find("#")]
+        str_list.append(line)
+    return "\n".join(str_list)
+
+def is_pic(binfile):
+    """Get ELF type in an ELF header"""
+    hd_map = readelf_header(binfile)
+    return not hd_map.get("Type", "").startswith("EXEC")
+
+def spin_find(ncpu_limit, bin_file_list, asm_file_list, clear):
+    """Find spin loops"""
+    # clear cache if requested
+    if clear:
+        clear_cache_file()
+
+    # get missing files
+    miss_files = get_cache_miss_files(bin_file_list)
+
+    # process missing files
+    fn_sync_info_map = parallel_process_files(miss_files, ncpu_limit)
+
+    # init
+    cfile = cache_file_name()
+    cache = Cache(cfile, handle_cache_miss, fn_sync_info_map)
+
+    # run for each binary file
+    for fn in bin_file_list:
+        # TODO: caching pic results
+        print("# bin-%s: %s" % ("pic" if is_pic(fn) else "fixed", fn))
+        sync_info_str = cache.get(fn)
+        if sync_info_str:
+            if __QUIET:
+                sync_info_str = remove_demangled_name(sync_info_str)
+            print(sync_info_str)
+
+    # run for each asm file
+    for fn in asm_file_list:
+        # for asm file, we do not use cache.
+        print("# asm: %s" % fn)
+        sync_info_str = get_sync_info_asm(fn)
+        if sync_info_str:
+            if __QUIET:
+                sync_info_str = remove_demangled_name(sync_info_str)
+            print(sync_info_str)
+
+def parse_option():
+    """Parse command line opetion"""
+    # arg parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--kernel', '-k', action='store_true', default=False,
+                        help="current running kernel binary")
+    parser.add_argument('--quiet',  '-q', action='store_true', default=False,
+                        help="less verbose: do not show demangled name")
+    parser.add_argument('--jobs', '-j', default=2,
+                        help="number of jobs to run simultaneously")
+    parser.add_argument('--clear', '-c', action='store_true', default=False,
+                        help="clear cached results")
+    parser.add_argument('--recursive', '-r', action='store_true', default=False,
+                        help="recursive disassemble")
+    parser.add_argument('--binfile', '-b', nargs='+', default=[],
+                        help="path names of binaries")
+    parser.add_argument('--asmfile', '-a', nargs='+', default=[],
+                        help="path names of assembly files")
+
+    # parse args
+    args = parser.parse_args()
+    _bin_file_list = []
+    asm_file_list = []
+    if args.kernel:
+        k_fname, _ = get_kernel_image()
+        _bin_file_list.append(k_fname)
+    for fn in args.binfile:
+        # need to get absolute path for dso name mapping in dks
+        f = open(fn)
+        _bin_file_list.append(f.name)
+        f.close()
+    if args.recursive:
+        _bin_file_set = set()
+        for fn in _bin_file_list:
+            _bin_file_set |= rldd(fn)
+    else:
+        _bin_file_set = set(_bin_file_list)
+    bin_file_list = sorted(_bin_file_set)
+    for fn in args.asmfile:
+        asm_file_list.append(fn)
+    ncpu_limit = min(multiprocessing.cpu_count(), int(args.jobs))
+    if ncpu_limit == 0:
+        ncpu_limit = max(int(multiprocessing.cpu_count() / 2), 1)
+    if not len(bin_file_list) and not len(asm_file_list):
+        parser.print_help()
+        print_output_format()
+        exit(1)
+    global __QUIET
+    __QUIET = args.quiet
+    # TODO: refactoring this ugly argument passing!
+    #       create an option class!
+    return (ncpu_limit, bin_file_list, asm_file_list, args.clear)
+
+def main():
+    (ncpu_limit, bin_file_list, asm_file_list, clear) = parse_option()
+    spin_find(ncpu_limit, bin_file_list, asm_file_list, clear)
+
+if  __name__ == "__main__":
+    install_pdb()
+    main()

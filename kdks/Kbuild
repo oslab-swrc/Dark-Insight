@@ -1,0 +1,17 @@
+obj-m := kdks.o
+kdks-y := mod.o util.o evbuf.o spinprobe.o futexprobe.o spintable.o \
+	  ringbuf_sample_output.o perf_regs.o perf_callchain.o \
+	  hw_breakpoint.o \
+	  callchain_ht.o lock_obj_ht.o idle_obj_ht.o
+
+ccflags-y := -I$(src)/../include \
+	     -I$(src)/../lib/include \
+	     -I$(src)/../external-lib/pci-ring-buffer/include
+
+EXTRA_CFLAGS += -DRING_BUFFER_CONF_KERNEL \
+                -DRING_BUFFER_CONF_NO_MMAP \
+		-DRING_BUFFER_CONF_NO_DOUBLE_MMAP \
+		-DKDKS_CONF_KERNEL \
+		-DHAVE_PERF_REGS \
+		-DHAVE_ARCH_$(ARCH)_SUPPORT
+						

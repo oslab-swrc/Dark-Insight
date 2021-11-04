@@ -1,0 +1,17 @@
+clean up rb_rmb() usages for *_is_full/empty/freesize()
+
+ring_buffer_scif_secure_free_space
+ring_buffer_shm_secure_free_space
+ring_buffer_secure_free_space
+
+[ ] clean up CMakeList for mosaic build
+[ ] potential racing condition on wait_event()????
+[ ] barrier between elm and rb->head at put() operation
+[ ] generate Chrome tracing json?
+    https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/preview
+[ ] reporting if a ring buffer is stucked due to element status
+[ ] vectored memcopy in kernel mode
+[ ] DMA-based copy in master ring buffer
+[ ] contention management of DMA ops
+[ ] tombstone?
+[ ] testing huge page: shmget() vs. shm_open()

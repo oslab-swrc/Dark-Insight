@@ -1,0 +1,56 @@
+#ifndef __DKS_MAP_IC__
+#define __DKS_MAP_IC__
+
+//#include "map.h"
+static inline struct map *map__get(struct map *map)
+{
+/*        if (map)*/
+/*                atomic_inc(&map->refcnt);*/
+	return map;
+}
+
+
+static inline u64 identity__map_ip(struct map *map __maybe_unused, u64 ip)
+{
+	return ip;
+}
+
+static inline struct map *map_groups__find(struct map_groups *mg,
+		enum map_type type, u64 addr)
+{
+	return maps__find(&mg->maps[type], addr);
+}
+
+static inline struct map *map_groups__first(struct map_groups *mg,
+		                                            enum map_type type)
+{
+	        return maps__first(&mg->maps[type]);
+}
+
+static inline struct map *map_groups__next(struct map *map)
+{
+	        return map__next(map);
+}
+
+static inline void map_groups__insert(struct map_groups *mg, struct map *map)
+{
+	maps__insert(&mg->maps[map->type], map);
+	map->groups = mg;
+}
+
+static inline void map_groups__remove(struct map_groups *mg, struct map *map)
+{
+	maps__remove(&mg->maps[map->type], map);
+}
+
+static inline u64 map__map_ip(struct map *map, u64 ip)
+{
+	return ip - map->start + map->pgoff;
+}
+
+static inline u64 map__unmap_ip(struct map *map, u64 ip)
+{
+	return ip + map->start - map->pgoff;
+}
+
+#endif /*end of __DKS_MAP_IC__ */

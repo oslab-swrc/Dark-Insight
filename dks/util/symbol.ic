@@ -1,0 +1,56 @@
+#ifndef __DKS_SYMBOL_IC__
+#define __DKS_SYMBOL_IC__
+
+static inline const char *elf_sym__name(const GElf_Sym *sym,
+		const Elf_Data *symstrs)
+{
+	return symstrs->d_buf + sym->st_name;
+}
+
+static inline uint8_t elf_sym__type(const GElf_Sym *sym)
+{
+	return GELF_ST_TYPE(sym->st_info);
+}
+
+static inline int elf_sym__is_label(const GElf_Sym *sym)
+{
+	return elf_sym__type(sym) == STT_NOTYPE &&
+		sym->st_name != 0 &&
+		sym->st_shndx != SHN_UNDEF &&
+		sym->st_shndx != SHN_ABS;
+}
+
+static inline int elf_sym__is_function(const GElf_Sym *sym)
+{
+	return (elf_sym__type(sym) == STT_FUNC ||
+			elf_sym__type(sym) == STT_GNU_IFUNC) &&
+		sym->st_name != 0 &&
+		sym->st_shndx != SHN_UNDEF;
+}
+
+static inline bool elf_sym__is_object(const GElf_Sym *sym)
+{
+	return elf_sym__type(sym) == STT_OBJECT &&
+		sym->st_name != 0 &&
+		sym->st_shndx != SHN_UNDEF;
+}
+
+
+static inline const char *elf_sec__name(const GElf_Shdr *shdr,
+		const Elf_Data *secstrs)
+{
+	return secstrs->d_buf + shdr->sh_name;
+}
+
+static inline int elf_sec__is_text(const GElf_Shdr *shdr,
+		const Elf_Data *secstrs)
+{
+	return strstr(elf_sec__name(shdr, secstrs), "text") != NULL;
+}
+
+static inline bool elf_sec__is_data(const GElf_Shdr *shdr,
+		const Elf_Data *secstrs)
+{
+	return strstr(elf_sec__name(shdr, secstrs), "data") != NULL;
+}
+#endif /*end of __DKS_SYMBOL_IN__*/
