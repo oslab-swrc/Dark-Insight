@@ -1,10 +1,11 @@
-DARK INSIGHT
-============
-Welcome to dark-insight project. This project aims to give developers insight
-on a wasting time caused by synchronization and causality among competing threads.
+# DARK INSIGHT
 
-Envorinment
------------
+Dark Insight is a tool to profile the idle state of the system to search the scalability bottleneck. Profiling involves the kernel and user applications, has minimal overhead and does not require source code modifications.
+
+License
+
+# Envorinment
+
 * Linux 4.13.9
 * Required packages
   + Fedora
@@ -12,13 +13,13 @@ Envorinment
   + Ubuntu
     - Corresponding packages to those of fedora.
 
-How to build and install
-------------------------
+# How to build and install
+
 * In the project root, trigger make. And then sudo make install after building.
 * You can selectively build a sub-module in each relevant directory under src.
 
-How to profile
---------------
+# How to profile
+
 * To run dark-insight, two kernel modules (pci_ring_buffer.ko and kdks.ko)
   should be installed ahead.
 * When installing the kernel module, we can give two options: debug and run_mode.
@@ -31,8 +32,8 @@ How to profile
   See run.sh in the project root directory.
 * Stop profiling whenever you want with ctrl + c.
 
-How to analyze
---------------
+# How to analyze
+
 * Dark insight exports a data file in the project root. It is usually dks_profile.data
 * To see the result in the console, load the file by using a following command
   `./build/dks/dks --cmd analyze ./dks_profile.data`. Or you can simply use analyze.sh
@@ -41,13 +42,8 @@ How to analyze
   -e (or --export) option after the analyze command. The json file will be exported in
   ./build/vis/dks_profile.json. You can check the file with `firefox ./build/vis/dks.html`
 
-ETC
----
-* Original profile data are huge. So it is kept in the blades1 backup server.
-  blades1:/home/changseok/backup/dark-insight
+# Trouble shooting
 
-Trouble shooting
-----------------
 * When dark-insight shows nothing about callchain.
   + `# echo 1 > /proc/sys/vm/overcommit_memory`
   + Due to overcommit memory restriction implemented in fork() of glibc,
