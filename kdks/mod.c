@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 /*
  * KDKS (Kernel module of Dark-Insight) entry point
  */

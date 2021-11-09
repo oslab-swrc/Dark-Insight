@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __DKS_GRAPH_H__
 #define __DKS_GRAPH_H__
 

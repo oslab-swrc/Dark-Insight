@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #include <asm/perf_regs.h>
 #include <asm/ptrace.h>
 #include <asm/stacktrace.h>

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #include "util/util.h"
 #include "util/debug.h"
 #include "dks_common.h"

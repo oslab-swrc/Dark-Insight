@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __DKS_SPINLOOP_MAPS_H__
 #define __DKS_SPINLOOP_MAPS_H__
 

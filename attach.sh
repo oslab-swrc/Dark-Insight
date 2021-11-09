@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: MIT
 
 ROOT=$(realpath $(dirname "$0"))
 BUILD=$ROOT/build

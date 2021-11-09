@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #include <string.h>
 #include <linux/perf_event.h>
 #include <asm/ptrace.h>

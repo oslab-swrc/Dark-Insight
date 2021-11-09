@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __KDKS_EVENT_HELPER_H__
 #define __KDKS_EVENT_HELPER_H__
 

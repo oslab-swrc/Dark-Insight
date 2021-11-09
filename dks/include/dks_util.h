@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __DKS_UTIL_H__
 #define __DKS_UTIL_H__
 

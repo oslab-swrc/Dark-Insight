@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: MIT
 THIS_SCRIPT_PATH=$(dirname ${BASH_SOURCE[0]})
 PROJECT_ROOT_PATH=$(realpath $THIS_SCRIPT_PATH/../..)
 

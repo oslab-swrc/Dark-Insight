@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef _KDKS_I_H
 #define _KDKS_I_H
 #include <linux/types.h>

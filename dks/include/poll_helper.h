@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __DKS_POLL_HELPER_H__
 #define __DKS_POLL_HELPER_H__
 

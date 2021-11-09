@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef __DKS_CTRL_H__
 #define __DKS_CTRL_H__
 
