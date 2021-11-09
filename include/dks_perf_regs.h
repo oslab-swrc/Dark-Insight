@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef _DKS_PERF_REGS_H
 #define _DKS_PERF_REGS_H
 

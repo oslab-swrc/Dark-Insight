@@ -1,5 +1,5 @@
 SRC_DIRS  = external-lib
-SRC_DIRS += kdks dks tests
+SRC_DIRS += kdks dks
 NJOB := ${shell nproc}
 
 # verbose flag

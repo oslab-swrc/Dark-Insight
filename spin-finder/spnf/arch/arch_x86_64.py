@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: MIT
 """
 Intel x86-64 architecture definition
 : instruction information follows AT&T syntax

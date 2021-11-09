@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #ifndef _SPIN_TABLE_H
 #define _SPIN_TABLE_H
 #include <linux/types.h>
