@@ -1,8 +1,8 @@
-# DARK INSIGHT
+# Dark Insight
 
 Dark Insight is a tool to profile the idle state of the system to search the scalability bottleneck. Profiling involves the kernel and user applications, has minimal overhead and does not require source code modifications.
 
-License
+We developed kernel modules (KDKS) and a user library (DKS). All developed files are provided under the terms of MIT license, and some Linux header files are imported.
 
 # Envorinment
 
