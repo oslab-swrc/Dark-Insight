@@ -11,6 +11,7 @@ We developed kernel modules (KDKS) and a user library (DKS). All developed files
   + Fedora
     - elfutils-devel binutils-devel libunwind-devel ncurses-devel graphviz libbsd-devel sqlite-devel kernel-devel json-c-devel
   + Ubuntu
+   -
     - Corresponding packages to those of fedora.
 
 # How to build and install
@@ -40,7 +41,7 @@ We developed kernel modules (KDKS) and a user library (DKS). All developed files
   in the project root.
 * To see the result in firefox, we need to export the data into json format. Append
   -e (or --export) option after the analyze command. The json file will be exported in
-  ./build/vis/dks_profile.json. You can check the file with `firefox ./build/vis/dks.html`
+  ./build/vis/dks_profile.json. You can check the file with `firefox ./external-lib/vis/dks.html`
 
 # Trouble shooting
 
@@ -49,3 +50,8 @@ We developed kernel modules (KDKS) and a user library (DKS). All developed files
   + Due to overcommit memory restriction implemented in fork() of glibc,
     popen() can fail because of huge memory usage of the parents.
   + https://stackoverflow.com/questions/46574798/enomem-from-popen-for-system-while-there-is-enough-memory
+
+* When browser shows nothing about callchain because of CORS policy.
+  + Run other web server ( ex. python -m http.server ) 
+  + Edit dks.html
+        LoadJSON("dks_profile.json" .... ) -> LoadJSON("http://localhost:8000/dks_profile.json" ....) 
