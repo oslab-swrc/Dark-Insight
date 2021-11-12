@@ -11,8 +11,8 @@ We developed kernel modules (KDKS) and a user library (DKS). All developed files
   + Fedora
     - elfutils-devel binutils-devel libunwind-devel ncurses-devel graphviz libbsd-devel sqlite-devel kernel-devel json-c-devel
   + Ubuntu
-   -
     - Corresponding packages to those of fedora.
+    - build-eseential libdw-dev libelf-dev binutils-dev libunwind-dev libjson-c-dev libncurses5-dev libbsd-dev libsqlite3-dev
 
 # How to build and install
 
